@@ -5,6 +5,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,7 +26,7 @@ public class OuvrageController {
 
     @ApiOperation(value = "Recherche d'ouvrage par /{titre} ou par /{auteur}")
     @GetMapping(value="/LookForOuvrage")
-    public MappingJacksonValue getReferenceSearch(@RequestParam(required = false) Map<String,String> criterionList) {
+    public MappingJacksonValue getReferenceSearch(@RequestBody(required = false) Map<String,String> criterionList) {
         List<Ouvrage> ouvrageList =  ouvrageService.getOuvrageByQuerie(criterionList);
         return ouvrageJacksonFilters.filtersOnAttributes(ouvrageList);
     }

@@ -25,8 +25,8 @@ public class PretService {
     }
 
     @Transactional(readOnly = true, rollbackFor = Exception.class)
-    public List<PretDtoWeb> getPretsByUsagerNameWithCriteria(Usager usager) {
-        List<PretDtoWeb> pretDtoWebs= pretRepository.findPretBydUsagerIdWithCriteria(usager.getIdusager());
+    public List<PretDtoWeb> getPretsByUsagerNameWithCriteria(int idUsager) {
+        List<PretDtoWeb> pretDtoWebs= pretRepository.findPretBydUsagerIdWithCriteria(idUsager);
         if (pretDtoWebs.isEmpty())
             throw new PretNotFoundException("aucun prêt en cours");
         return pretDtoWebs;
@@ -47,7 +47,7 @@ public class PretService {
             throw new PretNotFoundException("Pret n'existe pas");
         }
         else {
-            if (optionalPret.get().getPretprolonge() >1 ) {
+            if (optionalPret.get().getPretprolonge() >0 ) {
                 throw new ProlongationPretImpossibleException("ce prêt a déja été renouvelé ou est hors-délai");
             }
             optionalPret.get().setPretprolonge(1);

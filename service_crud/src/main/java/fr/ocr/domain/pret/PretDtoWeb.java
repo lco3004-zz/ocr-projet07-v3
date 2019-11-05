@@ -11,6 +11,7 @@ public class PretDtoWeb implements Serializable {
     static final long serialVersionUID = 8453281303625368221L;
 
      int ouvrageIdouvrage;
+     int usagerIdusager;
      Date dateEmprunt;
      String auteur;
      String titre;

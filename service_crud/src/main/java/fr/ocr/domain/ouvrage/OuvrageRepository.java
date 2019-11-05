@@ -16,6 +16,8 @@ public interface OuvrageRepository extends JpaRepository<Ouvrage, Integer>
 
      List<Ouvrage> findOuvrageByTitreLike(String gTitre);
 
+     List<Ouvrage> findOuvrageByAuteurLikeAndTitreLike(String gAuteur,String gTitre);
+
      Optional<Ouvrage> findOuvrageByIdouvrage(Integer idOuvrage);
 
 }

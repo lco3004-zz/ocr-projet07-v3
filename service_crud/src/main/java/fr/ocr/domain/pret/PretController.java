@@ -46,8 +46,7 @@ public class PretController {
     @ResponseBody
     @GetMapping(value="/CriteriaListePrets/{nomUsager}",  produces= MediaType.APPLICATION_JSON_VALUE)
     public  List<PretDtoWeb> getPretByNomUsagerCriteria(@PathVariable String nomUsager) {
-        Usager usager= usagerService.getUsagerByNom(nomUsager);
-        List<PretDtoWeb> pretDtoWebs = pretService.getPretsByUsagerNameWithCriteria(usager);
+        List<PretDtoWeb> pretDtoWebs = pretService.getPretsByUsagerNameWithCriteria(usagerService.getUsagerByNom(nomUsager).getIdusager());
         return  pretDtoWebs ;
     }
 
@@ -65,7 +64,7 @@ public class PretController {
     @Synchronized
     public ResponseEntity<Void> CreerPret(@RequestBody(required = true) InfosRecherchePret infosRecherchePret) {
         Optional<Pret> optionalPret = pretService.isPretExiste(infosRecherchePret.getIdOuvrage(),infosRecherchePret.getIdUsager());
-        if (optionalPret.isEmpty()) {
+        if (!optionalPret.isEmpty()) {
             throw new PretDejaExistantException("Pret deja existant");
         }
         else {

@@ -28,12 +28,15 @@ public class OuvrageService {
     @Transactional(readOnly = true, rollbackFor = Exception.class)
     public List<Ouvrage> getOuvrageByQuerie(Map<String, String> requeteSearch) {
 
-        List<Ouvrage> ouvrageList = null;
+        List<Ouvrage> ouvrageList;
 
         String gTitre = requeteSearch.get("titre");
         String gAuteur = requeteSearch.get("auteur");
 
-         if (gAuteur != null && ! gAuteur.isEmpty()) {
+        if ((gAuteur != null && ! gAuteur.isEmpty()) && (gTitre != null && ! gTitre.isEmpty())) {
+            ouvrageList = ouvrageRepository.findOuvrageByAuteurLikeAndTitreLike(gAuteur+"%",gTitre+"%");
+        }
+        else if (gAuteur != null && ! gAuteur.isEmpty()) {
             ouvrageList = ouvrageRepository.findOuvrageByAuteurLike(gAuteur+"%");
         } else if (gTitre != null && ! gTitre.isEmpty()) {
             ouvrageList = ouvrageRepository.findOuvrageByTitreLike(gTitre+"%");

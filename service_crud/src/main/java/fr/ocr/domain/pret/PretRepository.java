@@ -59,7 +59,13 @@ class PretRepositoryCustomImpl implements PretRepositoryCustom {
 
         criteriaQuery.where(predicateUsager);
 
-        criteriaQuery.multiselect(pretRoot.get(Pret_.dateEmprunt), pretOuvrageJoin.get(Ouvrage_.auteur), pretOuvrageJoin.get(Ouvrage_.titre));
+        criteriaQuery.multiselect(pretRoot.get(
+                Pret_.ouvrageIdouvrage),
+                pretRoot.get(Pret_.usagerIdusager),
+                pretRoot.get(Pret_.dateEmprunt),
+                pretOuvrageJoin.get(Ouvrage_.auteur),
+                pretOuvrageJoin.get(Ouvrage_.titre)
+        );
 
         TypedQuery<PretDtoWeb> query = entityManager.createQuery(criteriaQuery);
         List<PretDtoWeb> pretDtoWebs = query.getResultList();
