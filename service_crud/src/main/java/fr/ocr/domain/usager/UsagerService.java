@@ -38,12 +38,15 @@ public class UsagerService {
         return optionalUsager.get();
     }
 
+
     @Transactional(readOnly = true, rollbackFor = Exception.class)
-    public Usager getUsagerByIdDto(Integer id) {
-        Optional<Usager> optionalUsager =usagerRepository.findUsagerByIdusager(id);
+    public UsagerDto getUsagerDTOById(Integer id) {
+        Optional<UsagerDto> optionalUsager =usagerRepository.getUsagerByIdusager(id);
         if (optionalUsager.isEmpty())
             throw new UsagerNotFoundException("Usager inconnu");
 
         return optionalUsager.get();
     }
+
+
 }

@@ -101,9 +101,9 @@ public class PretService {
         return optionalPret.get();
     }
 
-    public List<Pret> getPretByeDueDate(Date dateCourante) {
-        List<Pret> pretList= pretRepository.findPretsByDateEmpruntIsBefore(dateCourante);
-        return pretList;
+    public List<PretDto> getPretByeDueDate(Date dateCourante) {
+        List<PretDto> pretDtoList= pretRepository.findPretsByDateEmpruntIsBefore(dateCourante);
+        return pretDtoList;
     }
 
 

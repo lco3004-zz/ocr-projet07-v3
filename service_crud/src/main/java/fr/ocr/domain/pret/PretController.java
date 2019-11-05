@@ -44,22 +44,6 @@ public class PretController {
         this.ouvrageService = ouvrageService;
     }
 
-    @ApiOperation(value = "SpringDataJpa : Récupère les prêts d'un usager grâce à son nom")
-    @GetMapping(value="/ListePrets/{nomUsager}")
-    public MappingJacksonValue getPretByNomUsagerLike(@PathVariable String nomUsager) {
-
-        Usager usager= usagerService.getUsagerByNom(nomUsager);
-        Collection<Tuple> pretListTupple =  pretService.getPretsByUsager(usager);
-
-        List<PretDto> dtoCollection = new ArrayList<>();
-
-        for (Tuple tuple:pretListTupple) {
-            PretDto pretDto = new PretDto((Date)tuple.get(0),(String)tuple.get(1),(String)tuple.get(2),"");
-            dtoCollection.add(pretDto);
-        }
-        return new MappingJacksonValue(dtoCollection);
-    }
-
     @ApiOperation(value = "Api Criteria : Récupère les prêts d'un usager grâce à son nom")
     @GetMapping(value="/CriteriaListePrets/{nomUsager}")
     public MappingJacksonValue getPretByNomUsagerCriteria(@PathVariable String nomUsager) {
@@ -135,12 +119,7 @@ public class PretController {
         calendar.setTime(sdf.parse(sDateCourante));
         calendar.add(Calendar.WEEK_OF_YEAR,nbWeeks * -1);
 
-        ArrayList<PretDto> pretDtoList = new ArrayList<>();
-
-        pretService.getPretByeDueDate(calendar.getTime()).forEach(x->  pretDtoList.add(new PretDto(x.getDateEmprunt(),
-                x.getAuteurOuvrage(),
-                x.getTitreOuvrage(),
-                usagerService.getUsagerById(x.getUsagerIdusager()).getCourriel() )));
+        List<PretDto> pretDtoList = pretService.getPretByeDueDate(calendar.getTime());
 
         return pretDtoList;
     }

@@ -26,13 +26,12 @@ public interface PretRepository extends JpaRepository<Pret,Integer> , JpaSpecifi
 
     Optional<Pret> findPretByOuvrageIdouvrageAndUsagerIdusager(int ouvrageIdouvrage, int usagerIdusager);
 
-    List<Pret> findPretsByDateEmpruntIsBefore(Date dateCourante);
+    List<PretDto> findPretsByDateEmpruntIsBefore(Date dateCourante);
 
 }
 
 interface PretRepositoryCustom{
     Collection<PretDto> findPretBydUsagerIdWithCriteria(Integer idUsager);
-
 }
 
 

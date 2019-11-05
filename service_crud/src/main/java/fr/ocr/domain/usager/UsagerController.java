@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @Api(value = "APIs de gestion des Usagers.")
 @RestController
@@ -38,9 +39,16 @@ public class UsagerController {
     }
 
     @ApiOperation(value = "Détails information Usager (Nom-Email).")
-    @GetMapping(value = "/UsagerDto/{idUsager}", produces= MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/Usager/{idUsager}", produces= MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody Usager getUsagerById(@PathVariable Integer idUsager) {
-        Usager usager = usagerService.getUsagerByIdDto(idUsager);
+        Usager usager = usagerService.getUsagerById(idUsager);
         return usager;
+    }
+
+    @ApiOperation(value = "Détails information Usager (Nom-Email).")
+    @GetMapping(value = "/UsagerDTO/{idUsager}", produces= MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody UsagerDto getUsagerDTOByNom(@PathVariable Integer idUsager) {
+         UsagerDto usagerDto = usagerService.getUsagerDTOById(idUsager);
+        return usagerDto;
     }
 }

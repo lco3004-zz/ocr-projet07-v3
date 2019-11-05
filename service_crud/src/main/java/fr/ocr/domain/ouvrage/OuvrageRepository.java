@@ -1,6 +1,6 @@
 package fr.ocr.domain.ouvrage;
 
-import fr.ocr.domain.ouvrage.Ouvrage;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
