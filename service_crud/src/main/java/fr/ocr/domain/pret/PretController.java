@@ -24,7 +24,7 @@ import java.util.Optional;
 
 @Value
 class InfosRecherchePret {
-    String nomUsager;
+    Integer idUsager;
     Integer idOuvrage;
 }
 
@@ -55,12 +55,8 @@ public class PretController {
     @PutMapping(value = "/ProlongerPret")
     @Synchronized
     public ResponseEntity<Void> prolongerPret(@RequestBody(required = true) InfosRecherchePret infosRecherchePret) {
-        Ouvrage ouvrage = ouvrageService.getOuvrageById(infosRecherchePret.getIdOuvrage());
-        Usager usager = usagerService.getUsagerByNom(infosRecherchePret.getNomUsager());
-        pretService.setProlongationPret(ouvrage.getIdouvrage(),usager.getIdusager());
-
+        pretService.setProlongationPret(infosRecherchePret.getIdOuvrage(),infosRecherchePret.getIdUsager());
         URI location = ServletUriComponentsBuilder.fromUri(URI.create("/ProlongerPret")).buildAndExpand().toUri();
-
         return ResponseEntity.created(location).build();
     }
 
@@ -68,20 +64,15 @@ public class PretController {
     @PostMapping(value = "/CreerPret")
     @Synchronized
     public ResponseEntity<Void> CreerPret(@RequestBody(required = true) InfosRecherchePret infosRecherchePret) {
-
-        Ouvrage ouvrage = ouvrageService.getOuvrageById(infosRecherchePret.getIdOuvrage());
-        Usager usager = usagerService.getUsagerByNom(infosRecherchePret.getNomUsager());
-        Optional<Pret> optionalPret = pretService.isPretExiste(ouvrage.getIdouvrage(),usager.getIdusager());
+        Optional<Pret> optionalPret = pretService.isPretExiste(infosRecherchePret.getIdOuvrage(),infosRecherchePret.getIdUsager());
         if (optionalPret.isEmpty()) {
             throw new PretDejaExistantException("Pret deja existant");
         }
         else {
-            ouvrageService.setQuantiteByIdOuvrage(ouvrage.getIdouvrage(),-1);
-            pretService.addPret(ouvrage,usager);
+            ouvrageService.setQuantiteByIdOuvrage(infosRecherchePret.getIdOuvrage(),-1);
+            pretService.addPret(infosRecherchePret.getIdOuvrage(),infosRecherchePret.getIdUsager());
         }
-
         URI location = ServletUriComponentsBuilder.fromUri(URI.create("/CreerPret")).buildAndExpand().toUri();
-
         return ResponseEntity.created(location).build();
     }
 
@@ -89,22 +80,15 @@ public class PretController {
     @PostMapping (value = "/RestituerPret")
     @Synchronized
     public ResponseEntity<Void> RestituerPret(@RequestBody(required = true) InfosRecherchePret infosRecherchePret) {
-
-        Ouvrage ouvrage = ouvrageService.getOuvrageById(infosRecherchePret.getIdOuvrage());
-        Usager usager = usagerService.getUsagerByNom(infosRecherchePret.getNomUsager());
-
-        Optional<Pret> optionalPret = pretService.isPretExiste(ouvrage.getIdouvrage(),usager.getIdusager());
-
+        Optional<Pret> optionalPret = pretService.isPretExiste(infosRecherchePret.getIdOuvrage(),infosRecherchePret.getIdUsager());
         if (optionalPret.isEmpty()) {
             throw new PretDejaExistantException("Pret n'existe pas");
         }
         else {
-            ouvrageService.setQuantiteByIdOuvrage(ouvrage.getIdouvrage(),1);
-            pretService.deletePret(ouvrage,usager);
+            ouvrageService.setQuantiteByIdOuvrage(infosRecherchePret.getIdOuvrage(),1);
+            pretService.deletePret(infosRecherchePret.getIdOuvrage(),infosRecherchePret.getIdUsager());
         }
-
         URI location = ServletUriComponentsBuilder.fromUri(URI.create("/RestituerPret")).buildAndExpand().toUri();
-
         return ResponseEntity.created(location).build();
     }
 
@@ -113,16 +97,11 @@ public class PretController {
     @GetMapping(value="/ListePretsHorsDelai/",  produces= MediaType.APPLICATION_JSON_VALUE)
     public List<PretDtoBatch> getPretByIdUsagerHorsDelai(@RequestParam(value = "currentDate") String sDateCourante,
                                                          @RequestParam(value = "elapsedWeeks") Integer nbWeeks) throws ParseException {
-
         GregorianCalendar calendar = new GregorianCalendar();
-
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         calendar.setTime(sdf.parse(sDateCourante));
         calendar.add(Calendar.WEEK_OF_YEAR,nbWeeks * -1);
-
         List<PretDtoBatch> pretDtoBatchList = pretService.getPretByeDueDate(calendar.getTime());
-
         return pretDtoBatchList;
     }
-
 }

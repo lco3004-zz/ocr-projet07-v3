@@ -10,9 +10,10 @@ import java.util.Date;
 public class PretDtoWeb implements Serializable {
     static final long serialVersionUID = 8453281303625368221L;
 
-    private Date dateEmprunt;
-    private String auteur;
-    private String titre;
+     int ouvrageIdouvrage;
+     Date dateEmprunt;
+     String auteur;
+     String titre;
 }
 
 
