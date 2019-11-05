@@ -41,10 +41,10 @@ public class PretController {
 
     @ApiOperation(value = "Api Criteria : Récupère les prêts d'un usager grâce à son nom")
     @GetMapping(value="/CriteriaListePrets/{nomUsager}",  produces= MediaType.APPLICATION_JSON_VALUE)
-    public List<PretDto> getPretByNomUsagerCriteria(@PathVariable String nomUsager) {
+    public @ResponseBody List<PretDtoWeb> getPretByNomUsagerCriteria(@PathVariable String nomUsager) {
         Usager usager= usagerService.getUsagerByNom(nomUsager);
-        List<PretDto> pretDtoList = pretService.getPretsByUsagerNameWithCriteria(usager);
-        return  pretDtoList ;
+        List<PretDtoWeb> pretDtoWebs = pretService.getPretsByUsagerNameWithCriteria(usager);
+        return  pretDtoWebs ;
     }
 
     @ApiOperation(value = "Prolonge le Pret d'un usager")
@@ -106,8 +106,8 @@ public class PretController {
 
     @ApiOperation(value = "Api Criteria : Récupère les prêts hors-delai ")
     @GetMapping(value="/ListePretsHorsDelai/",  produces= MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody List<PretDto> getPretByIdUsagerHorsDelai(@RequestParam(value = "currentDate") String sDateCourante,
-                                                                  @RequestParam(value = "elapsedWeeks") Integer nbWeeks) throws ParseException {
+    public @ResponseBody List<PretDtoBatch> getPretByIdUsagerHorsDelai(@RequestParam(value = "currentDate") String sDateCourante,
+                                                                       @RequestParam(value = "elapsedWeeks") Integer nbWeeks) throws ParseException {
 
         GregorianCalendar calendar = new GregorianCalendar();
 
@@ -115,9 +115,9 @@ public class PretController {
         calendar.setTime(sdf.parse(sDateCourante));
         calendar.add(Calendar.WEEK_OF_YEAR,nbWeeks * -1);
 
-        List<PretDto> pretDtoList = pretService.getPretByeDueDate(calendar.getTime());
+        List<PretDtoBatch> pretDtoBatchList = pretService.getPretByeDueDate(calendar.getTime());
 
-        return pretDtoList;
+        return pretDtoBatchList;
     }
 
 }

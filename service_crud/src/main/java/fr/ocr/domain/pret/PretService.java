@@ -28,13 +28,13 @@ public class PretService {
     }
 
     @Transactional(readOnly = true, rollbackFor = Exception.class)
-    public List<PretDto> getPretsByUsagerNameWithCriteria(Usager usager) {
+    public List<PretDtoWeb> getPretsByUsagerNameWithCriteria(Usager usager) {
 
-        List<PretDto> pretDtos= pretRepository.findPretBydUsagerIdWithCriteria(usager.getIdusager());
+        List<PretDtoWeb> pretDtoWebs= pretRepository.findPretBydUsagerIdWithCriteria(usager.getIdusager());
 
-        if (pretDtos.isEmpty())
+        if (pretDtoWebs.isEmpty())
             throw new PretNotFoundException("aucun prêt en cours");
-        return pretDtos;
+        return pretDtoWebs;
     }
 
     @Transactional(readOnly = true, rollbackFor = Exception.class)
@@ -101,9 +101,9 @@ public class PretService {
         return optionalPret.get();
     }
 
-    public List<PretDto> getPretByeDueDate(Date dateCourante) {
-        List<PretDto> pretDtoList= pretRepository.findPretsByDateEmpruntIsBefore(dateCourante);
-        return pretDtoList;
+    public List<PretDtoBatch> getPretByeDueDate(Date dateCourante) {
+        List<PretDtoBatch> pretDtoBatchList = pretRepository.findPretsByDateEmpruntIsBefore(dateCourante);
+        return pretDtoBatchList;
     }
 
 

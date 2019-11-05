@@ -47,6 +47,4 @@ public class UsagerService {
 
         return optionalUsager.get();
     }
-
-
 }

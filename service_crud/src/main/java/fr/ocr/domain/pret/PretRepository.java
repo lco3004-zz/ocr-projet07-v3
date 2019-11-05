@@ -26,12 +26,12 @@ public interface PretRepository extends JpaRepository<Pret,Integer> , JpaSpecifi
 
     Optional<Pret> findPretByOuvrageIdouvrageAndUsagerIdusager(int ouvrageIdouvrage, int usagerIdusager);
 
-    List<PretDto> findPretsByDateEmpruntIsBefore(Date dateCourante);
+    List<PretDtoBatch> findPretsByDateEmpruntIsBefore(Date dateCourante);
 
 }
 
 interface PretRepositoryCustom{
-    List<PretDto> findPretBydUsagerIdWithCriteria(Integer idUsager);
+    List<PretDtoWeb> findPretBydUsagerIdWithCriteria(Integer idUsager);
 }
 
 class PretRepositoryCustomImpl implements PretRepositoryCustom {
@@ -40,10 +40,10 @@ class PretRepositoryCustomImpl implements PretRepositoryCustom {
     EntityManager entityManager;
 
     @Override
-    public List<PretDto> findPretBydUsagerIdWithCriteria(Integer idUsager) {
+    public List<PretDtoWeb> findPretBydUsagerIdWithCriteria(Integer idUsager) {
 
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<PretDto> criteriaQuery = criteriaBuilder.createQuery(PretDto.class);
+        CriteriaQuery<PretDtoWeb> criteriaQuery = criteriaBuilder.createQuery(PretDtoWeb.class);
 
         Root<Pret> pretRoot = criteriaQuery.from(Pret.class);
 
@@ -61,10 +61,10 @@ class PretRepositoryCustomImpl implements PretRepositoryCustom {
 
         criteriaQuery.multiselect(pretRoot.get(Pret_.dateEmprunt), pretOuvrageJoin.get(Ouvrage_.auteur), pretOuvrageJoin.get(Ouvrage_.titre));
 
-        TypedQuery<PretDto> query = entityManager.createQuery(criteriaQuery);
-        List<PretDto> pretDtos = query.getResultList();
+        TypedQuery<PretDtoWeb> query = entityManager.createQuery(criteriaQuery);
+        List<PretDtoWeb> pretDtoWebs = query.getResultList();
 
-        return pretDtos;
+        return pretDtoWebs;
     }
 
 }
