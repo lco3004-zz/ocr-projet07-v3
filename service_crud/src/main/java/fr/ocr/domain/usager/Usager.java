@@ -1,0 +1,41 @@
+package fr.ocr.domain.usager;
+
+import com.fasterxml.jackson.annotation.JsonFilter;
+import fr.ocr.domain.pret.Pret;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+import javax.persistence.*;
+import java.util.Collection;
+
+
+@Entity
+@Table(name = "usager", schema = "usager", catalog = "db_projet07")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@JsonFilter("UsagerFiltreDynamique")
+public class Usager {
+
+    @Id
+    @Column(name = "idusager", nullable = false)
+    private int idusager;
+
+    @Basic
+    @Column(name = "nom", nullable = false, length = 256)
+    private String nom;
+
+    @Basic
+    @Column(name = "mdp", nullable = false, length = 1024)
+    private String mdp;
+
+    @Basic
+    @Column(name = "courriel", nullable = false, length = 1024)
+    private String courriel;
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "usagerByUsagerIdusager")
+    private Collection<Pret> pretsByIdusager;
+}
