@@ -1,14 +1,14 @@
 package fr.ocr.domain.pret;
 
-import com.fasterxml.jackson.annotation.JsonFilter;
-import fr.ocr.domain.usager.Usager;
 import fr.ocr.domain.ouvrage.Ouvrage;
+import fr.ocr.domain.usager.Usager;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 
@@ -18,13 +18,16 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonFilter("PretFiltreDynamique")
+
 @NamedQuery(name = "Pret.findPretsByUsagerName",
             query = "select  p.dateEmprunt , o.auteur , o.titre from Pret p , " +
                     "in (p.ouvrageByOuvrageIdouvrage) as o " +
                     " where p.usagerByUsagerIdusager = :Emprunteur")
 
-public class Pret {
+public class Pret implements Serializable {
+
+    @Transient
+    static final long serialVersionUID = 6453281303625368221L;
 
     @Id
     @Column(name = "ouvrage_idouvrage", nullable = false)

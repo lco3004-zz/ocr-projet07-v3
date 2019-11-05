@@ -1,8 +1,8 @@
 package fr.ocr.domain.pret;
 
 import fr.ocr.domain.ouvrage.Ouvrage;
-import fr.ocr.domain.usager.Usager;
 import fr.ocr.domain.ouvrage.OuvrageService;
+import fr.ocr.domain.usager.Usager;
 import fr.ocr.domain.usager.UsagerService;
 import fr.ocr.utility.exception.PretDejaExistantException;
 import io.swagger.annotations.Api;
@@ -17,7 +17,10 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.Optional;
 
 @Value
 class InfosRecherchePret {
@@ -40,8 +43,9 @@ public class PretController {
     }
 
     @ApiOperation(value = "Api Criteria : Récupère les prêts d'un usager grâce à son nom")
+    @ResponseBody
     @GetMapping(value="/CriteriaListePrets/{nomUsager}",  produces= MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody List<PretDtoWeb> getPretByNomUsagerCriteria(@PathVariable String nomUsager) {
+    public  List<PretDtoWeb> getPretByNomUsagerCriteria(@PathVariable String nomUsager) {
         Usager usager= usagerService.getUsagerByNom(nomUsager);
         List<PretDtoWeb> pretDtoWebs = pretService.getPretsByUsagerNameWithCriteria(usager);
         return  pretDtoWebs ;
@@ -105,9 +109,10 @@ public class PretController {
     }
 
     @ApiOperation(value = "Api Criteria : Récupère les prêts hors-delai ")
+    @ResponseBody
     @GetMapping(value="/ListePretsHorsDelai/",  produces= MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody List<PretDtoBatch> getPretByIdUsagerHorsDelai(@RequestParam(value = "currentDate") String sDateCourante,
-                                                                       @RequestParam(value = "elapsedWeeks") Integer nbWeeks) throws ParseException {
+    public List<PretDtoBatch> getPretByIdUsagerHorsDelai(@RequestParam(value = "currentDate") String sDateCourante,
+                                                         @RequestParam(value = "elapsedWeeks") Integer nbWeeks) throws ParseException {
 
         GregorianCalendar calendar = new GregorianCalendar();
 

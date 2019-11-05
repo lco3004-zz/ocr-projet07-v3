@@ -5,6 +5,7 @@ import fr.ocr.utility.exception.UsagerNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,22 +17,8 @@ public class UsagerService {
         this.usagerRepository = usagerRepository;
     }
 
-    @Transactional(readOnly = true, rollbackFor = Exception.class)
-    public List<Usager> getUsagers() {
-        return usagerRepository.findAll();
-    }
-
-    @Transactional(readOnly = true, rollbackFor = Exception.class)
-    public  Usager getUsagerById(Integer id) {
-        Optional<Usager> optionalUsager =usagerRepository.findUsagerByIdusager(id);
-        if (optionalUsager.isEmpty())
-            throw new UsagerNotFoundException("Usager inconnu");
-
-         return optionalUsager.get();
-    }
-
-    @Transactional(readOnly = true, rollbackFor = Exception.class)
-    public  Usager getUsagerByNom(String nom) {
+     @Transactional(readOnly = true, rollbackFor = Exception.class)
+    public Usager getUsagerByNom(String nom) {
         Optional<Usager> optionalUsager =usagerRepository.findUsagerByNom(nom);
         if (optionalUsager.isEmpty())
             throw new UsagerNotFoundException("Usager inconnu");

@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 
 @Entity
@@ -16,7 +17,10 @@ import java.util.Collection;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonFilter("OuvrageFiltreDynamique")
-public class Ouvrage {
+public class Ouvrage  implements Serializable {
+
+    @Transient
+    static final long serialVersionUID = 2453281303625368221L;
 
     @Id
     @Column(name = "idouvrage", nullable = false)
