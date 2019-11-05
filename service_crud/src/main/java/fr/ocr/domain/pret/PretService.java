@@ -28,9 +28,9 @@ public class PretService {
     }
 
     @Transactional(readOnly = true, rollbackFor = Exception.class)
-    public Collection<PretDto> getPretsByUsagerNameWithCriteria(Usager usager) {
+    public List<PretDto> getPretsByUsagerNameWithCriteria(Usager usager) {
 
-        Collection<PretDto> pretDtos= pretRepository.findPretBydUsagerIdWithCriteria(usager.getIdusager());
+        List<PretDto> pretDtos= pretRepository.findPretBydUsagerIdWithCriteria(usager.getIdusager());
 
         if (pretDtos.isEmpty())
             throw new PretNotFoundException("aucun prêt en cours");

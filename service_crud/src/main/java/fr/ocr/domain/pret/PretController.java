@@ -4,7 +4,6 @@ import fr.ocr.domain.ouvrage.Ouvrage;
 import fr.ocr.domain.usager.Usager;
 import fr.ocr.domain.ouvrage.OuvrageService;
 import fr.ocr.domain.usager.UsagerService;
-import fr.ocr.utility.filter.PretJacksonFilters;
 import fr.ocr.utility.exception.PretDejaExistantException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -12,11 +11,9 @@ import lombok.Synchronized;
 import lombok.Value;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.persistence.Tuple;
 import java.net.URI;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -35,20 +32,19 @@ public class PretController {
     final PretService pretService;
     final UsagerService usagerService;
     final OuvrageService ouvrageService;
-    final PretJacksonFilters<List<PretDto>> pretJacksonFilters;
 
-    public PretController(PretService pretService, PretJacksonFilters<List<PretDto>> pretJacksonFilters, UsagerService usagerService, UsagerService usagerService1, OuvrageService ouvrageService) {
+    public PretController(PretService pretService, UsagerService usagerService,  OuvrageService ouvrageService) {
         this.pretService = pretService;
-        this.pretJacksonFilters = pretJacksonFilters;
-        this.usagerService = usagerService1;
+        this.usagerService = usagerService;
         this.ouvrageService = ouvrageService;
     }
 
     @ApiOperation(value = "Api Criteria : Récupère les prêts d'un usager grâce à son nom")
-    @GetMapping(value="/CriteriaListePrets/{nomUsager}")
-    public MappingJacksonValue getPretByNomUsagerCriteria(@PathVariable String nomUsager) {
+    @GetMapping(value="/CriteriaListePrets/{nomUsager}",  produces= MediaType.APPLICATION_JSON_VALUE)
+    public List<PretDto> getPretByNomUsagerCriteria(@PathVariable String nomUsager) {
         Usager usager= usagerService.getUsagerByNom(nomUsager);
-        return new MappingJacksonValue( pretService.getPretsByUsagerNameWithCriteria(usager));
+        List<PretDto> pretDtoList = pretService.getPretsByUsagerNameWithCriteria(usager);
+        return  pretDtoList ;
     }
 
     @ApiOperation(value = "Prolonge le Pret d'un usager")

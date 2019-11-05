@@ -31,20 +31,16 @@ public interface PretRepository extends JpaRepository<Pret,Integer> , JpaSpecifi
 }
 
 interface PretRepositoryCustom{
-    Collection<PretDto> findPretBydUsagerIdWithCriteria(Integer idUsager);
+    List<PretDto> findPretBydUsagerIdWithCriteria(Integer idUsager);
 }
-
 
 class PretRepositoryCustomImpl implements PretRepositoryCustom {
 
     @PersistenceContext
     EntityManager entityManager;
 
-    PretDto pretDto;
-
-
     @Override
-    public Collection<PretDto> findPretBydUsagerIdWithCriteria(Integer idUsager) {
+    public List<PretDto> findPretBydUsagerIdWithCriteria(Integer idUsager) {
 
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<PretDto> criteriaQuery = criteriaBuilder.createQuery(PretDto.class);
@@ -66,7 +62,7 @@ class PretRepositoryCustomImpl implements PretRepositoryCustom {
         criteriaQuery.multiselect(pretRoot.get(Pret_.dateEmprunt), pretOuvrageJoin.get(Ouvrage_.auteur), pretOuvrageJoin.get(Ouvrage_.titre));
 
         TypedQuery<PretDto> query = entityManager.createQuery(criteriaQuery);
-        Collection<PretDto> pretDtos = query.getResultList();
+        List<PretDto> pretDtos = query.getResultList();
 
         return pretDtos;
     }
