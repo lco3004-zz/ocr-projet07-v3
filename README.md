@@ -2,21 +2,15 @@
 
 # Structure du dév
 ## 1 processus  exposant les méthodes CRUD sur base PostgreSql :ServiceCrud RESTFull
-## 1 processus  exposant les méthodes UI : AppliWeb RESTFull
 ## 1 processus  de type "Cron" pour envoi de email 
-## Persistence  - 3 tables dans 3 shémas distincts
-## Communication entre processus : OpenFeign
-## Seul CRUD accède à la base
-## Design : domain driven (organisation des sources selon préco. de Spring.io)
+## 1 processus  exposant les méthodes UI : AppliWeb RESTFull
+## 1 appli web 
 
-# Technique
-## Swagger (selon préco. OpenClassrooms)
-## IPC : openfeign (selon préco. OpenClassrooms)
-## Spring Boot ,Jpa, Security
-## PostGresSql avec base ,role, tablespace dedié au projet  
-## Spring Data Jpa (i.e findUsagerByidUsager ...)
-## Lombok pour Entity
-## @Transient avec @PostLoad dans Entity Pret
+# Persistence  
+## 3 tables dans 3 shémas distincts
+
+# Communication entre processus 
+## HtttpClient
 
 # Build 
 ## Maven multi-module (selon préco. OpenClassrooms)
