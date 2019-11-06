@@ -7,3 +7,18 @@ logging:
     file: "%d %p %c{1.} [%t] %m%n"
   file:
     name: ./logs/service_batchmail.log
+
+#Email
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: lco59@gmail.com
+    password: lco59@lco59
+    properties:
+      mail:
+        smtp:
+          auth: true
+          connectiontimeout: 10000
+          starttls:
+            enable: true
