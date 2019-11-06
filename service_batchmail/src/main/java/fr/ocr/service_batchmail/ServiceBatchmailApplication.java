@@ -10,9 +10,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-import javax.mail.MessagingException;
-import java.io.IOException;
+
 import java.util.Arrays;
+
+/*
+    mvn spring-boot:run -Dspring-boot.run.arguments="immediat"
+ */
 
 @SpringBootApplication
 @EnableScheduling
@@ -36,7 +39,7 @@ public class ServiceBatchmailApplication  implements  CommandLineRunner{
                 scheduledMailer.emailingToOverDueBorrowers();
 
             }catch (RuntimeException e) {
-                log.error("Exception levee suite appel de scheduledMailer.emailingToOverDueBorrowers()" + Arrays.toString(e.getStackTrace()));
+                log.error("Exception levee suite appel de scheduledMailer.emailingToOverDueBorrowers()" + e.getLocalizedMessage());
             }
     }
 }

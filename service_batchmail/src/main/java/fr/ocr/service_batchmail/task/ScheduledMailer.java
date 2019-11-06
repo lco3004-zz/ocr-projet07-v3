@@ -47,14 +47,15 @@ public class ScheduledMailer {
 
         mailMessage.setTo(infosMailDtoBatch.getCourriel());
         mailMessage.setSubject("Relance Usager :" + infosMailDtoBatch.getNom());
-        mailMessage.setText("Bonjour, vous avez emprunté l'ouvrage :"+
+        mailMessage.setText("Bonjour, vous avez emprunte l'ouvrage :"+
                  "\n "+infosMailDtoBatch.getTitre() +
                  "\n De "+infosMailDtoBatch.getAuteur()+
                  "\n Le  "+infosMailDtoBatch.getDateEmprunt() +
-                 "\n \n \n Le délai de 4 semaines est dépassé." +
+                 "\n \n \n Le delai de 4 semaines est depasse." +
                  "\n Merci de nous retourner cet ouvrage "+
-                 "\n L'équipe Municipale ");
+                 "\n L'equipe Municipale ");
 
+        log.info(mailMessage.getText());
         javaMailSender.send(mailMessage);
     }
 

@@ -55,7 +55,7 @@ public class BatchEmailService {
 
         } catch (Exception e) {
             infosMailDtoBatchList.clear();
-            logger.warn("Exception leve dans reception infos pour Mial : " +e.getLocalizedMessage() +e.getMessage());
+            logger.warn("Exception leve dans reception infos  : " +e.getLocalizedMessage() +e.getMessage());
         }
         return infosMailDtoBatchList;
     }
