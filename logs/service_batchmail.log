@@ -26,3 +26,12 @@
 2019-11-06 12:21:49,155 WARN org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] Unable to start LiveReload server
 2019-11-06 12:21:49,188 INFO fr.ocr.service_batchmail.ServiceBatchmailApplication [restartedMain] Started ServiceBatchmailApplication in 1.51 seconds (JVM running for 2.417)
 2019-11-06 12:22:27,877 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [http-nio-9092-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-11-06 14:56:19,318 INFO fr.ocr.service_batchmail.ServiceBatchmailApplication [restartedMain] Starting ServiceBatchmailApplication on DESKTOP-HE1TMKM with PID 3476 (D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3\service_batchmail\target\classes started by cordier in D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3)
+2019-11-06 14:56:19,320 INFO fr.ocr.service_batchmail.ServiceBatchmailApplication [restartedMain] No active profile set, falling back to default profiles: default
+2019-11-06 14:56:20,040 INFO org.apache.catalina.core.StandardService [restartedMain] Starting service [Tomcat]
+2019-11-06 14:56:20,040 INFO org.apache.catalina.core.StandardEngine [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.27]
+2019-11-06 14:56:20,097 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [restartedMain] Initializing Spring embedded WebApplicationContext
+2019-11-06 14:56:20,472 WARN org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] Unable to start LiveReload server
+2019-11-06 14:56:20,504 INFO fr.ocr.service_batchmail.ServiceBatchmailApplication [restartedMain] Started ServiceBatchmailApplication in 1.498 seconds (JVM running for 2.604)
+2019-11-06 14:56:53,897 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [http-nio-9092-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-11-06 14:59:53,867 INFO fr.ocr.service_batchmail.service.PourTestUniquementController [http-nio-9092-exec-1] InfosMailDtoBatch(nom=lola, courriel=laurent.cordier3004@gmail.com, titre=building web apps with spring 5 and angular, auteur=ranga ajitesh shukla, dateEmprunt=Tue Oct 01 02:00:00 CEST 2019)

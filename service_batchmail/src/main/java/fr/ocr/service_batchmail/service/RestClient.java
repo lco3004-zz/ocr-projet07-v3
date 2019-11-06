@@ -1,4 +1,4 @@
-package fr.ocr.service_batchmail.util;
+package fr.ocr.service_batchmail.service;
 
 import java.io.IOException;
 import java.net.URI;
@@ -8,7 +8,6 @@ import java.net.http.HttpRequest.Builder;
 import java.net.http.HttpResponse;
 import java.time.Duration;
 import java.util.Map;
-import java.util.Optional;
 
 public class RestClient {
     HttpClient httpClient = HttpClient

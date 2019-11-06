@@ -20,5 +20,7 @@ public interface OuvrageRepository extends JpaRepository<Ouvrage, Integer>
 
      Optional<Ouvrage> findOuvrageByIdouvrage(Integer idOuvrage);
 
+     Optional<OuvrageDtoBatch> findOuvrageDtoByIdouvrage(Integer id);
+
 }
 

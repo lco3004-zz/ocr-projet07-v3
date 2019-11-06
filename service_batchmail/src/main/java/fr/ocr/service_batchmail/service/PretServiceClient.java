@@ -1,12 +1,10 @@
-package fr.ocr.service_batchmail.controller;
+package fr.ocr.service_batchmail.service;
 
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import fr.ocr.service_batchmail.domain.PretDtoBatch;
-import fr.ocr.service_batchmail.util.RestClient;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.net.URI;
 import java.net.http.HttpRequest;
@@ -17,19 +15,23 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
-@Service
-public class ClientPretService {
-    @Autowired
-    private ObjectMapper objectMapper;
+@Component
+public class PretServiceClient {
+
+    private final ObjectMapper objectMapper;
 
     private final RestClient restClient = new RestClient();
-    private  final String uriPretHorsDelai = "http://localhost:9090/ListePretsHorsDelai";
+
+    public PretServiceClient(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
+    }
 
     public List<PretDtoBatch>  listePretHorsDelai() throws Exception {
         String ParamsUriPretsHorsdelai = "?currentDate=2019-11-04&elapsedWeeks=4";
 
         List<PretDtoBatch> pretDtoBatchList =null;
 
+        String uriPretHorsDelai = "http://localhost:9090/ListePretsHorsDelai";
         HttpRequest request = restClient.requestBuilder(URI.create(uriPretHorsDelai + ParamsUriPretsHorsdelai), null).GET().build();
 
         HttpResponse<String> response = restClient.send(request);

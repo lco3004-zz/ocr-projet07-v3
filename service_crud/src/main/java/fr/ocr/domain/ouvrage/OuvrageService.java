@@ -53,16 +53,23 @@ public class OuvrageService {
     }
 
     @Transactional(readOnly = true, rollbackFor = Exception.class)
-    public Ouvrage getOuvrageById(Integer id) {
-         Optional<Ouvrage> optionalOuvrage = ouvrageRepository.findOuvrageByIdouvrage(id);
-        if (optionalOuvrage.isEmpty())
+    public OuvrageDtoBatch getOuvrageDtoById(Integer id) {
+         Optional<OuvrageDtoBatch> optionalOuvrageDtoBatch = ouvrageRepository.findOuvrageDtoByIdouvrage(id);
+
+        if (optionalOuvrageDtoBatch.isEmpty())
             throw  new OuvrageNotFoundException("Aucun Ouvrage en Bibliothèque !");
-        return optionalOuvrage.get();
+        return optionalOuvrageDtoBatch.get();
     }
 
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public Ouvrage setQuantiteByIdOuvrage(Integer id, Integer quantiteOuvrage) {
-        Ouvrage ouvrage = getOuvrageById(id);
+
+        Optional<Ouvrage> optionalOuvrage = ouvrageRepository.findOuvrageByIdouvrage(id);
+
+        if (optionalOuvrage.isEmpty())
+            throw  new OuvrageNotFoundException("Aucun Ouvrage en Bibliothèque !");
+        Ouvrage ouvrage = optionalOuvrage.get();
+
         if (quantiteOuvrage < 0 && ouvrage.getQuantite() == 0) {
             throw  new OuvrageNotAvailableForLoan("Aucun Ouvrage disponible en Bibliothèque !");
         }
