@@ -43,7 +43,6 @@ public class PretController {
     }
 
     @ApiOperation(value = "Api Criteria : Récupère les prêts d'un usager grâce à son nom")
-    @ResponseBody
     @GetMapping(value="/CriteriaListePrets/{nomUsager}",  produces= MediaType.APPLICATION_JSON_VALUE)
     public  List<PretDtoWeb> getPretByNomUsagerCriteria(@PathVariable String nomUsager) {
         List<PretDtoWeb> pretDtoWebs = pretService.getPretsByUsagerNameWithCriteria(usagerService.getUsagerByNom(nomUsager).getIdusager());
@@ -92,8 +91,7 @@ public class PretController {
     }
 
     @ApiOperation(value = "Api Criteria : Récupère les prêts hors-delai ")
-    @ResponseBody
-    @GetMapping(value="/ListePretsHorsDelai/",  produces= MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value="/ListePretsHorsDelai",  produces= MediaType.APPLICATION_JSON_VALUE)
     public List<PretDtoBatch> getPretByIdUsagerHorsDelai(@RequestParam(value = "currentDate") String sDateCourante,
                                                          @RequestParam(value = "elapsedWeeks") Integer nbWeeks) throws ParseException {
         GregorianCalendar calendar = new GregorianCalendar();

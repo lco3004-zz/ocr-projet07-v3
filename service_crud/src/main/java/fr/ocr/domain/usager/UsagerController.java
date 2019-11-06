@@ -34,7 +34,6 @@ public class UsagerController {
         return usagerJacksonFilters.filtersOnAttributes(Collections.singletonList(usagerService.getUsagerByNom(nom)));
     }
     @ApiOperation(value = "Détails information Usager (Nom-Email).")
-    @ResponseBody
     @GetMapping(value = "/UsagerById/{idUsager}", produces= MediaType.APPLICATION_JSON_VALUE)
     public  UsagerDto getUsagerDTOById(@PathVariable Integer idUsager) {
          UsagerDto usagerDto = usagerService.getUsagerDTOById(idUsager);

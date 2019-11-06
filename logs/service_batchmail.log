@@ -1,0 +1,28 @@
+2019-11-06 10:29:29,502 INFO fr.ocr.service_batchmail.ServiceBatchmailApplication [main] No active profile set, falling back to default profiles: default
+2019-11-06 10:29:29,782 WARN com.netflix.config.sources.URLConfigurationSource [main] No URLs will be polled as dynamic configuration sources.
+2019-11-06 10:29:29,782 INFO com.netflix.config.sources.URLConfigurationSource [main] To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2019-11-06 10:29:29,782 WARN com.netflix.config.sources.URLConfigurationSource [main] No URLs will be polled as dynamic configuration sources.
+2019-11-06 10:29:29,782 INFO com.netflix.config.sources.URLConfigurationSource [main] To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2019-11-06 10:29:30,102 INFO fr.ocr.service_batchmail.ServiceBatchmailApplication [main] Started ServiceBatchmailApplication in 1.5 seconds (JVM running for 2.245)
+2019-11-06 12:00:53,453 INFO fr.ocr.service_batchmail.ServiceBatchmailApplication [restartedMain] No active profile set, falling back to default profiles: default
+2019-11-06 12:00:54,040 WARN com.netflix.config.sources.URLConfigurationSource [restartedMain] No URLs will be polled as dynamic configuration sources.
+2019-11-06 12:00:54,041 INFO com.netflix.config.sources.URLConfigurationSource [restartedMain] To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2019-11-06 12:00:54,043 WARN com.netflix.config.sources.URLConfigurationSource [restartedMain] No URLs will be polled as dynamic configuration sources.
+2019-11-06 12:00:54,043 INFO com.netflix.config.sources.URLConfigurationSource [restartedMain] To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2019-11-06 12:00:54,112 WARN org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] Unable to start LiveReload server
+2019-11-06 12:00:54,373 INFO fr.ocr.service_batchmail.ServiceBatchmailApplication [restartedMain] Started ServiceBatchmailApplication in 1.853 seconds (JVM running for 3.131)
+2019-11-06 12:11:06,009 INFO fr.ocr.service_batchmail.ServiceBatchmailApplication [restartedMain] Starting ServiceBatchmailApplication on DESKTOP-HE1TMKM with PID 3736 (D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3\service_batchmail\target\classes started by cordier in D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3)
+2019-11-06 12:11:06,013 INFO fr.ocr.service_batchmail.ServiceBatchmailApplication [restartedMain] No active profile set, falling back to default profiles: default
+2019-11-06 12:11:06,747 INFO org.apache.catalina.core.StandardService [restartedMain] Starting service [Tomcat]
+2019-11-06 12:11:06,748 INFO org.apache.catalina.core.StandardEngine [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.27]
+2019-11-06 12:11:06,803 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [restartedMain] Initializing Spring embedded WebApplicationContext
+2019-11-06 12:11:07,223 INFO fr.ocr.service_batchmail.ServiceBatchmailApplication [restartedMain] Started ServiceBatchmailApplication in 1.546 seconds (JVM running for 2.661)
+2019-11-06 12:13:08,255 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [http-nio-9092-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-11-06 12:21:47,967 INFO fr.ocr.service_batchmail.ServiceBatchmailApplication [restartedMain] Starting ServiceBatchmailApplication on DESKTOP-HE1TMKM with PID 8292 (D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3\service_batchmail\target\classes started by cordier in D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3)
+2019-11-06 12:21:47,969 INFO fr.ocr.service_batchmail.ServiceBatchmailApplication [restartedMain] No active profile set, falling back to default profiles: default
+2019-11-06 12:21:48,733 INFO org.apache.catalina.core.StandardService [restartedMain] Starting service [Tomcat]
+2019-11-06 12:21:48,733 INFO org.apache.catalina.core.StandardEngine [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.27]
+2019-11-06 12:21:48,788 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [restartedMain] Initializing Spring embedded WebApplicationContext
+2019-11-06 12:21:49,155 WARN org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] Unable to start LiveReload server
+2019-11-06 12:21:49,188 INFO fr.ocr.service_batchmail.ServiceBatchmailApplication [restartedMain] Started ServiceBatchmailApplication in 1.51 seconds (JVM running for 2.417)
+2019-11-06 12:22:27,877 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [http-nio-9092-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
