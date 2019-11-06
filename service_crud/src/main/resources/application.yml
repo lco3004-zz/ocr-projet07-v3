@@ -1,9 +1,38 @@
 logging:
   level:
     org.springframework: WARN
+    com.netflix: WARN
+    org.apache.catalina: WARN
     fr.ocr.reference_srv: DEBUG
   pattern:
     console: "%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"
     file: "%d %p %c{1.} [%t] %m%n"
   file:
     name: ./logs/service_crud.log
+
+server:
+  port: 9090
+
+spring:
+  main:
+    banner-mode: off
+  application:
+    name: service_crud
+  datasource:
+    platform: postgres
+    username: rl_projet07
+    password: projet07
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/db_projet07
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL95Dialect
+        ddl-auto: validate
+        format_sql: true
+        show_sql: true
+
+listeexclusionsjson:
+  ouvrage: pretsByIdouvrage,serialVersionUID
+  usager: pretsByIdusager,serialVersionUID,mdp
+  pret: ouvrageByOuvrageIdouvrage,usagerByUsagerIdusager

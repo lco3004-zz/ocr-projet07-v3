@@ -1,6 +1,9 @@
+#Infos pour logging
 logging:
   level:
     org.springframework: WARN
+    com.netflix: WARN
+    org.apache.catalina: WARN
     fr.ocr.reference_srv: DEBUG
   pattern:
     console: "%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"
@@ -10,6 +13,8 @@ logging:
 
 #Email
 spring:
+  application:
+    name: service_batchmail
   mail:
     host: smtp.gmail.com
     port: 587
