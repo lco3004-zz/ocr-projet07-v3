@@ -79,4 +79,34 @@
     </dependencies>
   </dependencyManagement>
 
+  <build>
+      <plugins>
+        <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>3.1.0</version>
+          <executions>
+            <execution>
+              <id>clean-logs</id>
+              <phase>pre-clean</phase>
+              <goals>
+                <goal>clean</goal>
+              </goals>
+              <configuration>
+                <verbose>true</verbose>
+                <filesets>
+                  <fileset>
+                    <directory>${project.basedir}/logs</directory>
+                    <includes>
+                      <include>**/*.log</include>
+                    </includes>
+                  </fileset>
+                </filesets>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+  </build>
 </project>
