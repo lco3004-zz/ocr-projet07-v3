@@ -30,7 +30,6 @@ public class PretController {
 
     final PretService pretService;
 
-
     public PretController(PretService pretService) {
         this.pretService = pretService;
     }
@@ -43,10 +42,9 @@ public class PretController {
 
     @ApiOperation(value = "Prolonge le Pret d'un usager")
     @PutMapping(value = "/ProlongerPret")
-    public ResponseEntity<Void> prolongerPret(@RequestBody Map<String,String> criterionList) {
+    public ResponseEntity<Void> prolongerPret(@RequestBody Map<String,String> criterionList) throws IOException, InterruptedException {
         HttpStatus httpStatus = pretService.setProlongationPret(criterionList);
         URI location = ServletUriComponentsBuilder.fromUri(URI.create("/ProlongerPret")).buildAndExpand().toUri();
         return ResponseEntity.created(location).build();
     }
-
 }

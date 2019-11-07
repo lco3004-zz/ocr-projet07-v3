@@ -3,7 +3,6 @@
  */
 package fr.ocr.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,7 +16,6 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -35,13 +33,9 @@ public class OuvrageService {
 
     public List<OuvrageDtoWeb> getOuvrageByQuerie(Map<String, String> requeteSearch) throws IOException, InterruptedException {
 
-        String gTitre = requeteSearch.get("titre");
-        String gAuteur = requeteSearch.get("auteur");
-
         List<OuvrageDtoWeb> ouvrageDtoWebList =null;
 
         String uriOuvrageDtoById = "http://localhost:9090/LookForOuvrage/";
-
 
         String requestBody = objectMapper
                 .writerWithDefaultPrettyPrinter()
@@ -57,6 +51,7 @@ public class OuvrageService {
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             ouvrageDtoWebList = objectMapper.readValue(response.body(), new TypeReference<>(){});
         }
+
         return ouvrageDtoWebList;
     }
 
