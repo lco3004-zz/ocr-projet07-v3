@@ -1,9 +1,16 @@
 package fr.ocr.service_batchmail.task;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import fr.ocr.RestClient;
 import fr.ocr.service_batchmail.domain.InfosMailDtoBatch;
-import fr.ocr.service_batchmail.service.BatchEmailService;
+import fr.ocr.service_batchmail.domain.OuvrageDtoBatch;
+import fr.ocr.service_batchmail.domain.PretDtoBatch;
+import fr.ocr.service_batchmail.domain.UsagerDtoBatch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -11,7 +18,12 @@ import org.springframework.stereotype.Component;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 
 @Component
@@ -19,18 +31,21 @@ public class ScheduledMailer {
 
     private static final Logger log = LoggerFactory.getLogger(ScheduledMailer.class);
 
-    final BatchEmailService batchEmailService;
 
     private final JavaMailSender javaMailSender;
 
-    public ScheduledMailer(BatchEmailService batchEmailService, JavaMailSender javaMailSender) {
-        this.batchEmailService = batchEmailService;
+    private final ObjectMapper objectMapper;
+    private final RestClient restClient;
+
+    public ScheduledMailer( JavaMailSender javaMailSender, ObjectMapper objectMapper, RestClient restClient) {
         this.javaMailSender = javaMailSender;
+        this.objectMapper = objectMapper;
+        this.restClient = restClient;
     }
 
     @Scheduled(cron = "0 0 10 * * *")
     public void emailingToOverDueBorrowers() throws  RuntimeException{
-        batchEmailService.getPretHorsDelai().forEach(infosMailDtoBatch -> {
+        getPretHorsDelai().forEach(infosMailDtoBatch -> {
             try {
                 sendEmail(infosMailDtoBatch);
             } catch (IOException e) {
@@ -42,10 +57,12 @@ public class ScheduledMailer {
             }
         });
     }
+
     void sendEmail(InfosMailDtoBatch infosMailDtoBatch) throws IOException, MessagingException {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
 
         mailMessage.setTo(infosMailDtoBatch.getCourriel());
+
         mailMessage.setSubject("Relance Usager :" + infosMailDtoBatch.getNom());
         mailMessage.setText("Bonjour, vous avez emprunte l'ouvrage :"+
                  "\n "+infosMailDtoBatch.getTitre() +
@@ -57,6 +74,90 @@ public class ScheduledMailer {
 
         log.info(mailMessage.getText());
         javaMailSender.send(mailMessage);
+    }
+
+    public List<InfosMailDtoBatch> getPretHorsDelai()
+    {
+        List<InfosMailDtoBatch> infosMailDtoBatchList = new ArrayList<>();
+
+        try {
+            List<PretDtoBatch> pretDtoBatchList =  listePretHorsDelai();
+
+            for (PretDtoBatch pretDtoBatch : pretDtoBatchList) {
+                InfosMailDtoBatch infosMailDtoBatch = new InfosMailDtoBatch();
+
+                UsagerDtoBatch usagerDtoBatch = getUnfairBorrower(pretDtoBatch.getUsagerIdusager());
+
+                OuvrageDtoBatch ouvrageDtoBatch = getInfosOuvrage(pretDtoBatch.getOuvrageIdouvrage());
+
+                infosMailDtoBatch.setCourriel(usagerDtoBatch.getCourriel());
+                infosMailDtoBatch.setNom(usagerDtoBatch.getNom());
+                infosMailDtoBatch.setDateEmprunt(pretDtoBatch.getDateEmprunt());
+                infosMailDtoBatch.setTitre(ouvrageDtoBatch.getTitre());
+                infosMailDtoBatch.setAuteur(ouvrageDtoBatch.getAuteur());
+
+                infosMailDtoBatchList.add(infosMailDtoBatch);
+
+                log.info(infosMailDtoBatch.toString());
+            }
+
+        } catch (Exception e) {
+            infosMailDtoBatchList.clear();
+            log.warn("Exception leve dans reception infos  : " +e.getLocalizedMessage() +e.getMessage());
+        }
+        return infosMailDtoBatchList;
+    }
+
+
+    public OuvrageDtoBatch getInfosOuvrage(int ParamsUriOuvrage ) throws Exception {
+
+        OuvrageDtoBatch ouvrageDtoBatch =null;
+
+        String uriOuvrageDtoById = "http://localhost:9090/OuvrageDtoByID/";
+        HttpRequest request = restClient.requestBuilder(URI.create(uriOuvrageDtoById + ParamsUriOuvrage), null).GET().build();
+
+        HttpResponse<String> response = restClient.send(request);
+
+        if (response.statusCode() == HttpStatus.OK.value()) {
+            objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            ouvrageDtoBatch = objectMapper.readValue(response.body(), OuvrageDtoBatch.class);
+        }
+        return ouvrageDtoBatch;
+    }
+
+    public List<PretDtoBatch> listePretHorsDelai() throws Exception {
+        String ParamsUriPretsHorsdelai = "?currentDate=2019-11-04&elapsedWeeks=4";
+
+        List<PretDtoBatch> pretDtoBatchList =null;
+
+        String uriPretHorsDelai = "http://localhost:9090/ListePretsHorsDelai";
+        HttpRequest request = restClient.requestBuilder(URI.create(uriPretHorsDelai + ParamsUriPretsHorsdelai), null).GET().build();
+
+        HttpResponse<String> response = restClient.send(request);
+
+        if (response.statusCode() == HttpStatus.OK.value()) {
+            objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            pretDtoBatchList = objectMapper.readValue(response.body(), new TypeReference<>() {
+            });
+        }
+        return pretDtoBatchList;
+    }
+
+
+    public UsagerDtoBatch getUnfairBorrower(int ParamsUriIdUsager ) throws Exception {
+
+        UsagerDtoBatch  usagerDtoBatch =null;
+
+        String uriUsagerById = "http://localhost:9090/UsagerById/";
+        HttpRequest request = restClient.requestBuilder(URI.create(uriUsagerById + ParamsUriIdUsager), null).GET().build();
+
+        HttpResponse<String> response = restClient.send(request);
+
+        if (response.statusCode() == HttpStatus.OK.value()) {
+            objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            usagerDtoBatch = objectMapper.readValue(response.body(), UsagerDtoBatch.class);
+        }
+        return usagerDtoBatch;
     }
 
 }
