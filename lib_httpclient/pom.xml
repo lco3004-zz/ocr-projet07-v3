@@ -23,6 +23,12 @@
 
   <dependencies>
 
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
+    </dependency>
+
     <!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
     <dependency>
       <groupId>org.springframework</groupId>
@@ -54,6 +60,13 @@
           <configuration>
             <excludeDefaultDirectories>true</excludeDefaultDirectories>
             <filesets>
+              <fileset>
+                <directory> ${project.basedir}/../projet07-repo </directory>
+                <includes>
+                  <include>*</include>
+                  <include>**</include>
+                </includes>
+              </fileset>
               <fileset>
                 <directory>${package.directory}</directory>
                 <includes>

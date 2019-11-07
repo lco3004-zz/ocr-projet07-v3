@@ -4,7 +4,9 @@ package fr.ocr.service_batchmail.service;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import fr.ocr.RestClient;
 import fr.ocr.service_batchmail.domain.PretDtoBatch;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 

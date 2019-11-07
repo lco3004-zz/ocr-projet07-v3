@@ -17,4 +17,9 @@
 ## Base Postgres, sous psql , executer :
 ### 1) sql_uml/prep_projet07.sql
 ### 2) sql_uml/create_tbl.sql
+### 3) cnx : 
+#### role :rl_projet07 (mdp projet07)
+#### db : db_projet07
+#### shema : ouvrage, pret, usager
+
 

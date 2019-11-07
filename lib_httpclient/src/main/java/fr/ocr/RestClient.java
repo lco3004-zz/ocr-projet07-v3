@@ -1,8 +1,7 @@
 package fr.ocr;
 
+import lombok.Getter;
 import org.springframework.stereotype.Component;
-
-
 
 import java.io.IOException;
 import java.net.URI;
@@ -14,21 +13,18 @@ import java.time.Duration;
 import java.util.Map;
 
 @Component
-public interface RestClient {
-    Builder requestBuilder(URI uri, Map<String, String> additionalHeaders);
+@Getter
+public class RestClient {
 
-    HttpResponse<String> send(HttpRequest request) throws IOException, InterruptedException;
-}
+    private  HttpClient httpClient;
 
-class RestClientImpl implements RestClient {
+    public RestClient() {
+        httpClient = HttpClient
+                .newBuilder()
+                .followRedirects(HttpClient.Redirect.NORMAL)
+                .build();
+    }
 
-
-    HttpClient httpClient = HttpClient
-            .newBuilder()
-            .followRedirects(HttpClient.Redirect.NORMAL)
-            .build();
-
-    @Override
     public Builder requestBuilder(URI uri, Map<String, String> additionalHeaders) {
 
         Builder builder = HttpRequest.newBuilder()
@@ -41,7 +37,6 @@ class RestClientImpl implements RestClient {
         return builder;
     }
 
-    @Override
     public HttpResponse<String> send(HttpRequest request) throws IOException, InterruptedException {
         return httpClient.send(request, HttpResponse.BodyHandlers.ofString());
     }

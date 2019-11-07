@@ -1,5 +1,6 @@
 package fr.ocr.service_batchmail;
 
+import fr.ocr.RestClient;
 import fr.ocr.service_batchmail.task.ScheduledMailer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 /*
@@ -26,6 +28,11 @@ public class ServiceBatchmailApplication  implements  CommandLineRunner{
 
         SpringApplication.run(ServiceBatchmailApplication.class, args);
 
+    }
+
+    @Bean
+    public RestClient libHttpClient() {
+        return new RestClient() ;
     }
 
     @Override

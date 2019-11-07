@@ -47,7 +47,17 @@
         <enabled>false</enabled>
       </snapshots>
     </repository>
+
+    <repository>
+      <id>projet07repo</id>
+      <url>file:///${project.basedir}/../projet07-repo</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+
   </repositories>
+
 
   <dependencyManagement>
     <dependencies>
@@ -100,7 +110,8 @@
                   <fileset>
                     <directory>${project.basedir}/logs</directory>
                     <includes>
-                      <include>**/*.log</include>
+                      <include>*</include>
+                      <include>**</include>
                     </includes>
                   </fileset>
                 </filesets>

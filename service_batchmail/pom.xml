@@ -18,6 +18,12 @@
 
     <dependencies>
         <dependency>
+            <groupId>fr.ocr</groupId>
+            <artifactId>lib_httpclient</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
