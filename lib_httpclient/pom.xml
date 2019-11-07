@@ -196,7 +196,7 @@
             <version>1.0</version>
 
             <packaging>jar</packaging>
-            <url>file:///${project.basedir}/projet07-repo</url>
+            <url>file:///${project.basedir}/../projet07-repo</url>
             <repositoryId>projet07repo</repositoryId>
             <updateReleaseInfo>true</updateReleaseInfo>
           </configuration>
@@ -212,14 +212,14 @@
   <layout>default</layout>
   <id>projet07repo</id>
   <name>Internal repo</name>
-  <url>file:///${project.basedir}/projet07-repo</url>
+  <url>file:///${project.basedir}/../projet07-repo</url>
 </repository>
 </distributionManagement>
 
 <repositories>
 <repository>
   <id>projet07repo</id>
-  <url>file:///${project.basedir}/projet07-repo</url>
+  <url>file:///${project.basedir}/../projet07-repo</url>
 </repository>
 </repositories>
 </project>
