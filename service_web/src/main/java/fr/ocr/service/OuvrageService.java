@@ -38,7 +38,8 @@ public class OuvrageService {
         String gTitre = requeteSearch.get("titre");
         String gAuteur = requeteSearch.get("auteur");
 
-        List<OuvrageDtoWeb> ouvrageDtoWebList = new ArrayList<>();
+        List<OuvrageDtoWeb> ouvrageDtoWebList =null;
+
         String uriOuvrageDtoById = "http://localhost:9090/LookForOuvrage/";
 
 

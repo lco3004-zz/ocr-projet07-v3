@@ -1,14 +1,20 @@
 package fr.ocr.domain;
 
-import lombok.Data;
+
+import lombok.Value;
 
 import java.io.Serializable;
+import java.util.Date;
 
-@Data
+@Value
 public class PretDtoWeb implements Serializable {
+    static final long serialVersionUID = 8453281303625368221L;
 
-     static final long serialVersionUID = 3453281303625368221L;
-
-     int usagerIdusager;
      int ouvrageIdouvrage;
+     int usagerIdusager;
+     Date dateEmprunt;
+     String auteur;
+     String titre;
 }
+
+
