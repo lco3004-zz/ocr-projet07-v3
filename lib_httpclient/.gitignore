@@ -1,5 +1,7 @@
+
 target/
-!.mvn/wrapper/maven-wrapper.jar
+projet07-repo/
+
 !**/src/main/**
 !**/src/test/**
 
@@ -8,3 +10,6 @@ target/
 *.iws
 *.iml
 *.ipr
+
+
+/projet07-repo/fr/ocr/lib_httpclient/1.0/

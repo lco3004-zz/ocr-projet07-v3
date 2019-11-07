@@ -1,6 +1,5 @@
 package fr.ocr.domain.pret;
 
-import fr.ocr.domain.ouvrage.Ouvrage;
 import fr.ocr.domain.usager.Usager;
 import fr.ocr.utility.exception.PretNotFoundException;
 import fr.ocr.utility.exception.ProlongationPretImpossibleException;
@@ -77,8 +76,7 @@ public class PretService {
 
     @Transactional(readOnly = true, rollbackFor = Exception.class)
     public List<PretDtoBatch> getPretByeDueDate(Date dateCourante) {
-        List<PretDtoBatch> pretDtoBatchList = pretRepository.findPretsByDateEmpruntIsBefore(dateCourante);
-        return pretDtoBatchList;
+        return pretRepository.findPretsByDateEmpruntIsBefore(dateCourante);
     }
 
     @Transactional(readOnly = true, rollbackFor = Exception.class)

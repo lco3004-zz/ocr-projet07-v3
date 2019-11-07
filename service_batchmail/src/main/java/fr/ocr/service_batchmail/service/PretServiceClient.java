@@ -2,6 +2,8 @@ package fr.ocr.service_batchmail.service;
 
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.ocr.service_batchmail.domain.PretDtoBatch;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
@@ -11,19 +13,17 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.List;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 
 @Component
 public class PretServiceClient {
 
     private final ObjectMapper objectMapper;
 
-    private final RestClient restClient = new RestClient();
+    private final RestClient restClient ;
 
-    public PretServiceClient(ObjectMapper objectMapper) {
+    public PretServiceClient(ObjectMapper objectMapper, RestClient restClient) {
         this.objectMapper = objectMapper;
+        this.restClient = restClient;
     }
 
     public List<PretDtoBatch>  listePretHorsDelai() throws Exception {
@@ -38,7 +38,8 @@ public class PretServiceClient {
 
         if (response.statusCode() == HttpStatus.OK.value()) {
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-             pretDtoBatchList = objectMapper.readValue(response.body(), new TypeReference<List<PretDtoBatch>>() {});
+             pretDtoBatchList = objectMapper.readValue(response.body(), new TypeReference<>() {
+             });
         }
         return pretDtoBatchList;
     }

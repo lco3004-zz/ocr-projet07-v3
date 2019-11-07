@@ -2,7 +2,6 @@ package fr.ocr.domain.ouvrage;
 
 import lombok.Value;
 
-
 import java.io.Serializable;
 
 @Value

@@ -1,6 +1,5 @@
 package fr.ocr.service_batchmail.domain;
 
-import jdk.jfr.DataAmount;
 import lombok.Data;
 
 import java.io.Serializable;

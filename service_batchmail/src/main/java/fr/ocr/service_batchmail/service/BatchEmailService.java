@@ -3,7 +3,6 @@ package fr.ocr.service_batchmail.service;
 import fr.ocr.service_batchmail.domain.InfosMailDtoBatch;
 import fr.ocr.service_batchmail.domain.OuvrageDtoBatch;
 import fr.ocr.service_batchmail.domain.PretDtoBatch;
-
 import fr.ocr.service_batchmail.domain.UsagerDtoBatch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

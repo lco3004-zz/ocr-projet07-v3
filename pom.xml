@@ -21,6 +21,7 @@
     <module>service_crud</module>
     <module>service_web</module>
     <module>service_batchmail</module>
+    <module>lib_httpclient</module>
   </modules>
 
   <properties>

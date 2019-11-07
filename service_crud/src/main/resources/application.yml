@@ -3,7 +3,7 @@ logging:
     org.springframework: WARN
     com.netflix: WARN
     org.apache.catalina: WARN
-    fr.ocr.reference_srv: DEBUG
+    fr.ocr: DEBUG
   pattern:
     console: "%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"
     file: "%d %p %c{1.} [%t] %m%n"
@@ -32,7 +32,3 @@ spring:
         format_sql: true
         show_sql: true
 
-listeexclusionsjson:
-  ouvrage: pretsByIdouvrage,serialVersionUID
-  usager: pretsByIdusager,serialVersionUID,mdp
-  pret: ouvrageByOuvrageIdouvrage,usagerByUsagerIdusager

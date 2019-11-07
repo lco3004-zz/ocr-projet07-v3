@@ -1,6 +1,8 @@
-package fr.ocr.service_batchmail.service;
+package fr.ocr;
 
 import org.springframework.stereotype.Component;
+
+
 
 import java.io.IOException;
 import java.net.URI;
@@ -13,12 +15,14 @@ import java.util.Map;
 
 @Component
 public interface RestClient {
-    HttpRequest.Builder requestBuilder(URI uri, Map<String, String> additionalHeaders);
+    Builder requestBuilder(URI uri, Map<String, String> additionalHeaders);
 
     HttpResponse<String> send(HttpRequest request) throws IOException, InterruptedException;
 }
 
 class RestClientImpl implements RestClient {
+
+
     HttpClient httpClient = HttpClient
             .newBuilder()
             .followRedirects(HttpClient.Redirect.NORMAL)

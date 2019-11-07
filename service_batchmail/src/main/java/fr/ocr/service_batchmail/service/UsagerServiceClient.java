@@ -1,6 +1,5 @@
 package fr.ocr.service_batchmail.service;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.ocr.service_batchmail.domain.UsagerDtoBatch;
@@ -15,19 +14,20 @@ import java.net.http.HttpResponse;
 public class UsagerServiceClient {
 
     private final ObjectMapper objectMapper;
-    private final RestClient restClient = new RestClient();
+    private final RestClient restClient;
 
     private  final String uriUsagerById = "http://localhost:9090/UsagerById/";
 
-    public UsagerServiceClient(ObjectMapper objectMapper) {
+    public UsagerServiceClient(ObjectMapper objectMapper, RestClient restClient) {
         this.objectMapper = objectMapper;
+        this.restClient = restClient;
     }
 
     public UsagerDtoBatch getUnfairBorrower( int ParamsUriIdUsager ) throws Exception {
 
         UsagerDtoBatch  usagerDtoBatch =null;
 
-        HttpRequest request = restClient.requestBuilder(URI.create(uriUsagerById + String.valueOf(ParamsUriIdUsager)), null).GET().build();
+        HttpRequest request = restClient.requestBuilder(URI.create(uriUsagerById + ParamsUriIdUsager), null).GET().build();
 
         HttpResponse<String> response = restClient.send(request);
 

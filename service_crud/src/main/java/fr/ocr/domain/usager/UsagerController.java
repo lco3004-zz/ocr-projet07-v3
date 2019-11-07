@@ -7,7 +7,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collections;
@@ -36,7 +35,6 @@ public class UsagerController {
     @ApiOperation(value = "Détails information Usager (Nom-Email).")
     @GetMapping(value = "/UsagerById/{idUsager}", produces= MediaType.APPLICATION_JSON_VALUE)
     public  UsagerDto getUsagerDTOById(@PathVariable Integer idUsager) {
-         UsagerDto usagerDto = usagerService.getUsagerDTOById(idUsager);
-        return usagerDto;
+        return usagerService.getUsagerDTOById(idUsager);
     }
 }

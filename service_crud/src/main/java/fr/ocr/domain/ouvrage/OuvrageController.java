@@ -4,9 +4,11 @@ import fr.ocr.utility.filter.OuvrageJacksonFilters;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.converter.json.MappingJacksonValue;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 @Api(value = "APIs de gestion des Ouvrages.")
@@ -22,7 +24,7 @@ public class OuvrageController {
         this.ouvrageJacksonFilters = jf;
     }
 
-    @ApiOperation(value = "Recherche d'ouvrage par /{titre} ou par /{auteur}")
+    @ApiOperation(value = "Recherche d'ouvrage par titre ou par auteur")
     @GetMapping(value="/LookForOuvrage")
     public MappingJacksonValue getOuvrageByQuery(@RequestBody(required = false) Map<String,String> criterionList) {
         return ouvrageJacksonFilters.filtersOnAttributes(ouvrageService.getOuvrageByQuerie(criterionList));

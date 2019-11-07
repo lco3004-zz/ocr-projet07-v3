@@ -2,7 +2,6 @@ package fr.ocr.service_batchmail.domain;
 
 import lombok.Data;
 
-
 import java.io.Serializable;
 import java.util.Date;
 

@@ -3,7 +3,6 @@ package fr.ocr.service_batchmail.service;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.ocr.service_batchmail.domain.OuvrageDtoBatch;
-import fr.ocr.service_batchmail.domain.UsagerDtoBatch;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
@@ -18,19 +17,20 @@ public class OuvrageServiceClient  {
 
     private final ObjectMapper objectMapper;
 
-    private final RestClient restClient = new RestClient();
+    private final RestClient restClient;
 
     private  final String uriUsagerById = "http://localhost:9090/OuvrageDtoByID/";
 
-    public OuvrageServiceClient(ObjectMapper objectMapper) {
+    public OuvrageServiceClient(ObjectMapper objectMapper, RestClient restClient) {
         this.objectMapper = objectMapper;
+        this.restClient = restClient;
     }
 
     public OuvrageDtoBatch getInfosOuvrage(int ParamsUriOuvrage ) throws Exception {
 
         OuvrageDtoBatch ouvrageDtoBatch =null;
 
-        HttpRequest request = restClient.requestBuilder(URI.create(uriUsagerById + String.valueOf(ParamsUriOuvrage)), null).GET().build();
+        HttpRequest request = restClient.requestBuilder(URI.create(uriUsagerById + ParamsUriOuvrage), null).GET().build();
 
         HttpResponse<String> response = restClient.send(request);
 

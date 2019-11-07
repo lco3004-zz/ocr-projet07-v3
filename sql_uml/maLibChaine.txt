@@ -1,4 +1,4 @@
-package fr.moi;
+
 
 /**
  * Hello world!
@@ -92,19 +92,4 @@ package fr.moi;
  *  -DrepositoryId=maven-repository
  *  -DupdateReleaseInfo=true
  */
-public class maLibChaine
-{
-    private String machaine="->";
 
-    public String getMachaine() {
-        return machaine;
-    }
-
-    public void setMachaine(String machaine) {
-        this.machaine = machaine;
-    }
-
-    public maLibChaine(String x){
-        machaine.concat(x);
-    }
-}
