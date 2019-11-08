@@ -4,9 +4,9 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.ocr.RestClient;
+import fr.ocr.exception.PrjExceptionHandler;
 import fr.ocr.utility.dto.OuvrageDtoWeb;
 
-import fr.ocr.utility.exception.OuvrageNotFoundException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
@@ -28,17 +28,19 @@ public class OuvrageController {
 
     private final RestClient restClient;
     private final ObjectMapper objectMapper;
+    private final PrjExceptionHandler prjExceptionHandler;
 
-    public OuvrageController( RestClient restClient, ObjectMapper objectMapper) {
+    public OuvrageController(RestClient restClient, ObjectMapper objectMapper, PrjExceptionHandler prjExceptionHandler) {
         this.restClient = restClient;
 
         this.objectMapper = objectMapper;
+        this.prjExceptionHandler = prjExceptionHandler;
     }
 
     @ApiOperation(value = "Recherche d'ouvrage par titre ou par auteur")
     @PostMapping(value="/LookForOuvrage")
     public List<OuvrageDtoWeb> getOuvrageByQuery(@RequestBody(required = false) Map<String,String> criterionList) throws IOException, InterruptedException {
-        List<OuvrageDtoWeb> ouvrageDtoWebList ;
+        List<OuvrageDtoWeb> ouvrageDtoWebList =null;
 
         String uriOuvrageDtoById = "http://localhost:9090/LookForOuvrage/";
 
@@ -56,7 +58,7 @@ public class OuvrageController {
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             ouvrageDtoWebList = objectMapper.readValue(response.body(), new TypeReference<>(){});
         }else {
-                throw new OuvrageNotFoundException("Aucun ouvrage trouvé");
+            prjExceptionHandler.throwOuvrageNotFound();
         }
         return ouvrageDtoWebList;
 

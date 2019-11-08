@@ -1,6 +1,6 @@
 package fr.ocr.application.usager;
 
-import fr.ocr.utility.filter.UsagerJacksonFilters;
+import fr.ocr.utility.UsagerJacksonFilters;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.MediaType;

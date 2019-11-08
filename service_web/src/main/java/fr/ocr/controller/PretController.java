@@ -5,11 +5,10 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.ocr.RestClient;
+import fr.ocr.exception.PrjExceptionHandler;
 import fr.ocr.utility.InfosRecherchePret;
 import fr.ocr.utility.dto.PretDtoWeb;
-import fr.ocr.utility.exception.OperationImpossibleException;
-import fr.ocr.utility.exception.PretNotFoundException;
-import fr.ocr.utility.exception.UsagerNotFoundException;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
@@ -31,17 +30,19 @@ import java.util.Map;
 public class PretController {
     private final RestClient restClient;
     private final ObjectMapper objectMapper;
+    private final PrjExceptionHandler prjExceptionHandler;
 
-    public PretController(RestClient restClient, ObjectMapper objectMapper) {
+    public PretController(RestClient restClient, ObjectMapper objectMapper, PrjExceptionHandler prjExceptionHandler) {
         this.restClient = restClient;
         this.objectMapper = objectMapper;
+        this.prjExceptionHandler = prjExceptionHandler;
     }
 
     @ApiOperation(value = "Api Criteria : Récupère les prêts d'un usager grâce à son nom")
     @GetMapping(value="/CriteriaListePrets/{nomUsager}",  produces= MediaType.APPLICATION_JSON_VALUE)
     public  List<PretDtoWeb> getPretByNomUsagerCriteria(@PathVariable String nomUsager) throws IOException, InterruptedException {
 
-        List<PretDtoWeb> pretDtoWebList ;
+        List<PretDtoWeb> pretDtoWebList =null;
 
         String uriPretByNomUsager = "http://localhost:9090/CriteriaListePrets/";
         HttpRequest request = restClient.requestBuilder(URI.create(uriPretByNomUsager + nomUsager), null).GET().build();
@@ -52,14 +53,14 @@ public class PretController {
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             pretDtoWebList = objectMapper.readValue(response.body(), new TypeReference<>() {});
         }
-        else if (response.statusCode() == HttpStatus.NOT_FOUND.value()){
-            throw new PretNotFoundException("Cause : Usager n'a aucun pret en cours ");
+        else if (response.statusCode() == HttpStatus.NOT_ACCEPTABLE.value()){
+            prjExceptionHandler.throwPretNotAcceptable("Cause : Usager n'a aucun pret en cours ");
 
-        } else if (response.statusCode() == HttpStatus.EXPECTATION_FAILED.value()){
-            throw  new UsagerNotFoundException("Cause: Usager inconnu ");
+        } else if (response.statusCode() == HttpStatus.UNAUTHORIZED.value()){
+            prjExceptionHandler.throwUsagerUnAuthorized();
 
         } else {
-            throw  new  OperationImpossibleException("Cause: "+ HttpStatus.valueOf(response.statusCode()));
+            prjExceptionHandler.throwInternalServeurError("Cause: "+ HttpStatus.valueOf(response.statusCode()));
         }
 
         return pretDtoWebList;

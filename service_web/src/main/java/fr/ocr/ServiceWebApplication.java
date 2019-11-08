@@ -1,5 +1,6 @@
 package fr.ocr;
 
+import fr.ocr.exception.PrjExceptionHandler;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -18,5 +19,10 @@ public class ServiceWebApplication {
     @Bean
     public RestClient libHttpClient() {
         return new RestClient() ;
+    }
+
+    @Bean
+    public PrjExceptionHandler libHttpClient_Exception() {
+        return PrjExceptionHandler.getInstance();
     }
 }

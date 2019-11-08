@@ -1,6 +1,6 @@
 package fr.ocr.application.ouvrage;
 
-import fr.ocr.utility.filter.OuvrageJacksonFilters;
+import fr.ocr.utility.OuvrageJacksonFilters;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.converter.json.MappingJacksonValue;

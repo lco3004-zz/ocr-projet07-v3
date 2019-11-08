@@ -2,7 +2,7 @@ package fr.ocr.application.pret;
 
 import fr.ocr.application.ouvrage.OuvrageService;
 import fr.ocr.application.usager.UsagerService;
-import fr.ocr.utility.exception.PretDejaExistantException;
+import fr.ocr.exception.PrjExceptionHandler;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.Synchronized;
@@ -41,11 +41,13 @@ public class PretController {
     final PretService pretService;
     final UsagerService usagerService;
     final OuvrageService ouvrageService;
+    final PrjExceptionHandler prjExceptionHandler;
 
-    public PretController(PretService pretService, UsagerService usagerService,  OuvrageService ouvrageService) {
+    public PretController(PretService pretService, UsagerService usagerService, OuvrageService ouvrageService, PrjExceptionHandler prjExceptionHandler) {
         this.pretService = pretService;
         this.usagerService = usagerService;
         this.ouvrageService = ouvrageService;
+        this.prjExceptionHandler = prjExceptionHandler;
     }
 
     @ApiOperation(value = "Api Criteria : Récupère les prêts d'un usager grâce à son nom")
@@ -70,7 +72,7 @@ public class PretController {
     public ResponseEntity<Map<String, Integer>> CreerPret(@RequestBody InfosRecherchePret infosRecherchePret) {
         Optional<Pret> optionalPret = pretService.isPretExiste(infosRecherchePret.getIdOuvrage(),infosRecherchePret.getIdUsager());
         if (optionalPret.isPresent()) {
-            throw new PretDejaExistantException("Pret deja existant");
+            prjExceptionHandler.throwPretConflict("Pret deja existant");
         }
         else {
             ouvrageService.setQuantiteByIdOuvrage(infosRecherchePret.getIdOuvrage(),-1);
@@ -85,7 +87,7 @@ public class PretController {
     public ResponseEntity<Map<String, Integer>> RestituerPret(@RequestBody InfosRecherchePret infosRecherchePret) {
         Optional<Pret> optionalPret = pretService.isPretExiste(infosRecherchePret.getIdOuvrage(),infosRecherchePret.getIdUsager());
         if (optionalPret.isEmpty()) {
-            throw new PretDejaExistantException("Pret n'existe pas");
+            prjExceptionHandler.throwPretNotAcceptable("Pret n'existe pas");
         }
         else {
             ouvrageService.setQuantiteByIdOuvrage(infosRecherchePret.getIdOuvrage(),1);

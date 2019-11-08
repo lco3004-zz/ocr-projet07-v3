@@ -1,4 +1,4 @@
-package fr.ocr.utility.filter;
+package fr.ocr.utility;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

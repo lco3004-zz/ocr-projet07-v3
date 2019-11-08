@@ -3,8 +3,7 @@
  */
 package fr.ocr.application.ouvrage;
 
-import fr.ocr.utility.exception.OuvrageNotAvailableForLoan;
-import fr.ocr.utility.exception.OuvrageNotFoundException;
+import fr.ocr.exception.PrjExceptionHandler;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,9 +19,11 @@ import java.util.Optional;
 public class OuvrageService {
 
     final OuvrageRepository ouvrageRepository;
+    final PrjExceptionHandler prjExceptionHandler;
 
-    public OuvrageService(OuvrageRepository ouvrageRepository) {
+    public OuvrageService(OuvrageRepository ouvrageRepository, PrjExceptionHandler prjExceptionHandler) {
         this.ouvrageRepository = ouvrageRepository;
+        this.prjExceptionHandler = prjExceptionHandler;
     }
 
     @Transactional(readOnly = true, rollbackFor = Exception.class)
@@ -43,11 +44,11 @@ public class OuvrageService {
         } else  {
              ouvrageList = ouvrageRepository.findAll();
              if (ouvrageList.isEmpty()) {
-                 throw  new OuvrageNotFoundException("Aucun Ouvrage en Bibliothèque !");
+                 prjExceptionHandler.throwOuvrageNotFound();
              }
          }
         if (ouvrageList.isEmpty()) {
-            throw  new OuvrageNotFoundException("Aucun Ouvrage ne correspond aux critères de recherche");
+            prjExceptionHandler.throwOuvrageNotFound();
         }
         return ouvrageList;
     }
@@ -57,7 +58,7 @@ public class OuvrageService {
          Optional<OuvrageDtoBatch> optionalOuvrageDtoBatch = ouvrageRepository.findOuvrageDtoByIdouvrage(id);
 
         if (optionalOuvrageDtoBatch.isEmpty())
-            throw  new OuvrageNotFoundException("Aucun Ouvrage en Bibliothèque !");
+            prjExceptionHandler.throwOuvrageNotFound();
         return optionalOuvrageDtoBatch.get();
     }
 
@@ -67,11 +68,12 @@ public class OuvrageService {
         Optional<Ouvrage> optionalOuvrage = ouvrageRepository.findOuvrageByIdouvrage(id);
 
         if (optionalOuvrage.isEmpty())
-            throw  new OuvrageNotFoundException("Aucun Ouvrage en Bibliothèque !");
+            prjExceptionHandler.throwOuvrageNotFound();
+
         Ouvrage ouvrage = optionalOuvrage.get();
 
         if (quantiteOuvrage < 0 && ouvrage.getQuantite() == 0) {
-            throw  new OuvrageNotAvailableForLoan("Aucun Ouvrage disponible en Bibliothèque !");
+            prjExceptionHandler.throwOuvrageNotContentForLoan("Aucun Ouvrage disponible en Bibliothèque !");
         }
         ouvrage.setQuantite(ouvrage.getQuantite() +quantiteOuvrage);
         ouvrageRepository.saveAndFlush(ouvrage);

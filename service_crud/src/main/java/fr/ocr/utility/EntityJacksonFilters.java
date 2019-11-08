@@ -1,4 +1,4 @@
-package fr.ocr.utility.filter;
+package fr.ocr.utility;
 
 import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
