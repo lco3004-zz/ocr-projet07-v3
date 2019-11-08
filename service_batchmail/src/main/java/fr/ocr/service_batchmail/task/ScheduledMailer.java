@@ -4,10 +4,10 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.ocr.RestClient;
-import fr.ocr.service_batchmail.domain.InfosMailDtoBatch;
-import fr.ocr.service_batchmail.domain.OuvrageDtoBatch;
-import fr.ocr.service_batchmail.domain.PretDtoBatch;
-import fr.ocr.service_batchmail.domain.UsagerDtoBatch;
+import fr.ocr.service_batchmail.utility.dto.InfosMailDtoBatch;
+import fr.ocr.service_batchmail.utility.dto.OuvrageDtoBatch;
+import fr.ocr.service_batchmail.utility.dto.PretDtoBatch;
+import fr.ocr.service_batchmail.utility.dto.UsagerDtoBatch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -45,20 +45,10 @@ public class ScheduledMailer {
 
     @Scheduled(cron = "0 0 10 * * *")
     public void emailingToOverDueBorrowers() throws  RuntimeException{
-        getPretHorsDelai().forEach(infosMailDtoBatch -> {
-            try {
-                sendEmail(infosMailDtoBatch);
-            } catch (IOException e) {
-                log.error("IOException levee suite appel de ScheduledMailer.sendEmail" + Arrays.toString(e.getStackTrace()));
-                throw  new RuntimeException(e.getLocalizedMessage());
-            } catch (MessagingException e) {
-                log.error("MessagingException levee suite appel de ScheduledMailer.sendEmail" + Arrays.toString(e.getStackTrace()));
-                throw  new RuntimeException(e.getLocalizedMessage());
-            }
-        });
+        getPretHorsDelai().forEach(this::sendEmail);
     }
 
-    void sendEmail(InfosMailDtoBatch infosMailDtoBatch) throws IOException, MessagingException {
+    void sendEmail(InfosMailDtoBatch infosMailDtoBatch) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
 
         mailMessage.setTo(infosMailDtoBatch.getCourriel());

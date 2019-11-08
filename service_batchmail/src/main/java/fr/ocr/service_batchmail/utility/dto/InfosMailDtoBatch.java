@@ -1,4 +1,4 @@
-package fr.ocr.service_batchmail.domain;
+package fr.ocr.service_batchmail.utility.dto;
 
 import lombok.Data;
 

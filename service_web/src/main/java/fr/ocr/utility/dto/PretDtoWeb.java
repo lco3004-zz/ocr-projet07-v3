@@ -1,4 +1,4 @@
-package fr.ocr.domain;
+package fr.ocr.utility.dto;
 
 
 import lombok.Value;

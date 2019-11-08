@@ -3,10 +3,10 @@ package fr.ocr.utility.exception;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(HttpStatus.EXPECTATION_FAILED)
-public class UsagerNotFoundException extends RuntimeException{
+@ResponseStatus(HttpStatus.NOT_FOUND)
+public class PretNotFoundException extends RuntimeException{
 
-    public UsagerNotFoundException (String msg) {
+    public PretNotFoundException (String msg) {
         super(msg);
     }
 }
