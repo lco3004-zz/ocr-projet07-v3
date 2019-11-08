@@ -16,10 +16,8 @@ public class InfosRecherchePret {
     Integer idOuvrage;
 
     public ResponseEntity<Map<String, Integer>> formeReponseEntity(HttpResponse<String> httpResponse) {
-        Map<String,Integer> stringIntegerMap = new HashMap<>();
 
-        stringIntegerMap.put("idUsager",idUsager);
-        stringIntegerMap.put("idOuvrage",idOuvrage);
+        Map<String,Integer> stringIntegerMap = getStringIntegerMap();
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().build().toUri();
 

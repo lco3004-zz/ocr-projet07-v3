@@ -2,7 +2,6 @@ package fr.ocr.application.usager;
 
 
 import fr.ocr.exception.PrjExceptionHandler;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,8 +18,8 @@ public class UsagerService {
     }
 
     @Transactional(readOnly = true, rollbackFor = Exception.class)
-    public Usager getUsagerByNom(String nom) {
-        Optional<Usager> optionalUsager =usagerRepository.findUsagerByNom(nom);
+    public UsagerDtoWeb getUsagerByNom(String nom) {
+        Optional<UsagerDtoWeb> optionalUsager =usagerRepository.findUsagerByNom(nom);
         if (optionalUsager.isEmpty())
             prjExceptionHandler.throwUsagerUnAuthorized();
         return optionalUsager.get();
