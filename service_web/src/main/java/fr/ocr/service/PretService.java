@@ -43,21 +43,5 @@ public class PretService {
         return pretDtoWebList;
     }
 
-    public HttpStatus  setProlongationPret(Map<String, String> requeteSearch) throws IOException, InterruptedException {
-        String uriOuvrageDtoById = "http://localhost:9090/ProlongerPret/";
-
-        String requestBody = objectMapper
-                .writerWithDefaultPrettyPrinter()
-                .writeValueAsString(requeteSearch);
-
-        HttpRequest request = restClient.requestBuilder(URI.create(uriOuvrageDtoById), null)
-                .PUT(HttpRequest.BodyPublishers.ofString(requestBody))
-                .build();
-
-        HttpResponse<String> response = restClient.send(request);
-
-         return HttpStatus.valueOf(response.statusCode());
-    }
-
 }
 
