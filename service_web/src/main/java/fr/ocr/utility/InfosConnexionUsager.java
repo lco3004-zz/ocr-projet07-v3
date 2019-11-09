@@ -1,6 +1,6 @@
 package fr.ocr.utility;
 
-import fr.ocr.utility.dto.UsagerDtoWeb;
+import fr.ocr.utility.dto.User;
 import lombok.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,9 +22,9 @@ public class InfosConnexionUsager {
 
  String courriel;
 
-    public ResponseEntity<Map<String, Object>> formeReponseEntity(HttpResponse<String> httpResponse, UsagerDtoWeb usagerDtoWeb) {
+    public ResponseEntity<Map<String, Object>> formeReponseEntity(HttpResponse<String> httpResponse, User user) {
 
-        Map<String,Object> stringObjectMap = getStringStringMap(usagerDtoWeb);
+        Map<String,Object> stringObjectMap = getStringStringMap(user);
 
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().build().toUri();
@@ -36,12 +36,12 @@ public class InfosConnexionUsager {
 
     }
 
-    public Map<String, Object> getStringStringMap(UsagerDtoWeb usagerDtoWeb) {
+    public Map<String, Object> getStringStringMap(User user) {
         Map<String,Object> stringObjectMap = new HashMap<>();
 
-        stringObjectMap.put("idusager", usagerDtoWeb.getIdusager());
-        stringObjectMap.put("nom",usagerDtoWeb.getNom());
-        stringObjectMap.put("courriel",usagerDtoWeb.getCourriel());
+        stringObjectMap.put("idusager", user.getIdusager());
+        stringObjectMap.put("nom", user.getNom());
+        stringObjectMap.put("courriel", user.getCourriel());
 
         return stringObjectMap;
     }

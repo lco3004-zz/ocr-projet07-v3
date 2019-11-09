@@ -4,8 +4,9 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.ocr.RestClient;
 import fr.ocr.exception.PrjExceptionHandler;
+import fr.ocr.service.SecurityService;
 import fr.ocr.utility.InfosConnexionUsager;
-import fr.ocr.utility.dto.UsagerDtoWeb;
+import fr.ocr.utility.dto.User;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
@@ -29,10 +30,13 @@ public class UsagerController {
     private final ObjectMapper objectMapper;
     private final PrjExceptionHandler prjExceptionHandler;
 
-    public UsagerController(RestClient restClient, ObjectMapper objectMapper, PrjExceptionHandler prjExceptionHandler) {
+    private final SecurityService securityService;
+
+    public UsagerController(RestClient restClient, ObjectMapper objectMapper, PrjExceptionHandler prjExceptionHandler, SecurityService securityService) {
         this.restClient = restClient;
         this.objectMapper = objectMapper;
         this.prjExceptionHandler = prjExceptionHandler;
+        this.securityService = securityService;
     }
 
 
@@ -40,7 +44,7 @@ public class UsagerController {
     @PostMapping(value = "/login")
     public ResponseEntity<Map<String, Object>> ConnexionUsager(@RequestBody InfosConnexionUsager infosConnexionUsager) throws IOException, InterruptedException {
 
-        UsagerDtoWeb usagerDtoWeb = null;
+        User user = null;
         String uriUsagerByName = "http://localhost:9090/UsagerByNom/"+infosConnexionUsager.getNom();
 
         HttpRequest request = restClient
@@ -54,9 +58,14 @@ public class UsagerController {
             prjExceptionHandler.throwUsagerUnAuthorized();
         } else {
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            usagerDtoWeb = objectMapper.readValue(response.body(), UsagerDtoWeb.class);
+            user = objectMapper.readValue(response.body(), User.class);
+
+            Boolean valRet = securityService.acLogin(user, infosConnexionUsager);
+
+            if (!valRet)
+                prjExceptionHandler.throwUsagerUnAuthorized();
         }
-        return infosConnexionUsager.formeReponseEntity(response,usagerDtoWeb);
+        return infosConnexionUsager.formeReponseEntity(response, user);
 
     }
 

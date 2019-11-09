@@ -56,7 +56,7 @@
       <artifactId>maven-clean-plugin</artifactId>
       <executions>
         <execution>
-          <id>clean-package</id>
+          <id>clean-deploy</id>
           <phase>prepare-package</phase>
           <goals>
             <goal>clean</goal>
@@ -223,20 +223,21 @@
   </plugins>
 </build>
 
-<distributionManagement>
-<repository>
-  <uniqueVersion>false</uniqueVersion>
-  <layout>default</layout>
-  <id>projet07repo</id>
-  <name>Internal repo</name>
-  <url>file:///${project.basedir}/../projet07-repo</url>
-</repository>
-</distributionManagement>
+  <repositories>
+  <repository>
+    <id>projet07repo</id>
+    <url>file:///${project.basedir}/../projet07-repo</url>
+  </repository>
+  </repositories>
 
-<repositories>
-<repository>
-  <id>projet07repo</id>
-  <url>file:///${project.basedir}/../projet07-repo</url>
-</repository>
-</repositories>
+
+  <distributionManagement>
+  <repository>
+    <uniqueVersion>false</uniqueVersion>
+    <layout>default</layout>
+    <id>projet07repo</id>
+    <name>Internal repo</name>
+    <url>file:///${project.basedir}/../projet07-repo</url>
+  </repository>
+  </distributionManagement>
 </project>

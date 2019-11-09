@@ -1,6 +1,6 @@
 logging:
   level:
-    org.springframework: WARN
+    org.springframework: INFO
     com.netflix: WARN
     org.apache.catalina: WARN
     fr.ocr.: DEBUG
