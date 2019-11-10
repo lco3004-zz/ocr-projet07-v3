@@ -3,22 +3,22 @@
 -- ---------------------------------------------------------------------------
 
 DROP TABLE IF EXISTS pret.pret;
-DROP TABLE IF EXISTS usager.usager ;
+DROP TABLE IF EXISTS user."user" ;
 DROP TABLE IF EXISTS ouvrage.ouvrage ;
 
-DROP SEQUENCE IF EXISTS usager.usager_idusager_seq;
+DROP SEQUENCE IF EXISTS user.user_iduser_seq;
 DROP SEQUENCE IF EXISTS ouvrage.ouvrage_idouvrage_seq;
 
-DROP SCHEMA IF EXISTS usager;
+DROP SCHEMA IF EXISTS user;
 DROP SCHEMA IF EXISTS pret;
 DROP SCHEMA IF EXISTS ouvrage;
 
 -- ---------------------   SEQUENCE --------------------------------------------
 -- pour commencer !!
--- SELECT * FROM pret.pret p  inner join usager.usager u on p.usager_idusager = u.idusager where u.idusager=2;
+-- SELECT * FROM pret.pret p  inner join user.user u on p.usager_idusager = u.idusager where u.idusager=2;
 -- -------------------------------------------------------------------------
 
-CREATE SCHEMA usager
+CREATE SCHEMA user
     AUTHORIZATION rl_projet07;
 
 CREATE SCHEMA pret
@@ -27,14 +27,14 @@ CREATE SCHEMA pret
 CREATE SCHEMA ouvrage
     AUTHORIZATION rl_projet07;
 
-CREATE SEQUENCE usager.usager_idusager_seq
+CREATE SEQUENCE user.usager_idusager_seq
     INCREMENT  1
     START 1
     MINVALUE 1
     MAXVALUE 2147483647
     CACHE 1;
 
-ALTER SEQUENCE usager.usager_idusager_seq
+ALTER SEQUENCE user.user_iduser_seq
     OWNER TO rl_projet07;
 
 CREATE SEQUENCE ouvrage.ouvrage_idouvrage_seq
@@ -51,18 +51,18 @@ ALTER SEQUENCE ouvrage.ouvrage_idouvrage_seq
 -- Tables :  BIEN RESPECTER l'ORDRE 
 -- -------------------------------------------------------------------------
 
-CREATE TABLE usager.usager
+CREATE TABLE user.user
 (
-    idusager integer NOT NULL DEFAULT nextval('usager.usager_idusager_seq'::regclass),
-    nom character varying(256) COLLATE pg_catalog."default" NOT NULL DEFAULT 'laurent'::character varying,
-    mdp character varying(1024) COLLATE pg_catalog."default" NOT NULL DEFAULT 'laurent'::character varying,
-    courriel character varying(1024) COLLATE pg_catalog."default" NOT NULL DEFAULT 'laurent.cordier3004@gmail.com'::character varying,
+    idusager integer NOT NULL DEFAULT nextval('user.user_iduser_seq'::regclass),
+    userName character varying(256) COLLATE pg_catalog."default" NOT NULL DEFAULT 'laurent'::character varying,
+    password character varying(1024) COLLATE pg_catalog."default" NOT NULL DEFAULT 'laurent'::character varying,
+    email character varying(1024) COLLATE pg_catalog."default" NOT NULL DEFAULT 'laurent.cordier3004@gmail.com'::character varying,
     CONSTRAINT usager_pkey PRIMARY KEY (idusager)
         USING INDEX TABLESPACE ts_projet07
 )
 WITH ( OIDS = FALSE ) TABLESPACE ts_projet07;
 
-ALTER TABLE usager.usager OWNER to rl_projet07;
+ALTER TABLE user."user" OWNER to rl_projet07;
 
 CREATE TABLE  ouvrage.ouvrage
 (
@@ -87,7 +87,7 @@ CREATE TABLE pret.pret
     CONSTRAINT pret_pkey PRIMARY KEY (ouvrage_idouvrage, usager_idusager)
         USING INDEX TABLESPACE ts_projet07,
     CONSTRAINT fk_usager FOREIGN KEY (usager_idusager)
-        REFERENCES usager.usager (idusager) MATCH FULL
+        REFERENCES user."user" (iduser) MATCH FULL
         ON UPDATE CASCADE
         ON DELETE CASCADE
         DEFERRABLE ,
@@ -122,16 +122,16 @@ INSERT INTO ouvrage.ouvrage(
     titre, auteur, quantite)
 	VALUES ('building web apps with spring 5 and angular', 'ranga ajitesh shukla', 12);
 	
-INSERT INTO usager.usager(
-	nom, mdp)
+INSERT INTO user."user"(
+    userName, password)
 	VALUES ('ibtisem', 'ibtisem');
 	
-INSERT INTO usager.usager(
-    nom, mdp)
+INSERT INTO user."user"(
+    userName, password)
 	VALUES ('lola','lola');
 	
-INSERT INTO usager.usager(
-    nom, mdp)
+INSERT INTO user."user"(
+    userName, password)
 	VALUES ('julie', 'julie');
 
 -- fin --

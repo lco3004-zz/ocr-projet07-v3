@@ -8,7 +8,6 @@ import fr.ocr.RestClient;
 import fr.ocr.exception.PrjExceptionHandler;
 import fr.ocr.utility.InfosRecherchePret;
 import fr.ocr.utility.dto.PretDtoWeb;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
@@ -38,7 +37,7 @@ public class PretController {
         this.prjExceptionHandler = prjExceptionHandler;
     }
 
-    @ApiOperation(value = "Api Criteria : Récupère les prêts d'un usager grâce à son nom")
+    @ApiOperation(value = "Api Criteria : Récupère les prêts d'un user grâce à son nom")
     @GetMapping(value="/CriteriaListePrets/{nomUsager}",  produces= MediaType.APPLICATION_JSON_VALUE)
     public  List<PretDtoWeb> getPretByNomUsagerCriteria(@PathVariable String nomUsager) throws IOException, InterruptedException {
 
@@ -66,7 +65,7 @@ public class PretController {
         return pretDtoWebList;
     }
 
-    @ApiOperation(value = "Prolonge le Pret d'un usager")
+    @ApiOperation(value = "Prolonge le Pret d'un user")
     @PutMapping(value = "/ProlongerPret")
     public ResponseEntity<Map<String, Integer>> prolongerPret(@RequestBody InfosRecherchePret infosRecherchePret) throws IOException, InterruptedException {
 

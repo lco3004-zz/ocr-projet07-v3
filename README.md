@@ -20,6 +20,6 @@
 ### 3) cnx : 
 #### role :rl_projet07 (mdp projet07)
 #### db : db_projet07
-#### shema : ouvrage, pret, usager
+#### shema : ouvrage, pret, user
 
 

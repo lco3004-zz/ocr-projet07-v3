@@ -7,7 +7,7 @@ import fr.ocr.RestClient;
 import fr.ocr.service_batchmail.utility.dto.InfosMailDtoBatch;
 import fr.ocr.service_batchmail.utility.dto.OuvrageDtoBatch;
 import fr.ocr.service_batchmail.utility.dto.PretDtoBatch;
-import fr.ocr.service_batchmail.utility.dto.UsagerDtoBatch;
+import fr.ocr.service_batchmail.utility.dto.UserDtoBatch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -48,9 +48,9 @@ public class ScheduledMailer {
     void sendEmail(InfosMailDtoBatch infosMailDtoBatch) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
 
-        mailMessage.setTo(infosMailDtoBatch.getCourriel());
+        mailMessage.setTo(infosMailDtoBatch.getEmail());
 
-        mailMessage.setSubject("Relance Usager :" + infosMailDtoBatch.getNom());
+        mailMessage.setSubject("Relance User :" + infosMailDtoBatch.getUserName());
         mailMessage.setText("Bonjour, vous avez emprunte l'ouvrage :"+
                  "\n "+infosMailDtoBatch.getTitre() +
                  "\n De "+infosMailDtoBatch.getAuteur()+
@@ -73,12 +73,12 @@ public class ScheduledMailer {
             for (PretDtoBatch pretDtoBatch : pretDtoBatchList) {
                 InfosMailDtoBatch infosMailDtoBatch = new InfosMailDtoBatch();
 
-                UsagerDtoBatch usagerDtoBatch = getUnfairBorrower(pretDtoBatch.getUsagerIdusager());
+                UserDtoBatch userDtoBatch = getUnfairBorrower(pretDtoBatch.getUserIduser());
 
                 OuvrageDtoBatch ouvrageDtoBatch = getInfosOuvrage(pretDtoBatch.getOuvrageIdouvrage());
 
-                infosMailDtoBatch.setCourriel(usagerDtoBatch.getCourriel());
-                infosMailDtoBatch.setNom(usagerDtoBatch.getNom());
+                infosMailDtoBatch.setEmail(userDtoBatch.getEmail());
+                infosMailDtoBatch.setUserName(userDtoBatch.getUserName());
                 infosMailDtoBatch.setDateEmprunt(pretDtoBatch.getDateEmprunt());
                 infosMailDtoBatch.setTitre(ouvrageDtoBatch.getTitre());
                 infosMailDtoBatch.setAuteur(ouvrageDtoBatch.getAuteur());
@@ -131,20 +131,20 @@ public class ScheduledMailer {
     }
 
 
-    public UsagerDtoBatch getUnfairBorrower(int ParamsUriIdUsager ) throws Exception {
+    public UserDtoBatch getUnfairBorrower(int ParamsUriIdUser ) throws Exception {
 
-        UsagerDtoBatch  usagerDtoBatch =null;
+        UserDtoBatch userDtoBatch =null;
 
-        String uriUsagerById = "http://localhost:9090/UsagerById/";
-        HttpRequest request = restClient.requestBuilder(URI.create(uriUsagerById + ParamsUriIdUsager), null).GET().build();
+        String uriUserById = "http://localhost:9090/UserById/";
+        HttpRequest request = restClient.requestBuilder(URI.create(uriUserById + ParamsUriIdUser), null).GET().build();
 
         HttpResponse<String> response = restClient.send(request);
 
         if (response.statusCode() == HttpStatus.OK.value()) {
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            usagerDtoBatch = objectMapper.readValue(response.body(), UsagerDtoBatch.class);
+            userDtoBatch = objectMapper.readValue(response.body(), UserDtoBatch.class);
         }
-        return usagerDtoBatch;
+        return userDtoBatch;
     }
 
 }

@@ -2,7 +2,7 @@ package fr.ocr.application.pret;
 
 import fr.ocr.application.ouvrage.Ouvrage;
 import fr.ocr.application.ouvrage.Ouvrage_;
-import fr.ocr.application.usager.Usager;
+import fr.ocr.application.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.query.Param;
@@ -22,16 +22,16 @@ import java.util.Optional;
 @Repository
 public interface PretRepository extends JpaRepository<Pret,Integer> , JpaSpecificationExecutor<Pret>,PretRepositoryCustom {
 
-    Collection<Tuple> findPretsByUsagerName(@Param("Emprunteur") Usager usager);
+    Collection<Tuple> findPretsByUser(@Param("User") User user);
 
-    Optional<Pret> findPretByOuvrageIdouvrageAndUsagerIdusager(int ouvrageIdouvrage, int usagerIdusager);
+    Optional<Pret> findPretByOuvrageIdouvrageAndUserIduser(int ouvrageIdouvrage, int usagerIdusager);
 
     List<PretDtoBatch> findPretsByDateEmpruntIsBefore(Date dateCourante);
 
 }
 
 interface PretRepositoryCustom{
-    List<PretDtoWeb> findPretBydUsagerIdWithCriteria(Integer idUsager);
+    List<PretDtoWeb> findPretBydUserIdWithCriteria(Integer idUsager);
 }
 
 class PretRepositoryCustomImpl implements PretRepositoryCustom {
@@ -40,7 +40,7 @@ class PretRepositoryCustomImpl implements PretRepositoryCustom {
     EntityManager entityManager;
 
     @Override
-    public List<PretDtoWeb> findPretBydUsagerIdWithCriteria(Integer idUsager) {
+    public List<PretDtoWeb> findPretBydUserIdWithCriteria(Integer idUser) {
 
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<PretDtoWeb> criteriaQuery = criteriaBuilder.createQuery(PretDtoWeb.class);
@@ -49,7 +49,7 @@ class PretRepositoryCustomImpl implements PretRepositoryCustom {
 
         Join<Pret, Ouvrage> pretOuvrageJoin = pretRoot.join(Pret_.ouvrageByOuvrageIdouvrage);
 
-        Predicate  predicateUsager = criteriaBuilder.equal(pretRoot.get(Pret_.usagerIdusager),idUsager);
+        Predicate  predicateUsager = criteriaBuilder.equal(pretRoot.get(Pret_.userIduser),idUser);
 
         Expression champIdOuvrageViaPret = pretRoot.get(Pret_.ouvrageIdouvrage);
         Expression champIdOuvrage = pretOuvrageJoin.get(Ouvrage_.idouvrage);
@@ -61,7 +61,7 @@ class PretRepositoryCustomImpl implements PretRepositoryCustom {
 
         criteriaQuery.multiselect(pretRoot.get(
                 Pret_.ouvrageIdouvrage),
-                pretRoot.get(Pret_.usagerIdusager),
+                pretRoot.get(Pret_.userIduser),
                 pretRoot.get(Pret_.dateEmprunt),
                 pretOuvrageJoin.get(Ouvrage_.auteur),
                 pretOuvrageJoin.get(Ouvrage_.titre)

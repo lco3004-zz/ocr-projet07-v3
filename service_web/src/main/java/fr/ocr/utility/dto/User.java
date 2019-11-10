@@ -1,47 +1,35 @@
 package fr.ocr.utility.dto;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import java.io.Serializable;
-import java.util.Collection;
 
-
-public class User implements Serializable , UserDetails{
+public class User implements Serializable {
     static final long serialVersionUID = 5453481303625368221L;
 
-    private Integer idusager;
+    private Integer idUser;
     private String userName;
     private String password;
-    private String courriel;
+    private String email;
 
-    public User(Integer idusager, String userName, String password, String courriel) {
-        this.idusager = idusager;
+
+    public User(Integer idUser, String userName, String password, String email) {
+        this.idUser = idUser;
         this.userName = userName;
         this.password = password;
-        this.courriel = courriel;
+        this.email = email;
     }
 
     public User() {
 
     }
 
-    public Integer getIdusager() {
-        return idusager;
+
+    public Integer getIdUser() {
+        return idUser;
     }
 
-    public void setIdusager(Integer idusager) {
-        this.idusager = idusager;
+    public void setIdUser(Integer idUser) {
+        this.idUser = idUser;
     }
-
-    public String getCourriel() {
-        return courriel;
-    }
-
-    public void setCourriel(String courriel) {
-        this.courriel = courriel;
-    }
-
 
     public String getUserName() {
         return userName;
@@ -51,41 +39,20 @@ public class User implements Serializable , UserDetails{
         this.userName = userName;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
-
     public String getPassword() {
         return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return null;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return false;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return false;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
 }

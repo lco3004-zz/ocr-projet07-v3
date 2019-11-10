@@ -1,8 +1,7 @@
 package fr.ocr.application.pret;
 
-import fr.ocr.application.usager.Usager;
+import fr.ocr.application.user.User;
 import fr.ocr.exception.PrjExceptionHandler;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,15 +26,15 @@ public class PretService {
 
     @Transactional(readOnly = true, rollbackFor = Exception.class)
     public List<PretDtoWeb> getPretsByUsagerNameWithCriteria(int idUsager) {
-        List<PretDtoWeb> pretDtoWebs= pretRepository.findPretBydUsagerIdWithCriteria(idUsager);
+        List<PretDtoWeb> pretDtoWebs= pretRepository.findPretBydUserIdWithCriteria(idUsager);
         if (pretDtoWebs.isEmpty())
             prjExceptionHandler.throwPretNotAcceptable("aucun prêt en cours");
         return pretDtoWebs;
     }
 
     @Transactional(readOnly = true, rollbackFor = Exception.class)
-    public Collection<Tuple> getPretsByUsager(Usager usager) {
-        Collection<Tuple> pretsByUsagerName = pretRepository.findPretsByUsagerName(usager);
+    public Collection<Tuple> getPretsByUsager(User user) {
+        Collection<Tuple> pretsByUsagerName = pretRepository.findPretsByUser(user);
         if (pretsByUsagerName.isEmpty())
             prjExceptionHandler.throwPretNotAcceptable("aucun prêt en cours");
         return pretsByUsagerName;
@@ -73,7 +72,7 @@ public class PretService {
 
     @Transactional(readOnly = true, rollbackFor = Exception.class)
     public Optional<Pret> isPretExiste(int idouvrage, int idusager) {
-        return pretRepository.findPretByOuvrageIdouvrageAndUsagerIdusager(idouvrage,idusager);
+        return pretRepository.findPretByOuvrageIdouvrageAndUserIduser(idouvrage,idusager);
     }
 
     @Transactional(readOnly = true, rollbackFor = Exception.class)
@@ -83,7 +82,7 @@ public class PretService {
 
     @Transactional(readOnly = true, rollbackFor = Exception.class)
     public Pret getPretByPretPartiel(int idOuvrage, int idUsager) {
-        Optional<Pret> optionalPret = pretRepository.findPretByOuvrageIdouvrageAndUsagerIdusager(idOuvrage,idUsager);
+        Optional<Pret> optionalPret = pretRepository.findPretByOuvrageIdouvrageAndUserIduser(idOuvrage,idUsager);
         if (optionalPret.isEmpty())
             prjExceptionHandler.throwPretNotAcceptable("aucun prêt ne correspond à ces critères ");
         return optionalPret.get();

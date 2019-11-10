@@ -1,4 +1,4 @@
-package fr.ocr.application.usager;
+package fr.ocr.application.user;
 
 
 import fr.ocr.exception.PrjExceptionHandler;
@@ -8,18 +8,18 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 @Service
-public class UsagerService {
-    final UsagerRepository usagerRepository;
+public class UserService {
+    final UserRepository userRepository;
     final PrjExceptionHandler prjExceptionHandler;
 
-    public UsagerService(UsagerRepository usagerRepository, PrjExceptionHandler prjExceptionHandler) {
-        this.usagerRepository = usagerRepository;
+    public UserService(UserRepository userRepository, PrjExceptionHandler prjExceptionHandler) {
+        this.userRepository = userRepository;
         this.prjExceptionHandler = prjExceptionHandler;
     }
 
     @Transactional(readOnly = true, rollbackFor = Exception.class)
-    public UsagerDtoWeb getUsagerByNom(String nom) {
-        Optional<UsagerDtoWeb> optionalUsager =usagerRepository.findUsagerByNom(nom);
+    public UserDtoWeb getUserByNom(String nom) {
+        Optional<UserDtoWeb> optionalUsager = userRepository.findUserByUserName(nom);
         if (optionalUsager.isEmpty())
             prjExceptionHandler.throwUsagerUnAuthorized();
         return optionalUsager.get();
@@ -27,8 +27,8 @@ public class UsagerService {
 
 
     @Transactional(readOnly = true, rollbackFor = Exception.class)
-    public UsagerDto getUsagerDTOById(Integer id) {
-        Optional<UsagerDto> optionalUsager =usagerRepository.getUsagerByIdusager(id);
+    public UserDto getUserDTOById(Integer id) {
+        Optional<UserDto> optionalUsager = userRepository.getUserByIdUser(id);
         if (optionalUsager.isEmpty())
             prjExceptionHandler.throwUsagerUnAuthorized();
 

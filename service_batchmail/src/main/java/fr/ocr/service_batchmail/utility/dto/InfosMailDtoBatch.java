@@ -9,8 +9,8 @@ import java.util.Date;
 public class InfosMailDtoBatch implements Serializable {
     static final long serialVersionUID = 5453281303625368221L;
 
-    String nom;
-    String courriel;
+    String userName;
+    String email;
     String titre;
     String auteur;
     Date dateEmprunt;

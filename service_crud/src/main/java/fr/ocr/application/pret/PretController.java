@@ -1,7 +1,7 @@
 package fr.ocr.application.pret;
 
 import fr.ocr.application.ouvrage.OuvrageService;
-import fr.ocr.application.usager.UsagerService;
+import fr.ocr.application.user.UserService;
 import fr.ocr.exception.PrjExceptionHandler;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -19,13 +19,13 @@ import java.util.*;
 
 @Value
 class InfosRecherchePret {
-    Integer idUsager;
+    Integer idUser;
     Integer idOuvrage;
 
     ResponseEntity<Map<String, Integer>> formeReponseEntity() {
         Map<String,Integer> stringIntegerMap = new HashMap<>();
 
-        stringIntegerMap.put("idUsager",idUsager);
+        stringIntegerMap.put("idUser", idUser);
         stringIntegerMap.put("idOuvrage",idOuvrage);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().build().toUri();
@@ -39,59 +39,59 @@ class InfosRecherchePret {
 public class PretController {
 
     final PretService pretService;
-    final UsagerService usagerService;
+    final UserService userService;
     final OuvrageService ouvrageService;
     final PrjExceptionHandler prjExceptionHandler;
 
-    public PretController(PretService pretService, UsagerService usagerService, OuvrageService ouvrageService, PrjExceptionHandler prjExceptionHandler) {
+    public PretController(PretService pretService, UserService userService, OuvrageService ouvrageService, PrjExceptionHandler prjExceptionHandler) {
         this.pretService = pretService;
-        this.usagerService = usagerService;
+        this.userService = userService;
         this.ouvrageService = ouvrageService;
         this.prjExceptionHandler = prjExceptionHandler;
     }
 
-    @ApiOperation(value = "Api Criteria : Récupère les prêts d'un usager grâce à son nom")
-    @GetMapping(value="/CriteriaListePrets/{nomUsager}",  produces= MediaType.APPLICATION_JSON_VALUE)
-    public  List<PretDtoWeb> getPretByNomUsagerCriteria(@PathVariable String nomUsager) {
-        return pretService.getPretsByUsagerNameWithCriteria(usagerService.getUsagerByNom(nomUsager).getIdusager());
+    @ApiOperation(value = "Api Criteria : Récupère les prêts d'un user grâce à son nom")
+    @GetMapping(value="/CriteriaListePrets/{userName}",  produces= MediaType.APPLICATION_JSON_VALUE)
+    public  List<PretDtoWeb> getPretByNomUsagerCriteria(@PathVariable String userName) {
+        return pretService.getPretsByUsagerNameWithCriteria(userService.getUserByNom(userName).getIdUser());
     }
 
-    @ApiOperation(value = "Prolonge le Pret d'un usager")
+    @ApiOperation(value = "Prolonge le Pret d'un user")
     @PutMapping(value = "/ProlongerPret")
     @Synchronized
     public ResponseEntity<Map<String, Integer>> prolongerPret(@RequestBody InfosRecherchePret infosRecherchePret) {
 
-        pretService.setProlongationPret(infosRecherchePret.getIdOuvrage(),infosRecherchePret.getIdUsager());
+        pretService.setProlongationPret(infosRecherchePret.getIdOuvrage(),infosRecherchePret.getIdUser());
 
         return     infosRecherchePret.formeReponseEntity( );
     }
 
-    @ApiOperation(value = "Creation d'un Pret : un Ouvrage/un Usager")
+    @ApiOperation(value = "Creation d'un Pret : un Ouvrage/un User")
     @PostMapping(value = "/CreerPret")
     @Synchronized
     public ResponseEntity<Map<String, Integer>> CreerPret(@RequestBody InfosRecherchePret infosRecherchePret) {
-        Optional<Pret> optionalPret = pretService.isPretExiste(infosRecherchePret.getIdOuvrage(),infosRecherchePret.getIdUsager());
+        Optional<Pret> optionalPret = pretService.isPretExiste(infosRecherchePret.getIdOuvrage(),infosRecherchePret.getIdUser());
         if (optionalPret.isPresent()) {
             prjExceptionHandler.throwPretConflict("Pret deja existant");
         }
         else {
             ouvrageService.setQuantiteByIdOuvrage(infosRecherchePret.getIdOuvrage(),-1);
-            pretService.addPret(infosRecherchePret.getIdOuvrage(),infosRecherchePret.getIdUsager());
+            pretService.addPret(infosRecherchePret.getIdOuvrage(),infosRecherchePret.getIdUser());
         }
         return     infosRecherchePret.formeReponseEntity( );
     }
 
-    @ApiOperation(value = "Restitution d'un Pret : un Ouvrage/un Usager")
+    @ApiOperation(value = "Restitution d'un Pret : un Ouvrage/un User")
     @PostMapping (value = "/RestituerPret")
     @Synchronized
     public ResponseEntity<Map<String, Integer>> RestituerPret(@RequestBody InfosRecherchePret infosRecherchePret) {
-        Optional<Pret> optionalPret = pretService.isPretExiste(infosRecherchePret.getIdOuvrage(),infosRecherchePret.getIdUsager());
+        Optional<Pret> optionalPret = pretService.isPretExiste(infosRecherchePret.getIdOuvrage(),infosRecherchePret.getIdUser());
         if (optionalPret.isEmpty()) {
             prjExceptionHandler.throwPretNotAcceptable("Pret n'existe pas");
         }
         else {
             ouvrageService.setQuantiteByIdOuvrage(infosRecherchePret.getIdOuvrage(),1);
-            pretService.deletePret(infosRecherchePret.getIdOuvrage(),infosRecherchePret.getIdUsager());
+            pretService.deletePret(infosRecherchePret.getIdOuvrage(),infosRecherchePret.getIdUser());
         }
         return     infosRecherchePret.formeReponseEntity( );
     }

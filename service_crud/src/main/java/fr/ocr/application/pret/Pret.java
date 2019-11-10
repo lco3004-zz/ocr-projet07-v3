@@ -1,7 +1,7 @@
 package fr.ocr.application.pret;
 
 import fr.ocr.application.ouvrage.Ouvrage;
-import fr.ocr.application.usager.Usager;
+import fr.ocr.application.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,10 +19,10 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 
-@NamedQuery(name = "Pret.findPretsByUsagerName",
+@NamedQuery(name = "Pret.findPretsByUser",
             query = "select  p.dateEmprunt , o.auteur , o.titre from Pret p , " +
                     "in (p.ouvrageByOuvrageIdouvrage) as o " +
-                    " where p.usagerByUsagerIdusager = :Emprunteur")
+                    " where p.userByUserIduser = :User")
 
 public class Pret implements Serializable {
 
@@ -34,8 +34,8 @@ public class Pret implements Serializable {
     private int ouvrageIdouvrage;
 
     @Id
-    @Column(name = "usager_idusager", nullable = false)
-    private int usagerIdusager;
+    @Column(name = "user_iduser", nullable = false)
+    private int userIduser;
 
     @Basic
     @Column(name = "pret_prolonge", nullable = false)
@@ -53,8 +53,8 @@ public class Pret implements Serializable {
 
     @ToString.Exclude
     @ManyToOne
-    @JoinColumn(name = "usager_idusager", referencedColumnName = "idusager", nullable = false, insertable=false, updatable=false)
-    private Usager usagerByUsagerIdusager;
+    @JoinColumn(name = "user_iduser", referencedColumnName = "iduser", nullable = false, insertable=false, updatable=false)
+    private User userByUserIduser;
 
     @ToString.Exclude
     @Transient
@@ -64,9 +64,9 @@ public class Pret implements Serializable {
     @Transient
     private String titreOuvrage;
 
-    public Pret(int idouvrage, int idusager, int pretprolonge, Date dateEmprunt) {
+    public Pret(int idouvrage, int iduser, int pretprolonge, Date dateEmprunt) {
         this.ouvrageIdouvrage=idouvrage;
-        this.usagerIdusager=idusager;
+        this.userIduser=iduser;
         this.pretprolonge=pretprolonge;
         this.dateEmprunt=dateEmprunt;
     }
