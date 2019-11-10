@@ -37,6 +37,15 @@
     <build.timestamp>${maven.build.timestamp}</build.timestamp>
   </properties>
 
+  <distributionManagement>
+    <repository>
+      <uniqueVersion>false</uniqueVersion>
+      <layout>default</layout>
+      <id>projet07repo</id>
+      <name>Internal repo</name>
+      <url>file:///${project.basedir}/../projet07-repo</url>
+    </repository>
+  </distributionManagement>
 
   <repositories>
     <repository>
