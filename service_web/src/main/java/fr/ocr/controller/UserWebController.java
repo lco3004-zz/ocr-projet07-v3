@@ -4,9 +4,9 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.ocr.RestClient;
 import fr.ocr.exception.PrjExceptionHandler;
-import fr.ocr.service.SecurityService;
-import fr.ocr.utility.InfosConnexionUsager;
-import fr.ocr.utility.dto.User;
+import fr.ocr.security.User;
+import fr.ocr.service.SecurityWebService;
+import fr.ocr.utility.InfosConnexionUser;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
@@ -22,7 +22,7 @@ import java.net.http.HttpResponse;
 import java.util.Map;
 
 
-@Api(value = "APIs de gestion de usagers.")
+@Api(value = "APIs de gestion de users.")
 @RestController
 public class UserWebController {
 
@@ -30,42 +30,42 @@ public class UserWebController {
     private final ObjectMapper objectMapper;
     private final PrjExceptionHandler prjExceptionHandler;
 
-    private final SecurityService securityService;
+    private final SecurityWebService securityWebService;
 
-    public UserWebController(RestClient restClient, ObjectMapper objectMapper, PrjExceptionHandler prjExceptionHandler, SecurityService securityService) {
+    public UserWebController(RestClient restClient, ObjectMapper objectMapper, PrjExceptionHandler prjExceptionHandler, SecurityWebService securityWebService) {
         this.restClient = restClient;
         this.objectMapper = objectMapper;
         this.prjExceptionHandler = prjExceptionHandler;
-        this.securityService = securityService;
+        this.securityWebService = securityWebService;
     }
 
 
-    @ApiOperation(value = "Restitution d'un Pret : un Ouvrage/un Usager")
+    @ApiOperation(value = "Restitution d'un Pret : un Ouvrage/un User")
     @PostMapping(value = "/cnxLogin")
-    public ResponseEntity<Map<String, Object>> ConnexionUsager(@RequestBody InfosConnexionUsager infosConnexionUsager) throws IOException, InterruptedException {
+    public ResponseEntity<Map<String, Object>> ConnexionUser(@RequestBody InfosConnexionUser infosConnexionUser) throws IOException, InterruptedException {
 
         User user = null;
-        String uriUsagerByName = "http://localhost:9090/UsagerByNom/"+infosConnexionUsager.getNom();
+        String uriUserByName = "http://localhost:9090/UserByName/"+ infosConnexionUser.getUserName();
 
         HttpRequest request = restClient
-                .requestBuilder(URI.create(uriUsagerByName), null)
+                .requestBuilder(URI.create(uriUserByName), null)
                 .GET()
                 .build();
 
         HttpResponse<String> response = restClient.send(request);
 
         if (response.statusCode() != HttpStatus.OK.value()) {
-            prjExceptionHandler.throwUsagerUnAuthorized();
+            prjExceptionHandler.throwUserUnAuthorized();
         } else {
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             user = objectMapper.readValue(response.body(), User.class);
 
-            Boolean valRet = securityService.acLogin(user, infosConnexionUsager);
+            Boolean valRet = securityWebService.acLogin(user, infosConnexionUser);
 
             if (!valRet)
-                prjExceptionHandler.throwUsagerUnAuthorized();
+                prjExceptionHandler.throwUserUnAuthorized();
         }
-        return infosConnexionUsager.formeReponseEntity(response, user);
+        return infosConnexionUser.formeReponseEntity(response, user);
 
     }
 

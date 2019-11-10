@@ -16,7 +16,7 @@ public interface PrjExceptionHandler {
     void throwOuvrageNotFound() ;
     void throwPretConflict(String msg) ;
     void throwPretNotAcceptable(String msg) ;
-    void throwUsagerUnAuthorized() ;
+    void throwUserUnAuthorized() ;
     void throwProlongationAlreadyReported(String msg) ;
 }
 
@@ -74,7 +74,7 @@ class PrjExceptionHandlerImpl implements PrjExceptionHandler{
         throw  new lolo(msg);
     }
 
-    public void  throwUsagerUnAuthorized() {
+    public void throwUserUnAuthorized() {
         @ResponseStatus(HttpStatus.UNAUTHORIZED)
         class lolo extends RuntimeException{
             public lolo () {

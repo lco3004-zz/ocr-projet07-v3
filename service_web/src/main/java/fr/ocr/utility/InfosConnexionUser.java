@@ -1,6 +1,6 @@
 package fr.ocr.utility;
 
-import fr.ocr.utility.dto.User;
+import fr.ocr.security.User;
 import lombok.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,15 +12,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Value
-public class InfosConnexionUsager {
+public class InfosConnexionUser {
 
- Integer idusager;
+ Integer idUser;
 
- String nom;
+ String userName;
 
- String mdp;
+ String password;
 
- String courriel;
+ String email;
 
     public ResponseEntity<Map<String, Object>> formeReponseEntity(HttpResponse<String> httpResponse, User user) {
 

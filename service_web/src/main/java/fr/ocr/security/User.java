@@ -1,4 +1,4 @@
-package fr.ocr.utility.dto;
+package fr.ocr.security;
 
 import java.io.Serializable;
 

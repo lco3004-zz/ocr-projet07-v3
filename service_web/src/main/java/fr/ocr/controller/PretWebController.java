@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.ocr.RestClient;
 import fr.ocr.exception.PrjExceptionHandler;
 import fr.ocr.utility.InfosRecherchePret;
-import fr.ocr.utility.dto.PretDtoWeb;
+import fr.ocr.utility.dto.PretWebDtoWeb;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
@@ -26,12 +26,12 @@ import java.util.Map;
 
 @Api(value = "APIs de gestion des Prets.")
 @RestController
-public class PretController {
+public class PretWebController {
     private final RestClient restClient;
     private final ObjectMapper objectMapper;
     private final PrjExceptionHandler prjExceptionHandler;
 
-    public PretController(RestClient restClient, ObjectMapper objectMapper, PrjExceptionHandler prjExceptionHandler) {
+    public PretWebController(RestClient restClient, ObjectMapper objectMapper, PrjExceptionHandler prjExceptionHandler) {
         this.restClient = restClient;
         this.objectMapper = objectMapper;
         this.prjExceptionHandler = prjExceptionHandler;
@@ -39,9 +39,9 @@ public class PretController {
 
     @ApiOperation(value = "Api Criteria : Récupère les prêts d'un user grâce à son nom")
     @GetMapping(value="/CriteriaListePrets/{nomUsager}",  produces= MediaType.APPLICATION_JSON_VALUE)
-    public  List<PretDtoWeb> getPretByNomUsagerCriteria(@PathVariable String nomUsager) throws IOException, InterruptedException {
+    public  List<PretWebDtoWeb> getPretByNomUsagerCriteria(@PathVariable String nomUsager) throws IOException, InterruptedException {
 
-        List<PretDtoWeb> pretDtoWebList =null;
+        List<PretWebDtoWeb> pretWebDtoWebList =null;
 
         String uriPretByNomUsager = "http://localhost:9090/CriteriaListePrets/";
         HttpRequest request = restClient.requestBuilder(URI.create(uriPretByNomUsager + nomUsager), null).GET().build();
@@ -50,19 +50,19 @@ public class PretController {
 
         if (response.statusCode() == HttpStatus.OK.value()) {
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            pretDtoWebList = objectMapper.readValue(response.body(), new TypeReference<>() {});
+            pretWebDtoWebList = objectMapper.readValue(response.body(), new TypeReference<>() {});
         }
         else if (response.statusCode() == HttpStatus.NOT_ACCEPTABLE.value()){
             prjExceptionHandler.throwPretNotAcceptable("Cause : Usager n'a aucun pret en cours ");
 
         } else if (response.statusCode() == HttpStatus.UNAUTHORIZED.value()){
-            prjExceptionHandler.throwUsagerUnAuthorized();
+            prjExceptionHandler.throwUserUnAuthorized();
 
         } else {
             prjExceptionHandler.throwInternalServeurError("Cause: "+ HttpStatus.valueOf(response.statusCode()));
         }
 
-        return pretDtoWebList;
+        return pretWebDtoWebList;
     }
 
     @ApiOperation(value = "Prolonge le Pret d'un user")

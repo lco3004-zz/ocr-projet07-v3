@@ -5,11 +5,9 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.ocr.RestClient;
 import fr.ocr.exception.PrjExceptionHandler;
-import fr.ocr.utility.dto.OuvrageDtoWeb;
-
+import fr.ocr.utility.dto.OuvrageWebDtoWeb;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,13 +22,13 @@ import java.util.Map;
 
 @Api(value = "APIs de gestion des Ouvrages.")
 @RestController
-public class OuvrageController {
+public class OuvrageWebController {
 
     private final RestClient restClient;
     private final ObjectMapper objectMapper;
     private final PrjExceptionHandler prjExceptionHandler;
 
-    public OuvrageController(RestClient restClient, ObjectMapper objectMapper, PrjExceptionHandler prjExceptionHandler) {
+    public OuvrageWebController(RestClient restClient, ObjectMapper objectMapper, PrjExceptionHandler prjExceptionHandler) {
         this.restClient = restClient;
 
         this.objectMapper = objectMapper;
@@ -39,8 +37,8 @@ public class OuvrageController {
 
     @ApiOperation(value = "Recherche d'ouvrage par titre ou par auteur")
     @PostMapping(value="/LookForOuvrage")
-    public List<OuvrageDtoWeb> getOuvrageByQuery(@RequestBody(required = false) Map<String,String> criterionList) throws IOException, InterruptedException {
-        List<OuvrageDtoWeb> ouvrageDtoWebList =null;
+    public List<OuvrageWebDtoWeb> getOuvrageByQuery(@RequestBody(required = false) Map<String,String> criterionList) throws IOException, InterruptedException {
+        List<OuvrageWebDtoWeb> ouvrageWebDtoWebList =null;
 
         String uriOuvrageDtoById = "http://localhost:9090/LookForOuvrage/";
 
@@ -56,11 +54,11 @@ public class OuvrageController {
 
         if (response.statusCode() == HttpStatus.OK.value()) {
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            ouvrageDtoWebList = objectMapper.readValue(response.body(), new TypeReference<>(){});
+            ouvrageWebDtoWebList = objectMapper.readValue(response.body(), new TypeReference<>(){});
         }else {
             prjExceptionHandler.throwOuvrageNotFound();
         }
-        return ouvrageDtoWebList;
+        return ouvrageWebDtoWebList;
 
     }
 

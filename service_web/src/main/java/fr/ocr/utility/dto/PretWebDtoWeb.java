@@ -7,11 +7,11 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Data
-public class PretDtoWeb implements Serializable {
+public class PretWebDtoWeb implements Serializable {
     static final long serialVersionUID = 8453281303625368221L;
 
      int ouvrageIdouvrage;
-     int usagerIdusager;
+     int userIduser;
      Date dateEmprunt;
      String auteur;
      String titre;

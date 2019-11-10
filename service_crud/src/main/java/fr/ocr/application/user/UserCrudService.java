@@ -21,7 +21,7 @@ public class UserCrudService {
     public UserCrudDtoWeb getUserByNom(String nom) {
         Optional<UserCrudDtoWeb> optionalUsager = userCrudRepository.findUserByUserName(nom);
         if (optionalUsager.isEmpty())
-            prjExceptionHandler.throwUsagerUnAuthorized();
+            prjExceptionHandler.throwUserUnAuthorized();
         return optionalUsager.get();
     }
 
@@ -30,7 +30,7 @@ public class UserCrudService {
     public UserCrudDto getUserDTOById(Integer id) {
         Optional<UserCrudDto> optionalUsager = userCrudRepository.getUserByIdUser(id);
         if (optionalUsager.isEmpty())
-            prjExceptionHandler.throwUsagerUnAuthorized();
+            prjExceptionHandler.throwUserUnAuthorized();
 
         return optionalUsager.get();
     }

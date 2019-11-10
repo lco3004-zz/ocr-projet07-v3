@@ -12,7 +12,7 @@ import java.util.Map;
 
 @Value
 public class InfosRecherchePret {
-    Integer idUsager;
+    Integer idUser;
     Integer idOuvrage;
 
     public ResponseEntity<Map<String, Integer>> formeReponseEntity(HttpResponse<String> httpResponse) {
@@ -31,7 +31,7 @@ public class InfosRecherchePret {
     public Map<String, Integer> getStringIntegerMap() {
         Map<String,Integer> stringIntegerMap = new HashMap<>();
 
-        stringIntegerMap.put("idUsager",idUsager);
+        stringIntegerMap.put("idUser", idUser);
         stringIntegerMap.put("idOuvrage",idOuvrage);
 
         return stringIntegerMap;
