@@ -1,12 +1,11 @@
-package fr.ocr.application.user;
+package fr.ocr.service_batchmail.utility.dto;
 
-import lombok.Value;
+import lombok.Data;
 
 import java.io.Serializable;
 
-
-@Value
-public class UserDto implements Serializable {
+@Data
+public class UserBatchDtoBatch implements Serializable {
     static final long serialVersionUID = 5453281303625368221L;
 
     private String userName;

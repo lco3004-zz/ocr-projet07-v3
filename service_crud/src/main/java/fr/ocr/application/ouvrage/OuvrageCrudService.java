@@ -16,13 +16,13 @@ import java.util.Optional;
  * @author Laurent Cordier
  */
 @Service
-public class OuvrageService {
+public class OuvrageCrudService {
 
-    final OuvrageRepository ouvrageRepository;
+    final OuvrageCrudRepository ouvrageCrudRepository;
     final PrjExceptionHandler prjExceptionHandler;
 
-    public OuvrageService(OuvrageRepository ouvrageRepository, PrjExceptionHandler prjExceptionHandler) {
-        this.ouvrageRepository = ouvrageRepository;
+    public OuvrageCrudService(OuvrageCrudRepository ouvrageCrudRepository, PrjExceptionHandler prjExceptionHandler) {
+        this.ouvrageCrudRepository = ouvrageCrudRepository;
         this.prjExceptionHandler = prjExceptionHandler;
     }
 
@@ -35,14 +35,14 @@ public class OuvrageService {
         String gAuteur = requeteSearch.get("auteur");
 
         if ((gAuteur != null && ! gAuteur.isEmpty()) && (gTitre != null && ! gTitre.isEmpty())) {
-            ouvrageList = ouvrageRepository.findOuvrageByAuteurLikeAndTitreLike(gAuteur+"%",gTitre+"%");
+            ouvrageList = ouvrageCrudRepository.findOuvrageByAuteurLikeAndTitreLike(gAuteur+"%",gTitre+"%");
         }
         else if (gAuteur != null && ! gAuteur.isEmpty()) {
-            ouvrageList = ouvrageRepository.findOuvrageByAuteurLike(gAuteur+"%");
+            ouvrageList = ouvrageCrudRepository.findOuvrageByAuteurLike(gAuteur+"%");
         } else if (gTitre != null && ! gTitre.isEmpty()) {
-            ouvrageList = ouvrageRepository.findOuvrageByTitreLike(gTitre+"%");
+            ouvrageList = ouvrageCrudRepository.findOuvrageByTitreLike(gTitre+"%");
         } else  {
-             ouvrageList = ouvrageRepository.findAll();
+             ouvrageList = ouvrageCrudRepository.findAll();
              if (ouvrageList.isEmpty()) {
                  prjExceptionHandler.throwOuvrageNotFound();
              }
@@ -54,8 +54,8 @@ public class OuvrageService {
     }
 
     @Transactional(readOnly = true, rollbackFor = Exception.class)
-    public OuvrageDtoBatch getOuvrageDtoById(Integer id) {
-         Optional<OuvrageDtoBatch> optionalOuvrageDtoBatch = ouvrageRepository.findOuvrageDtoByIdouvrage(id);
+    public OuvrageCrudDtoBatch getOuvrageDtoById(Integer id) {
+         Optional<OuvrageCrudDtoBatch> optionalOuvrageDtoBatch = ouvrageCrudRepository.findOuvrageDtoByIdouvrage(id);
 
         if (optionalOuvrageDtoBatch.isEmpty())
             prjExceptionHandler.throwOuvrageNotFound();
@@ -65,7 +65,7 @@ public class OuvrageService {
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public Ouvrage setQuantiteByIdOuvrage(Integer id, Integer quantiteOuvrage) {
 
-        Optional<Ouvrage> optionalOuvrage = ouvrageRepository.findOuvrageByIdouvrage(id);
+        Optional<Ouvrage> optionalOuvrage = ouvrageCrudRepository.findOuvrageByIdouvrage(id);
 
         if (optionalOuvrage.isEmpty())
             prjExceptionHandler.throwOuvrageNotFound();
@@ -76,7 +76,7 @@ public class OuvrageService {
             prjExceptionHandler.throwOuvrageNotContentForLoan("Aucun Ouvrage disponible en Bibliothèque !");
         }
         ouvrage.setQuantite(ouvrage.getQuantite() +quantiteOuvrage);
-        ouvrageRepository.saveAndFlush(ouvrage);
+        ouvrageCrudRepository.saveAndFlush(ouvrage);
         return  ouvrage;
     }
 }

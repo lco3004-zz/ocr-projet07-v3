@@ -1,7 +1,7 @@
 package fr.ocr.application.pret;
 
-import fr.ocr.application.ouvrage.OuvrageService;
-import fr.ocr.application.user.UserService;
+import fr.ocr.application.ouvrage.OuvrageCrudService;
+import fr.ocr.application.user.UserCrudService;
 import fr.ocr.exception.PrjExceptionHandler;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -36,24 +36,24 @@ class InfosRecherchePret {
 
 @Api(value = "APIs de gestion des Prets.")
 @RestController
-public class PretController {
+public class PretCrudController {
 
-    final PretService pretService;
-    final UserService userService;
-    final OuvrageService ouvrageService;
+    final PretCrudService pretCrudService;
+    final UserCrudService userCrudService;
+    final OuvrageCrudService ouvrageCrudService;
     final PrjExceptionHandler prjExceptionHandler;
 
-    public PretController(PretService pretService, UserService userService, OuvrageService ouvrageService, PrjExceptionHandler prjExceptionHandler) {
-        this.pretService = pretService;
-        this.userService = userService;
-        this.ouvrageService = ouvrageService;
+    public PretCrudController(PretCrudService pretCrudService, UserCrudService userCrudService, OuvrageCrudService ouvrageCrudService, PrjExceptionHandler prjExceptionHandler) {
+        this.pretCrudService = pretCrudService;
+        this.userCrudService = userCrudService;
+        this.ouvrageCrudService = ouvrageCrudService;
         this.prjExceptionHandler = prjExceptionHandler;
     }
 
     @ApiOperation(value = "Api Criteria : Récupère les prêts d'un user grâce à son nom")
     @GetMapping(value="/CriteriaListePrets/{userName}",  produces= MediaType.APPLICATION_JSON_VALUE)
-    public  List<PretDtoWeb> getPretByNomUsagerCriteria(@PathVariable String userName) {
-        return pretService.getPretsByUsagerNameWithCriteria(userService.getUserByNom(userName).getIdUser());
+    public  List<PretCrudDtoWeb> getPretByNomUsagerCriteria(@PathVariable String userName) {
+        return pretCrudService.getPretsByUsagerNameWithCriteria(userCrudService.getUserByNom(userName).getIdUser());
     }
 
     @ApiOperation(value = "Prolonge le Pret d'un user")
@@ -61,7 +61,7 @@ public class PretController {
     @Synchronized
     public ResponseEntity<Map<String, Integer>> prolongerPret(@RequestBody InfosRecherchePret infosRecherchePret) {
 
-        pretService.setProlongationPret(infosRecherchePret.getIdOuvrage(),infosRecherchePret.getIdUser());
+        pretCrudService.setProlongationPret(infosRecherchePret.getIdOuvrage(),infosRecherchePret.getIdUser());
 
         return     infosRecherchePret.formeReponseEntity( );
     }
@@ -70,13 +70,13 @@ public class PretController {
     @PostMapping(value = "/CreerPret")
     @Synchronized
     public ResponseEntity<Map<String, Integer>> CreerPret(@RequestBody InfosRecherchePret infosRecherchePret) {
-        Optional<Pret> optionalPret = pretService.isPretExiste(infosRecherchePret.getIdOuvrage(),infosRecherchePret.getIdUser());
+        Optional<Pret> optionalPret = pretCrudService.isPretExiste(infosRecherchePret.getIdOuvrage(),infosRecherchePret.getIdUser());
         if (optionalPret.isPresent()) {
             prjExceptionHandler.throwPretConflict("Pret deja existant");
         }
         else {
-            ouvrageService.setQuantiteByIdOuvrage(infosRecherchePret.getIdOuvrage(),-1);
-            pretService.addPret(infosRecherchePret.getIdOuvrage(),infosRecherchePret.getIdUser());
+            ouvrageCrudService.setQuantiteByIdOuvrage(infosRecherchePret.getIdOuvrage(),-1);
+            pretCrudService.addPret(infosRecherchePret.getIdOuvrage(),infosRecherchePret.getIdUser());
         }
         return     infosRecherchePret.formeReponseEntity( );
     }
@@ -85,26 +85,26 @@ public class PretController {
     @PostMapping (value = "/RestituerPret")
     @Synchronized
     public ResponseEntity<Map<String, Integer>> RestituerPret(@RequestBody InfosRecherchePret infosRecherchePret) {
-        Optional<Pret> optionalPret = pretService.isPretExiste(infosRecherchePret.getIdOuvrage(),infosRecherchePret.getIdUser());
+        Optional<Pret> optionalPret = pretCrudService.isPretExiste(infosRecherchePret.getIdOuvrage(),infosRecherchePret.getIdUser());
         if (optionalPret.isEmpty()) {
             prjExceptionHandler.throwPretNotAcceptable("Pret n'existe pas");
         }
         else {
-            ouvrageService.setQuantiteByIdOuvrage(infosRecherchePret.getIdOuvrage(),1);
-            pretService.deletePret(infosRecherchePret.getIdOuvrage(),infosRecherchePret.getIdUser());
+            ouvrageCrudService.setQuantiteByIdOuvrage(infosRecherchePret.getIdOuvrage(),1);
+            pretCrudService.deletePret(infosRecherchePret.getIdOuvrage(),infosRecherchePret.getIdUser());
         }
         return     infosRecherchePret.formeReponseEntity( );
     }
 
     @ApiOperation(value = "Api Criteria : Récupère les prêts hors-delai ")
     @GetMapping(value="/ListePretsHorsDelai",  produces= MediaType.APPLICATION_JSON_VALUE)
-    public List<PretDtoBatch> getPretByIdUsagerHorsDelai(@RequestParam(value = "currentDate") String sDateCourante,
-                                                         @RequestParam(value = "elapsedWeeks") Integer nbWeeks) throws ParseException {
+    public List<PretCrudDtoBatch> getPretByIdUsagerHorsDelai(@RequestParam(value = "currentDate") String sDateCourante,
+                                                             @RequestParam(value = "elapsedWeeks") Integer nbWeeks) throws ParseException {
         GregorianCalendar calendar = new GregorianCalendar();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         calendar.setTime(sdf.parse(sDateCourante));
         calendar.add(Calendar.WEEK_OF_YEAR,nbWeeks * -1);
-        return pretService.getPretByeDueDate(calendar.getTime());
+        return pretCrudService.getPretByeDueDate(calendar.getTime());
     }
 
 }

@@ -13,29 +13,29 @@ import java.util.List;
 
 @Api(value = "APIs de gestion des Users (Usagers).")
 @RestController
-public class UserController {
+public class UserCrudController {
     final
-    UserService userService;
+    UserCrudService userCrudService;
 
     final
     UserJacksonFilters<List<User>> userJacksonFilters;
 
-    public UserController(UserService userService, UserJacksonFilters<List<User>> userJacksonFilters) {
-        this.userService = userService;
+    public UserCrudController(UserCrudService userCrudService, UserJacksonFilters<List<User>> userJacksonFilters) {
+        this.userCrudService = userCrudService;
         this.userJacksonFilters = userJacksonFilters;
     }
 
     @ApiOperation(value = "user par son nom.")
     @GetMapping(value = "/UserByName/{nom}")
-    public UserDtoWeb getUsers(@PathVariable String nom) {
+    public UserCrudDtoWeb getUsers(@PathVariable String nom) {
 
-        return userService.getUserByNom(nom);
+        return userCrudService.getUserByNom(nom);
     }
 
     @ApiOperation(value = "Détails information User (Nom-Email).")
     @GetMapping(value = "/UserById/{idUser}", produces= MediaType.APPLICATION_JSON_VALUE)
-    public UserDto getUserDTOById(@PathVariable Integer idUser) {
+    public UserCrudDto getUserDTOById(@PathVariable Integer idUser) {
 
-        return userService.getUserDTOById(idUser);
+        return userCrudService.getUserDTOById(idUser);
     }
 }

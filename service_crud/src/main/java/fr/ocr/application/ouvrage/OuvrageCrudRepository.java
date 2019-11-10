@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface OuvrageRepository extends JpaRepository<Ouvrage, Integer>
+public interface OuvrageCrudRepository extends JpaRepository<Ouvrage, Integer>
 {
      List<Ouvrage> findAll();
 
@@ -20,7 +20,7 @@ public interface OuvrageRepository extends JpaRepository<Ouvrage, Integer>
 
      Optional<Ouvrage> findOuvrageByIdouvrage(Integer idOuvrage);
 
-     Optional<OuvrageDtoBatch> findOuvrageDtoByIdouvrage(Integer id);
+     Optional<OuvrageCrudDtoBatch> findOuvrageDtoByIdouvrage(Integer id);
 
 }
 

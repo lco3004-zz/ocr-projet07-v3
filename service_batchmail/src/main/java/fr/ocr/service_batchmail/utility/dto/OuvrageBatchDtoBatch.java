@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-public class OuvrageDtoBatch implements Serializable {
+public class OuvrageBatchDtoBatch implements Serializable {
 
     static final long serialVersionUID = 3453281303625368221L;
 

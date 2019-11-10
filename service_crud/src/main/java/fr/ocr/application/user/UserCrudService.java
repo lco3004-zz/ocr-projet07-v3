@@ -8,18 +8,18 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 @Service
-public class UserService {
-    final UserRepository userRepository;
+public class UserCrudService {
+    final UserCrudRepository userCrudRepository;
     final PrjExceptionHandler prjExceptionHandler;
 
-    public UserService(UserRepository userRepository, PrjExceptionHandler prjExceptionHandler) {
-        this.userRepository = userRepository;
+    public UserCrudService(UserCrudRepository userCrudRepository, PrjExceptionHandler prjExceptionHandler) {
+        this.userCrudRepository = userCrudRepository;
         this.prjExceptionHandler = prjExceptionHandler;
     }
 
     @Transactional(readOnly = true, rollbackFor = Exception.class)
-    public UserDtoWeb getUserByNom(String nom) {
-        Optional<UserDtoWeb> optionalUsager = userRepository.findUserByUserName(nom);
+    public UserCrudDtoWeb getUserByNom(String nom) {
+        Optional<UserCrudDtoWeb> optionalUsager = userCrudRepository.findUserByUserName(nom);
         if (optionalUsager.isEmpty())
             prjExceptionHandler.throwUsagerUnAuthorized();
         return optionalUsager.get();
@@ -27,8 +27,8 @@ public class UserService {
 
 
     @Transactional(readOnly = true, rollbackFor = Exception.class)
-    public UserDto getUserDTOById(Integer id) {
-        Optional<UserDto> optionalUsager = userRepository.getUserByIdUser(id);
+    public UserCrudDto getUserDTOById(Integer id) {
+        Optional<UserCrudDto> optionalUsager = userCrudRepository.getUserByIdUser(id);
         if (optionalUsager.isEmpty())
             prjExceptionHandler.throwUsagerUnAuthorized();
 

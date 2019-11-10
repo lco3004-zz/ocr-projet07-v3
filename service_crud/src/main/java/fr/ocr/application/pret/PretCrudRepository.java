@@ -20,18 +20,18 @@ import java.util.Optional;
 
 
 @Repository
-public interface PretRepository extends JpaRepository<Pret,Integer> , JpaSpecificationExecutor<Pret>,PretRepositoryCustom {
+public interface PretCrudRepository extends JpaRepository<Pret,Integer> , JpaSpecificationExecutor<Pret>,PretRepositoryCustom {
 
     Collection<Tuple> findPretsByUser(@Param("User") User user);
 
     Optional<Pret> findPretByOuvrageIdouvrageAndUserIduser(int ouvrageIdouvrage, int usagerIdusager);
 
-    List<PretDtoBatch> findPretsByDateEmpruntIsBefore(Date dateCourante);
+    List<PretCrudDtoBatch> findPretsByDateEmpruntIsBefore(Date dateCourante);
 
 }
 
 interface PretRepositoryCustom{
-    List<PretDtoWeb> findPretBydUserIdWithCriteria(Integer idUsager);
+    List<PretCrudDtoWeb> findPretBydUserIdWithCriteria(Integer idUsager);
 }
 
 class PretRepositoryCustomImpl implements PretRepositoryCustom {
@@ -40,10 +40,10 @@ class PretRepositoryCustomImpl implements PretRepositoryCustom {
     EntityManager entityManager;
 
     @Override
-    public List<PretDtoWeb> findPretBydUserIdWithCriteria(Integer idUser) {
+    public List<PretCrudDtoWeb> findPretBydUserIdWithCriteria(Integer idUser) {
 
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<PretDtoWeb> criteriaQuery = criteriaBuilder.createQuery(PretDtoWeb.class);
+        CriteriaQuery<PretCrudDtoWeb> criteriaQuery = criteriaBuilder.createQuery(PretCrudDtoWeb.class);
 
         Root<Pret> pretRoot = criteriaQuery.from(Pret.class);
 
@@ -67,10 +67,10 @@ class PretRepositoryCustomImpl implements PretRepositoryCustom {
                 pretOuvrageJoin.get(Ouvrage_.titre)
         );
 
-        TypedQuery<PretDtoWeb> query = entityManager.createQuery(criteriaQuery);
-        List<PretDtoWeb> pretDtoWebs = query.getResultList();
+        TypedQuery<PretCrudDtoWeb> query = entityManager.createQuery(criteriaQuery);
+        List<PretCrudDtoWeb> pretCrudDtoWebs = query.getResultList();
 
-        return pretDtoWebs;
+        return pretCrudDtoWebs;
     }
 
 }

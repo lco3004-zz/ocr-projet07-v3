@@ -14,27 +14,27 @@ import java.util.Optional;
 
 
 @Service
-public class PretService {
+public class PretCrudService {
 
-    final PretRepository pretRepository;
+    final PretCrudRepository pretCrudRepository;
     final PrjExceptionHandler prjExceptionHandler;
 
-    public PretService(PretRepository pretRepository, PrjExceptionHandler prjExceptionHandler) {
-        this.pretRepository = pretRepository;
+    public PretCrudService(PretCrudRepository pretCrudRepository, PrjExceptionHandler prjExceptionHandler) {
+        this.pretCrudRepository = pretCrudRepository;
         this.prjExceptionHandler = prjExceptionHandler;
     }
 
     @Transactional(readOnly = true, rollbackFor = Exception.class)
-    public List<PretDtoWeb> getPretsByUsagerNameWithCriteria(int idUsager) {
-        List<PretDtoWeb> pretDtoWebs= pretRepository.findPretBydUserIdWithCriteria(idUsager);
-        if (pretDtoWebs.isEmpty())
+    public List<PretCrudDtoWeb> getPretsByUsagerNameWithCriteria(int idUsager) {
+        List<PretCrudDtoWeb> pretCrudDtoWebs = pretCrudRepository.findPretBydUserIdWithCriteria(idUsager);
+        if (pretCrudDtoWebs.isEmpty())
             prjExceptionHandler.throwPretNotAcceptable("aucun prêt en cours");
-        return pretDtoWebs;
+        return pretCrudDtoWebs;
     }
 
     @Transactional(readOnly = true, rollbackFor = Exception.class)
     public Collection<Tuple> getPretsByUsager(User user) {
-        Collection<Tuple> pretsByUsagerName = pretRepository.findPretsByUser(user);
+        Collection<Tuple> pretsByUsagerName = pretCrudRepository.findPretsByUser(user);
         if (pretsByUsagerName.isEmpty())
             prjExceptionHandler.throwPretNotAcceptable("aucun prêt en cours");
         return pretsByUsagerName;
@@ -54,35 +54,35 @@ public class PretService {
             Date proloDate = new Date();
             optionalPret.get().setDateEmprunt(proloDate);
         }
-        return pretRepository.saveAndFlush(optionalPret.get());
+        return pretCrudRepository.saveAndFlush(optionalPret.get());
     }
 
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public Pret addPret(int idOuvrage , int idUsager) {
         Pret pretTmp = new Pret(idOuvrage, idUsager,0,new Date());
-        return pretRepository.saveAndFlush(pretTmp);
+        return pretCrudRepository.saveAndFlush(pretTmp);
     }
 
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void deletePret(int idouvrage, int idusager) {
         Pret pretTmp = getPretByPretPartiel(idouvrage,idusager);
-        pretRepository.delete(pretTmp);
-        pretRepository.flush();
+        pretCrudRepository.delete(pretTmp);
+        pretCrudRepository.flush();
     }
 
     @Transactional(readOnly = true, rollbackFor = Exception.class)
     public Optional<Pret> isPretExiste(int idouvrage, int idusager) {
-        return pretRepository.findPretByOuvrageIdouvrageAndUserIduser(idouvrage,idusager);
+        return pretCrudRepository.findPretByOuvrageIdouvrageAndUserIduser(idouvrage,idusager);
     }
 
     @Transactional(readOnly = true, rollbackFor = Exception.class)
-    public List<PretDtoBatch> getPretByeDueDate(Date dateCourante) {
-        return pretRepository.findPretsByDateEmpruntIsBefore(dateCourante);
+    public List<PretCrudDtoBatch> getPretByeDueDate(Date dateCourante) {
+        return pretCrudRepository.findPretsByDateEmpruntIsBefore(dateCourante);
     }
 
     @Transactional(readOnly = true, rollbackFor = Exception.class)
     public Pret getPretByPretPartiel(int idOuvrage, int idUsager) {
-        Optional<Pret> optionalPret = pretRepository.findPretByOuvrageIdouvrageAndUserIduser(idOuvrage,idUsager);
+        Optional<Pret> optionalPret = pretCrudRepository.findPretByOuvrageIdouvrageAndUserIduser(idOuvrage,idUsager);
         if (optionalPret.isEmpty())
             prjExceptionHandler.throwPretNotAcceptable("aucun prêt ne correspond à ces critères ");
         return optionalPret.get();

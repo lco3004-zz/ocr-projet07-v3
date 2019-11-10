@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Data
-public class InfosMailDtoBatch implements Serializable {
+public class InfosBatchMailDtoBatch implements Serializable {
     static final long serialVersionUID = 5453281303625368221L;
 
     String userName;

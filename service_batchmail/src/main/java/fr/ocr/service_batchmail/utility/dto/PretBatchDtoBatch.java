@@ -1,16 +1,16 @@
-package fr.ocr.application.pret;
+package fr.ocr.service_batchmail.utility.dto;
 
-import lombok.Value;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
 
-@Value
-public class PretDtoBatch implements Serializable {
+@Data
+public class PretBatchDtoBatch implements Serializable {
 
      static final long serialVersionUID = 3453281303625368221L;
 
-     int usagerIdusager;
+     int userIduser;
      int ouvrageIdouvrage;
      Date dateEmprunt;
 }

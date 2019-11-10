@@ -10,26 +10,26 @@ import java.util.List;
 import java.util.Map;
 @Api(value = "APIs de gestion des Ouvrages.")
 @RestController
-public class OuvrageController {
+public class OuvrageCrudController {
 
-    final OuvrageService ouvrageService;
+    final OuvrageCrudService ouvrageCrudService;
 
     final OuvrageJacksonFilters<List<Ouvrage>> ouvrageJacksonFilters;
 
-    public OuvrageController(OuvrageService ouvrageService, OuvrageJacksonFilters<List<Ouvrage>> jf) {
-        this.ouvrageService = ouvrageService;
+    public OuvrageCrudController(OuvrageCrudService ouvrageCrudService, OuvrageJacksonFilters<List<Ouvrage>> jf) {
+        this.ouvrageCrudService = ouvrageCrudService;
         this.ouvrageJacksonFilters = jf;
     }
 
     @ApiOperation(value = "Recherche d'ouvrage par titre ou par auteur")
     @PostMapping(value="/LookForOuvrage")
     public MappingJacksonValue getOuvrageByQuery(@RequestBody(required = false) Map<String,String> criterionList) {
-        return ouvrageJacksonFilters.filtersOnAttributes(ouvrageService.getOuvrageByQuerie(criterionList));
+        return ouvrageJacksonFilters.filtersOnAttributes(ouvrageCrudService.getOuvrageByQuerie(criterionList));
     }
 
     @ApiOperation(value = "Recherche d'ouvrage par /Id")
     @GetMapping(value="/OuvrageDtoByID/{idOuvrage}")
-    public OuvrageDtoBatch getOuvrageDtoById(@PathVariable Integer idOuvrage) {
-        return ouvrageService.getOuvrageDtoById(idOuvrage);
+    public OuvrageCrudDtoBatch getOuvrageDtoById(@PathVariable Integer idOuvrage) {
+        return ouvrageCrudService.getOuvrageDtoById(idOuvrage);
     }
 }
