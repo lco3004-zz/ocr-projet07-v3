@@ -1,18 +1,9 @@
-#Infos pour logging
-logging:
-  level:
-    org.springframework: WARN
-    com.netflix: WARN
-    org.apache.catalina: WARN
-    fr.ocr: DEBUG
-  pattern:
-    console: "%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"
-    file: "%d %p %c{1.} [%t] %m%n"
-  file:
-    name: ./logs/service_batchmail.log
-
+server:
+  port: 9092
 #Email
 spring:
+  main:
+    banner-mode: off
   application:
     name: service_batchmail
   mail:
@@ -27,3 +18,5 @@ spring:
           connectiontimeout: 10000
           starttls:
             enable: true
+
+

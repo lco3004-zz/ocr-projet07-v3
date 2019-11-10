@@ -17,8 +17,8 @@ public class PretPK implements Serializable {
     @Id
     private int ouvrageIdouvrage;
 
-    @Column(name = "usager_idusager", nullable = false)
+    @Column(name = "user_iduser", nullable = false)
     @Id
-    private int usagerIdusager;
+    private int userIduser;
 
 }

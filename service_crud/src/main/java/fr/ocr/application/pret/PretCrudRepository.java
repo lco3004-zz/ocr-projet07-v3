@@ -24,7 +24,7 @@ public interface PretCrudRepository extends JpaRepository<Pret,Integer> , JpaSpe
 
     Collection<Tuple> findPretsByUser(@Param("User") User user);
 
-    Optional<Pret> findPretByOuvrageIdouvrageAndUserIduser(int ouvrageIdouvrage, int usagerIdusager);
+    Optional<Pret> findPretByOuvrageIdouvrageAndUserIduser(int ouvrageIdouvrage, int userIduser);
 
     List<PretCrudDtoBatch> findPretsByDateEmpruntIsBefore(Date dateCourante);
 

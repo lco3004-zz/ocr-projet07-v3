@@ -39,9 +39,9 @@ public class InfosConnexionUser {
     public Map<String, Object> getStringStringMap(User user) {
         Map<String,Object> stringObjectMap = new HashMap<>();
 
-        stringObjectMap.put("idusager", user.getIdUser());
-        stringObjectMap.put("nom", user.getUserName());
-        stringObjectMap.put("courriel", user.getEmail());
+        stringObjectMap.put("idUser", user.getIdUser());
+        stringObjectMap.put("userName", user.getUserName());
+        stringObjectMap.put("email", user.getEmail());
 
         return stringObjectMap;
     }

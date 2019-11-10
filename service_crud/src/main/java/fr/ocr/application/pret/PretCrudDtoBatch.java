@@ -10,7 +10,7 @@ public class PretCrudDtoBatch implements Serializable {
 
      static final long serialVersionUID = 3453281303625368221L;
 
-     int usagerIdusager;
+     int userIduser;
      int ouvrageIdouvrage;
      Date dateEmprunt;
 }

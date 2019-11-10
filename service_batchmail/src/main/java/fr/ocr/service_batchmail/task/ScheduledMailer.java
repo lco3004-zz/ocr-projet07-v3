@@ -51,13 +51,15 @@ public class ScheduledMailer {
         mailMessage.setTo(infosBatchMailDtoBatch.getEmail());
 
         mailMessage.setSubject("Relance User :" + infosBatchMailDtoBatch.getUserName());
-        mailMessage.setText("Bonjour, vous avez emprunte l'ouvrage :"+
-                 "\n "+ infosBatchMailDtoBatch.getTitre() +
-                 "\n De "+ infosBatchMailDtoBatch.getAuteur()+
-                 "\n Le  "+ infosBatchMailDtoBatch.getDateEmprunt() +
-                 "\n \n \n Le delai de 4 semaines est depasse." +
-                 "\n Merci de nous retourner cet ouvrage "+
-                 "\n L'equipe Municipale ");
+        mailMessage.setText("\n*********************************************\n"+
+                 "\n  Bonjour, vous avez emprunté l'ouvrage :"+
+                 "\n  Titre..: " + infosBatchMailDtoBatch.getTitre() +
+                 "\n  De.....: " + infosBatchMailDtoBatch.getAuteur()+
+                 "\n  Le.....: " + infosBatchMailDtoBatch.getDateEmprunt() + "\n"+
+                 "\n   Le délai de 4 semaines est dépassé." +
+                 "\n   Merci de nous retourner cet ouvrage "+
+                 "\n L'equipe Municipale"+
+                 "\n*********************************************\n");
 
         log.info(mailMessage.getText());
         javaMailSender.send(mailMessage);
