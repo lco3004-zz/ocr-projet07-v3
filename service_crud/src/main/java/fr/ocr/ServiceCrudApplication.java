@@ -1,6 +1,7 @@
 package fr.ocr;
 
 import fr.ocr.exception.PrjExceptionHandler;
+import org.springframework.boot.ExitCodeGenerator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -36,5 +37,10 @@ public class ServiceCrudApplication {
     @Bean
     public PrjExceptionHandler libHttpClient_Exception() {
          return PrjExceptionHandler.getInstance();
+    }
+
+    @Bean
+    public ExitCodeGenerator exitCodeGenerator() {
+        return () -> 2018;
     }
 }

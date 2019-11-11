@@ -1,7 +1,22 @@
 server:
   port: 9091
-  
+
+# Logger
+logging:
+  level:
+    org: warn
+    springfox: warn
+    com: warn
+
 spring:
+  redis:
+    host: localhost
+    port: 6379
+  session:
+    store-type: redis
+    redis:
+      flush-mode: immediate
+      namespace: spring:session
   main:
     banner-mode: off
   application:

@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.ExitCodeGenerator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -46,5 +47,10 @@ public class ServiceBatchmailApplication  implements  CommandLineRunner{
             }catch (RuntimeException e) {
                 log.error("Exception levee suite appel de scheduledMailer.emailingToOverDueBorrowers()" + e.getLocalizedMessage());
             }
+    }
+
+    @Bean
+    public ExitCodeGenerator exitCodeGenerator() {
+        return () -> 2017;
     }
 }

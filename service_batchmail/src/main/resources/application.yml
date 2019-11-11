@@ -1,6 +1,14 @@
 server:
   port: 9092
-#Email
+
+# Logger
+logging:
+  level:
+    org: warn
+    springfox: warn
+    com: warn
+
+# Email
 spring:
   main:
     banner-mode: off
@@ -18,5 +26,4 @@ spring:
           connectiontimeout: 10000
           starttls:
             enable: true
-
 
