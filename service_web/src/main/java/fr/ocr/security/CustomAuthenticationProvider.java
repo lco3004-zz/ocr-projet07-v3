@@ -1,6 +1,7 @@
 package fr.ocr.security;
 
-import com.book.healthapp.exceptions.UserNotFoundException;
+import fr.ocr.user.UserService;
+import fr.ocr.user.UserWebDtoWeb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -9,13 +10,13 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-//import org.springframework.security.core.userdetails.User;
 
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
@@ -31,26 +32,27 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		final String username = authentication.getName();
 		final String password = authentication.getCredentials().toString();
 
-		User user = null;
+		UserWebDtoWeb userWebDtoWeb = null;
 		try {
-			user = userService.doesUserExist(username);
-		} catch (UserNotFoundException e) {
+			userWebDtoWeb = userService.doesUserExist(authentication);
+		} catch (InterruptedException | IOException e) {
+			e.printStackTrace();
 		}
 
-		if (user == null || !user.getEmail().equalsIgnoreCase(username)) {
+		if (userWebDtoWeb == null || ! userWebDtoWeb.getUserName().equalsIgnoreCase(username)) {
 			throw new BadCredentialsException("Username not found.");
 		}
 
-		if (!password.equals(user.getPassword())) {
+		if (!password.equals(userWebDtoWeb.getPassword())) {
 			throw new BadCredentialsException("Wrong password.");
 		}
-		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-		if(user.getRole() == 1) {
-			authorities.add(new SimpleGrantedAuthority("ROLE_DOCTOR"));
-		} else {
-			authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-		}		
-        final UserDetails principal = new org.springframework.security.core.userdetails.User(username, password, authorities);        
+
+		List<GrantedAuthority> authorities = new ArrayList<>();
+
+		authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+
+        final UserDetails principal = new User(username, password, authorities);
+
 		return new UsernamePasswordAuthenticationToken(principal, password, authorities);
 	}
 	

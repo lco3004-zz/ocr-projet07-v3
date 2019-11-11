@@ -6,33 +6,14 @@ import fr.ocr.exception.PrjExceptionHandler;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.Synchronized;
-import lombok.Value;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-@Value
-class InfosRecherchePret {
-    Integer idUser;
-    Integer idOuvrage;
-
-    ResponseEntity<Map<String, Integer>> formeReponseEntity() {
-        Map<String,Integer> stringIntegerMap = new HashMap<>();
-
-        stringIntegerMap.put("idUser", idUser);
-        stringIntegerMap.put("idOuvrage",idOuvrage);
-
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().build().toUri();
-
-        return ResponseEntity.created(location).header("Content-Type", "application/json").body(stringIntegerMap);
-    }
-}
 
 @Api(value = "APIs de gestion des Prets.")
 @RestController

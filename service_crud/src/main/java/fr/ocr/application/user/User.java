@@ -1,6 +1,5 @@
 package fr.ocr.application.user;
 
-import com.fasterxml.jackson.annotation.JsonFilter;
 import fr.ocr.application.pret.Pret;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,7 +16,6 @@ import java.util.Collection;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonFilter("UserFiltreDynamique")
 public class User implements  Serializable{
     @Transient
     static final long serialVersionUID = 2453281303625368221L;
