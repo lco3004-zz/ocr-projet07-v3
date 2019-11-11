@@ -1,5 +1,9 @@
-logs
-### projet07-repo
+
+service_batchmail/target
+lib_httpclient/target
+service_crud/target
+service_web/target
+
 ### IntelliJ IDEA ###
 .idea
 *.iws
