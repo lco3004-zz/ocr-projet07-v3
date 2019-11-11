@@ -3,7 +3,7 @@
 # Structure du dév
 ## 1 service Rest  exposant les méthodes CRUD sur base PostgreSql 
 ## 1 service Rest  de type "Cron" pour envoi de email 
-## 1 service Rest  exposant les méthodes UI ainqie que le controle d'accès 
+## 1 service Rest  exposant les méthodes UI ainsi que le controle d'accès 
 ## 1 appli web 
 
 # Persistence  

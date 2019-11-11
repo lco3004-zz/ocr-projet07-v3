@@ -62,7 +62,7 @@ CREATE TABLE usager.user
 )
     WITH ( OIDS = FALSE ) TABLESPACE ts_projet07;
 
-ALTER TABLE usager."user" OWNER to rl_projet07;
+ALTER TABLE usager.user OWNER to rl_projet07;
 
 CREATE TABLE  ouvrage.ouvrage
 (
@@ -81,12 +81,12 @@ ALTER TABLE ouvrage.ouvrage   OWNER to rl_projet07;
 CREATE TABLE pret.pret
 (
     ouvrage_idouvrage integer NOT NULL,
-    usager_idusager integer NOT NULL,
+    user_iduser integer NOT NULL,
     pret_prolonge integer NOT NULL DEFAULT 0,
     date_emprunt date NOT NULL,
-    CONSTRAINT pret_pkey PRIMARY KEY (ouvrage_idouvrage, usager_idusager)
+    CONSTRAINT pret_pkey PRIMARY KEY (ouvrage_idouvrage, user_iduser)
         USING INDEX TABLESPACE ts_projet07,
-    CONSTRAINT fk_usager FOREIGN KEY (usager_idusager)
+    CONSTRAINT fk_usager FOREIGN KEY (user_iduser)
         REFERENCES usager.user (iduser) MATCH FULL
         ON UPDATE CASCADE
         ON DELETE CASCADE
@@ -104,34 +104,114 @@ CREATE TABLE pret.pret
 
 ALTER TABLE pret.pret OWNER to rl_projet07;
 
-
 -- --------------------- JEU de TEST --------------------------------------------
 -- valeurs fixes pour ce projet - seul update sur "prolongation de l'emprunt"
 -- -------------------------------------------------------------------------
 
-
-INSERT INTO ouvrage.ouvrage(
-    titre, auteur, quantite)
+INSERT INTO ouvrage.ouvrage(titre, auteur, quantite)
 VALUES ('micro services with spring boot', 'ranga rao karanam',  10);
 
-INSERT INTO ouvrage.ouvrage(
-    titre, auteur, quantite)
+INSERT INTO ouvrage.ouvrage(titre, auteur, quantite)
 VALUES ('learning spring boot 2.0', 'greg l. turnquist',  8);
 
-INSERT INTO ouvrage.ouvrage(
-    titre, auteur, quantite)
+INSERT INTO ouvrage.ouvrage(titre, auteur, quantite)
 VALUES ('building web apps with spring 5 and angular', 'ranga ajitesh shukla', 12);
 
-INSERT INTO usager."user"(
-    userName, password)
+INSERT INTO ouvrage.ouvrage(titre, auteur, quantite)
+VALUES ('Java the complete eleventh edition', 'Herbert Schildt', 2);
+
+INSERT INTO ouvrage.ouvrage(titre, auteur, quantite)
+VALUES ('Apache Maven maitrisez  l infra d un projet Java EE' , 'Maxime Greau Etienne Langlet', 4);
+
+INSERT INTO ouvrage.ouvrage(titre, auteur, quantite)
+VALUES ('Java JEE developpez des applicaitons Web en Java', 'Thierry richard', 2);
+
+INSERT INTO ouvrage.ouvrage(titre, auteur, quantite)
+VALUES ('JPA et Java Hibernate Apprenez le ORM avec Java', 'Martial Banon', 12);
+
+INSERT INTO ouvrage.ouvrage(titre, auteur, quantite)
+VALUES ('PostgreSQL Admin et exploit de vos base de données', 'Sébastien Lardiere', 12);
+
+INSERT INTO ouvrage.ouvrage(titre, auteur, quantite)
+VALUES ('Java Spring Le scocle technique des applis Java EE', 'Hervé le Morvan', 12);
+
+INSERT INTO ouvrage.ouvrage(titre, auteur, quantite)
+VALUES ('HTML5 et CSS3 faite evoluez le design de vos sites web', 'Christophe Aubry', 12);
+
+INSERT INTO ouvrage.ouvrage(titre, auteur, quantite)
+VALUES ('HTML5 et CSS3 maitrisez les standards de la creation de sites web', 'Christophe Aubry', 12);
+
+INSERT INTO ouvrage.ouvrage(titre, auteur, quantite)
+VALUES ('Mastering MicroServices with Java', 'Sourabh Sharma', 12);
+
+INSERT INTO ouvrage.ouvrage(titre, auteur, quantite)
+VALUES ('SCRUM piur une pratique vivante de l agilité', 'Claude Aubry', 12);
+
+-- --
+
+INSERT INTO usager.user(userName, password)
 VALUES ('ibtisem', 'ibtisem');
 
-INSERT INTO usager."user"(
-    userName, password)
+INSERT INTO usager.user(userName, password)
 VALUES ('lola','lola');
 
-INSERT INTO usager."user"(
-    userName, password)
+INSERT INTO usager.user(userName, password)
 VALUES ('julie', 'julie');
+
+INSERT INTO usager.user(userName, password)
+VALUES ('jeff', 'jeff');
+
+INSERT INTO usager.user(userName, password)
+VALUES ('herbert', 'herbert');
+
+INSERT INTO usager.user(userName, password)
+VALUES ('greg', 'greg');
+
+INSERT INTO usager.user(userName, password)
+VALUES ('lao', 'lao');
+
+
+-- --
+INSERT INTO pret.pret (ouvrage_idouvrage, user_iduser, pret_prolonge, date_emprunt)
+VALUES (8, 1, 0, '2019-11-08');
+
+INSERT INTO pret.pret (ouvrage_idouvrage, user_iduser, pret_prolonge, date_emprunt)
+VALUES (9, 1, 0, '2019-11-08');
+
+INSERT INTO pret.pret (ouvrage_idouvrage, user_iduser, pret_prolonge, date_emprunt)
+VALUES (10, 1, 0, '2019-11-08');
+
+INSERT INTO pret.pret (ouvrage_idouvrage, user_iduser, pret_prolonge, date_emprunt)
+VALUES (11, 1, 0, '2019-11-08');
+
+INSERT INTO pret.pret (ouvrage_idouvrage, user_iduser, pret_prolonge, date_emprunt)
+VALUES (3, 2, 0, '2019-10-01');
+
+INSERT INTO pret.pret (ouvrage_idouvrage, user_iduser, pret_prolonge, date_emprunt)
+VALUES (4, 2, 0, '2019-09-21');
+
+INSERT INTO pret.pret (ouvrage_idouvrage, user_iduser, pret_prolonge, date_emprunt)
+VALUES (5, 2, 0, '2019-10-07');
+
+INSERT INTO pret.pret (ouvrage_idouvrage, user_iduser, pret_prolonge, date_emprunt)
+VALUES (6, 2, 0, '2019-11-08');
+
+INSERT INTO pret.pret (ouvrage_idouvrage, user_iduser, pret_prolonge, date_emprunt)
+VALUES (7, 2, 0, '2019-11-08');
+
+
+INSERT INTO pret.pret (ouvrage_idouvrage, user_iduser, pret_prolonge, date_emprunt)
+VALUES (2, 3, 1, '2019-11-08');
+
+INSERT INTO pret.pret (ouvrage_idouvrage, user_iduser, pret_prolonge, date_emprunt)
+VALUES (1, 3, 0, '2019-11-10');
+
+INSERT INTO pret.pret (ouvrage_idouvrage, user_iduser, pret_prolonge, date_emprunt)
+VALUES (12, 3, 0, '2019-11-08');
+
+
+INSERT INTO pret.pret (ouvrage_idouvrage, user_iduser, pret_prolonge, date_emprunt)
+VALUES (13, 3, 0, '2019-11-08');
+
 
 -- fin --

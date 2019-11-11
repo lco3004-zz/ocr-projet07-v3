@@ -28,7 +28,7 @@ public class UserCrudService {
 
     @Transactional(readOnly = true, rollbackFor = Exception.class)
     public UserCrudDto getUserDTOById(Integer id) {
-        Optional<UserCrudDto> optionalUsager = userCrudRepository.getUserByIdUser(id);
+        Optional<UserCrudDto> optionalUsager = userCrudRepository.findUserByIdUser(id);
         if (optionalUsager.isEmpty())
             prjExceptionHandler.throwUserUnAuthorized();
 

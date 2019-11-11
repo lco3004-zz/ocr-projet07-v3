@@ -25,7 +25,7 @@ public class User implements  Serializable{
     private int idUser;
 
     @Basic
-    @Column(name = "user_name", nullable = false, length = 256)
+    @Column(name = "username", nullable = false, length = 256)
     private String userName;
 
     @Basic
