@@ -4,8 +4,10 @@ import io.swagger.annotations.Api;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
 import java.util.Map;
 
 
@@ -19,6 +21,10 @@ public class UserWebController {
           return null;
         //return infosConnexionUser.formeReponseEntity(response, userWebDtoWeb);
 
+    }
+    @RequestMapping("/user")
+    public Principal user(Principal user) {
+        return user;
     }
 
 }

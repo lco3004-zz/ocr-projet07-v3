@@ -4,9 +4,11 @@ server:
 # Logger
 logging:
   level:
-    org: warn
+    org: info
     springfox: warn
-    com: warn
+    com: info
+    fr.ocr: debug
+
 
 spring:
   redis:
