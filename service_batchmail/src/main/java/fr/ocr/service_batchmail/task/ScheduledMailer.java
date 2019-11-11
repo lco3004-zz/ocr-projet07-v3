@@ -62,7 +62,11 @@ public class ScheduledMailer {
                  "\n*********************************************\n");
 
         log.info(mailMessage.getText());
-        javaMailSender.send(mailMessage);
+        try {
+            javaMailSender.send(mailMessage);
+        }catch (Exception e ) {
+            log.warn("Erreur : javalMail to "+ mailMessage.getTo()+ " - cause :" + e.getLocalizedMessage());
+        }
     }
 
     public List<InfosBatchMailDtoBatch> getPretHorsDelai()
