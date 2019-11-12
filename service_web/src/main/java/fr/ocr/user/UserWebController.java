@@ -58,7 +58,7 @@ public class UserWebController {
         } catch (Exception e) {
             prjExceptionHandler.throwUserUnAuthorized();
         }
-        user.setEmail(userDetails.);
+        //user.setEmail(userDetails.);
         return user.formeReponseEntity(HttpStatus.valueOf(response.getStatus()) , user);
     }
 
