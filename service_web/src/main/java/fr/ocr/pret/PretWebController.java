@@ -41,7 +41,7 @@ public class PretWebController {
     }
 
     @ApiOperation(value = "Api Criteria : Récupère les prêts d'un user grâce à son nom")
-    @GetMapping(value="/CriteriaListePrets",  produces= MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value="/listePrets",  produces= MediaType.APPLICATION_JSON_VALUE)
     public  List<PretWebDtoWeb> getPretByNomUsagerCriteria() throws IOException, InterruptedException {
 
         List<PretWebDtoWeb> pretWebDtoWebList =null;

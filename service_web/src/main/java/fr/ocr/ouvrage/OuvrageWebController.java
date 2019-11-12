@@ -8,14 +8,15 @@ import fr.ocr.exception.PrjExceptionHandler;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,11 +36,22 @@ public class OuvrageWebController {
     }
 
     @ApiOperation(value = "Recherche d'ouvrage par titre ou par auteur")
-    @PostMapping(value="/LookForOuvrage")
-    public List<OuvrageWebDtoWeb> getOuvrageByQuery(@RequestBody(required = false) Map<String,String> criterionList) throws IOException, InterruptedException {
+    @GetMapping(value="/listeOuvrages")
+    public List<OuvrageWebDtoWeb> getOuvrageByQuery(
+            @RequestParam(value = "auteur",required = false) String auteur,
+            @RequestParam(value = "titre",required = false) String titre) throws IOException, InterruptedException {
+
         List<OuvrageWebDtoWeb> ouvrageWebDtoWebList =null;
 
         String uriOuvrageDtoById = "http://localhost:9090/LookForOuvrage/";
+
+        Map<String,String> criterionList = new HashMap<>();
+
+        if (auteur != null && ! (auteur.isEmpty() || auteur.isBlank() ))
+            criterionList.put("auteur",auteur);
+
+        if (titre != null && ! (titre.isEmpty() || titre.isBlank() ))
+            criterionList.put("titre",titre);
 
         String requestBody = objectMapper
                 .writerWithDefaultPrettyPrinter()

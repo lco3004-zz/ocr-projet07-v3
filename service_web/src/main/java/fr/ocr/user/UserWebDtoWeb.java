@@ -116,6 +116,22 @@ public class UserWebDtoWeb implements Serializable , UserDetails {
 
     }
 
+    public ResponseEntity<Map<String, Object>> formeReponseEntity(HttpStatus httpStatus, UserWebDtoWeb userWebDtoWeb) {
+
+        Map<String,Object> stringObjectMap = getStringStringMap(userWebDtoWeb);
+
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().build().toUri();
+
+        ResponseEntity.BodyBuilder bodyBuilder = ResponseEntity.status(httpStatus);
+        bodyBuilder.location(location).header("Content-Type", "application/json");
+
+        return bodyBuilder.body(stringObjectMap);
+
+    }
+
+
+
     public Map<String, Object> getStringStringMap(UserWebDtoWeb userWebDtoWeb) {
         Map<String,Object> stringObjectMap = new HashMap<>();
 
