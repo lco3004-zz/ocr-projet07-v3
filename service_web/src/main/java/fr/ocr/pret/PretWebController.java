@@ -11,7 +11,12 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.net.URI;
@@ -36,13 +41,16 @@ public class PretWebController {
     }
 
     @ApiOperation(value = "Api Criteria : Récupère les prêts d'un user grâce à son nom")
-    @GetMapping(value="/CriteriaListePrets/{nomUsager}",  produces= MediaType.APPLICATION_JSON_VALUE)
-    public  List<PretWebDtoWeb> getPretByNomUsagerCriteria(@PathVariable String nomUsager) throws IOException, InterruptedException {
+    @GetMapping(value="/CriteriaListePrets",  produces= MediaType.APPLICATION_JSON_VALUE)
+    public  List<PretWebDtoWeb> getPretByNomUsagerCriteria() throws IOException, InterruptedException {
 
         List<PretWebDtoWeb> pretWebDtoWebList =null;
 
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
         String uriPretByNomUsager = "http://localhost:9090/CriteriaListePrets/";
-        HttpRequest request = restClient.requestBuilder(URI.create(uriPretByNomUsager + nomUsager), null).GET().build();
+
+        HttpRequest request = restClient.requestBuilder(URI.create(uriPretByNomUsager + authentication.getName()), null).GET().build();
 
         HttpResponse<String> response = restClient.send(request);
 

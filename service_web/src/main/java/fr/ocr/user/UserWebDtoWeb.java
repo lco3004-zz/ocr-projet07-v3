@@ -3,6 +3,7 @@ package fr.ocr.user;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -50,9 +51,7 @@ public class UserWebDtoWeb implements Serializable , UserDetails {
         this.email = email;
     }
 
-    public UserWebDtoWeb() {
-
-    }
+    public UserWebDtoWeb() { }
 
     public Integer getIdUser() {
         return idUser;
@@ -61,8 +60,6 @@ public class UserWebDtoWeb implements Serializable , UserDetails {
     public void setIdUser(Integer idUser) {
         this.idUser = idUser;
     }
-
-
 
     public String getPassword() {
         return password;
@@ -82,8 +79,7 @@ public class UserWebDtoWeb implements Serializable , UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-
-        return null;
+        return SecurityContextHolder.getContext().getAuthentication().getAuthorities();
     }
 
     @Override
