@@ -1,25 +1,51 @@
 package fr.ocr.user;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.io.Serializable;
+import java.net.URI;
+import java.net.http.HttpResponse;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 @Component
 public class UserWebDtoWeb implements Serializable , UserDetails {
     static final long serialVersionUID = 5453481303625368221L;
 
     private Integer idUser;
-    private String userName;
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    private String username;
     private String password;
     private String email;
 
+    private HttpResponse<String> response;
+
+    public HttpResponse<String> getResponse() {
+        return response;
+    }
+
+    public void setResponse(HttpResponse<String> response) {
+        this.response = response;
+    }
 
     public UserWebDtoWeb(Integer idUser, String userName, String password, String email) {
         this.idUser = idUser;
-        this.userName = userName;
+        this.username = userName;
         this.password = password;
         this.email = email;
     }
@@ -27,7 +53,6 @@ public class UserWebDtoWeb implements Serializable , UserDetails {
     public UserWebDtoWeb() {
 
     }
-
 
     public Integer getIdUser() {
         return idUser;
@@ -37,13 +62,7 @@ public class UserWebDtoWeb implements Serializable , UserDetails {
         this.idUser = idUser;
     }
 
-    public String getUserName() {
-        return userName;
-    }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 
     public String getPassword() {
         return password;
@@ -63,32 +82,52 @@ public class UserWebDtoWeb implements Serializable , UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
 
-    @Override
-    public String getUsername() {
         return null;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
+    }
+
+    public ResponseEntity<Map<String, Object>> formeReponseEntity(HttpResponse<String> httpResponse, UserWebDtoWeb userWebDtoWeb) {
+
+        Map<String,Object> stringObjectMap = getStringStringMap(userWebDtoWeb);
+
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().build().toUri();
+
+        ResponseEntity.BodyBuilder bodyBuilder = ResponseEntity.status(HttpStatus.valueOf(httpResponse.statusCode()));
+        bodyBuilder.location(location).header("Content-Type", "application/json");
+
+        return bodyBuilder.body(stringObjectMap);
+
+    }
+
+    public Map<String, Object> getStringStringMap(UserWebDtoWeb userWebDtoWeb) {
+        Map<String,Object> stringObjectMap = new HashMap<>();
+
+        stringObjectMap.put("idUser", userWebDtoWeb.getIdUser());
+        stringObjectMap.put("userName", userWebDtoWeb.getUsername());
+        stringObjectMap.put("email", userWebDtoWeb.getEmail());
+
+        return stringObjectMap;
     }
 
 }

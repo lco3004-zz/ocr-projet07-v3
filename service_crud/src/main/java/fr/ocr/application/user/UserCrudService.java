@@ -19,7 +19,7 @@ public class UserCrudService {
 
     @Transactional(readOnly = true, rollbackFor = Exception.class)
     public UserCrudDtoWeb getUserByNom(String nom) {
-        Optional<UserCrudDtoWeb> optionalUsager = userCrudRepository.findUserByUserName(nom);
+        Optional<UserCrudDtoWeb> optionalUsager = userCrudRepository.findUserByUsername(nom);
         if (optionalUsager.isEmpty())
             prjExceptionHandler.throwUserUnAuthorized();
         return optionalUsager.get();

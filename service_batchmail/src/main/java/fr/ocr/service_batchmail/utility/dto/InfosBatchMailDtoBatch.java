@@ -9,7 +9,7 @@ import java.util.Date;
 public class InfosBatchMailDtoBatch implements Serializable {
     static final long serialVersionUID = 5453281303625368221L;
 
-    String userName;
+    String username;
     String email;
     String titre;
     String auteur;

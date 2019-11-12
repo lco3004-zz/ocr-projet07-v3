@@ -50,7 +50,7 @@ public class ScheduledMailer {
 
         mailMessage.setTo(infosBatchMailDtoBatch.getEmail());
 
-        mailMessage.setSubject("Relance User :" + infosBatchMailDtoBatch.getUserName());
+        mailMessage.setSubject("Relance User :" + infosBatchMailDtoBatch.getUsername());
         mailMessage.setText("\n*********************************************\n"+
                  "\n  Bonjour, vous avez emprunté l'ouvrage :"+
                  "\n  Titre..: " + infosBatchMailDtoBatch.getTitre() +
@@ -84,7 +84,7 @@ public class ScheduledMailer {
                 OuvrageBatchDtoBatch ouvrageBatchDtoBatch = getInfosOuvrage(pretBatchDtoBatch.getOuvrageIdouvrage());
 
                 infosBatchMailDtoBatch.setEmail(userBatchDtoBatch.getEmail());
-                infosBatchMailDtoBatch.setUserName(userBatchDtoBatch.getUserName());
+                infosBatchMailDtoBatch.setUsername(userBatchDtoBatch.getUsername());
                 infosBatchMailDtoBatch.setDateEmprunt(pretBatchDtoBatch.getDateEmprunt());
                 infosBatchMailDtoBatch.setTitre(ouvrageBatchDtoBatch.getTitre());
                 infosBatchMailDtoBatch.setAuteur(ouvrageBatchDtoBatch.getAuteur());

@@ -15,7 +15,7 @@ public class InfosConnexionUser {
 
  Integer idUser;
 
- String userName;
+ String username;
 
  String password;
 
@@ -39,11 +39,10 @@ public class InfosConnexionUser {
         Map<String,Object> stringObjectMap = new HashMap<>();
 
         stringObjectMap.put("idUser", userWebDtoWeb.getIdUser());
-        stringObjectMap.put("userName", userWebDtoWeb.getUserName());
+        stringObjectMap.put("userName", userWebDtoWeb.getUsername());
         stringObjectMap.put("email", userWebDtoWeb.getEmail());
 
         return stringObjectMap;
     }
-
 
 }

@@ -6,6 +6,8 @@ import fr.ocr.RestClient;
 import fr.ocr.exception.PrjExceptionHandler;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -15,7 +17,7 @@ import java.net.http.HttpResponse;
 
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl  implements UserService {
 
 	private final RestClient restClient;
 	private final ObjectMapper objectMapper;
@@ -30,10 +32,35 @@ public class UserServiceImpl implements UserService {
 		this.userWebDtoWeb = null;
 	}
 
+	public UserWebDtoWeb getUserWebDtoWeb() {
+		return userWebDtoWeb;
+	}
+
+	public void setUserWebDtoWeb(UserWebDtoWeb userWebDtoWeb) {
+		this.userWebDtoWeb = userWebDtoWeb;
+	}
+
     @Override
 	public UserWebDtoWeb doesUserExist(Authentication authentication) throws IOException, InterruptedException {
+			userWebDtoWeb =getFromServiceCrud(authentication.getName());
+		return userWebDtoWeb;
+	}
 
-		String uriUserByName = "http://localhost:9090/UserByName/"+ authentication.getName();
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+			try {
+				userWebDtoWeb = getFromServiceCrud(username);
+			} catch (IOException | InterruptedException e) {
+				throw new UsernameNotFoundException("Nom inconnu");
+			}
+
+		return userWebDtoWeb;
+	}
+
+	private UserWebDtoWeb getFromServiceCrud(String nomUser) throws IOException, InterruptedException{
+		String uriUserByName = "http://localhost:9090/UserByName/"+ nomUser;
 
 		HttpRequest request = restClient.requestBuilder(URI.create(uriUserByName), null).GET().build();
 
@@ -44,26 +71,8 @@ public class UserServiceImpl implements UserService {
 		} else {
 			objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 			userWebDtoWeb = objectMapper.readValue(response.body(), UserWebDtoWeb.class);
+			userWebDtoWeb.setResponse(response);
 		}
 		return userWebDtoWeb;
 	}
-
-	@Override
-	public UserWebDtoWeb getByEmail(String email) {
-		return null;
-	}
-
-	@Override
-	public UserWebDtoWeb isValidUser(String email, String password) {
-		return null;
-	}
-
-	public UserWebDtoWeb getUserWebDtoWeb() {
-		return userWebDtoWeb;
-	}
-
-	public void setUserWebDtoWeb(UserWebDtoWeb userWebDtoWeb) {
-		this.userWebDtoWeb = userWebDtoWeb;
-	}
-
 }

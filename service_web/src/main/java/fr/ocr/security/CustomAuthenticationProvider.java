@@ -39,7 +39,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 			e.printStackTrace();
 		}
 
-		if (userWebDtoWeb == null || ! userWebDtoWeb.getUserName().equalsIgnoreCase(username)) {
+		if (userWebDtoWeb == null || ! userWebDtoWeb.getUsername().equalsIgnoreCase(username)) {
 			throw new BadCredentialsException("Username not found.");
 		}
 
