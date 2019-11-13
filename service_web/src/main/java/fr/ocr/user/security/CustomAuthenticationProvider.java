@@ -1,7 +1,5 @@
-package fr.ocr.security;
+package fr.ocr.user.security;
 
-import fr.ocr.user.UserWebDtoWeb;
-import fr.ocr.user.UserWebService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -14,7 +12,6 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,18 +29,13 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		final String username = authentication.getName();
 		final String password = authentication.getCredentials().toString();
 
-		UserWebDtoWeb userWebDtoWeb = null;
-		try {
-			userWebDtoWeb = userService.doesUserExist(authentication);
-		} catch (InterruptedException | IOException e) {
-			e.printStackTrace();
-		}
+		UserDetails userDetails = userService.doesUserExist(authentication);
 
-		if (userWebDtoWeb == null || ! userWebDtoWeb.getUsername().equalsIgnoreCase(username)) {
+		if (userDetails == null || ! userDetails.getUsername().equalsIgnoreCase(username)) {
 			throw new BadCredentialsException("Username not found.");
 		}
 
-		if (!password.equals(userWebDtoWeb.getPassword())) {
+		if (!password.equals(userDetails.getPassword())) {
 			throw new BadCredentialsException("Wrong password.");
 		}
 

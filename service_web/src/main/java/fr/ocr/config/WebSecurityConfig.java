@@ -1,7 +1,7 @@
 package fr.ocr.config;
 
-import fr.ocr.security.CustomAuthenticationProvider;
-import fr.ocr.user.UserWebService;
+import fr.ocr.user.security.CustomAuthenticationProvider;
+import fr.ocr.user.security.UserWebService;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

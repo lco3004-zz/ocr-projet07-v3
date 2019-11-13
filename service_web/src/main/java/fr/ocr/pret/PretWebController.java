@@ -46,7 +46,7 @@ public class PretWebController {
 
         List<PretWebDtoWeb> pretWebDtoWebList =null;
 
-               String uriPretByNomUsager = "http://localhost:9090/CriteriaListePrets/";
+        String uriPretByNomUsager = "http://localhost:9090/CriteriaListePrets/";
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 

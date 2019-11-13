@@ -50,6 +50,7 @@ public class UserWebController {
         Authentication authentication = null;
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(user.getUsername(),user.getPassword());
         UserDetails userDetails =null;
+
         try {
             authentication = this.authenticationProvider.authenticate(token);
             SecurityContextHolder.getContext().setAuthentication(authentication);
