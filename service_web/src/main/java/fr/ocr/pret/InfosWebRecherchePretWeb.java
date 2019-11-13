@@ -1,6 +1,6 @@
 package fr.ocr.pret;
 
-import lombok.Value;
+import lombok.Data;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -10,10 +10,11 @@ import java.net.http.HttpResponse;
 import java.util.HashMap;
 import java.util.Map;
 
-@Value
+@Data
 public class InfosWebRecherchePretWeb {
-    Integer idUser;
-    Integer idOuvrage;
+
+    private Integer idUser;
+    private Integer idOuvrage;
 
     public ResponseEntity<Map<String, Integer>> formeReponseEntity(HttpResponse<String> httpResponse) {
 

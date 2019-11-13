@@ -6,6 +6,8 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.ocr.RestClient;
 import fr.ocr.exception.PrjExceptionHandler;
+import fr.ocr.user.UserWebDtoWeb;
+import fr.ocr.user.security.UserWebService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
@@ -33,11 +35,13 @@ public class PretWebController {
     private final RestClient restClient;
     private final ObjectMapper objectMapper;
     private final PrjExceptionHandler prjExceptionHandler;
+    private final UserWebService userWebService;
 
-    public PretWebController(RestClient restClient, ObjectMapper objectMapper, PrjExceptionHandler prjExceptionHandler) {
+    public PretWebController(RestClient restClient, ObjectMapper objectMapper, PrjExceptionHandler prjExceptionHandler, UserWebService userWebService) {
         this.restClient = restClient;
         this.objectMapper = objectMapper;
         this.prjExceptionHandler = prjExceptionHandler;
+        this.userWebService = userWebService;
     }
 
     @ApiOperation(value = "Api Criteria : Récupère les prêts d'un user grâce à son nom")
@@ -84,6 +88,21 @@ public class PretWebController {
     public ResponseEntity<Map<String, Integer>> prolongerPret(@RequestBody InfosWebRecherchePretWeb infosWebRecherchePretWeb) throws IOException, InterruptedException {
 
         String uriOuvrageDtoById = "http://localhost:9090/ProlongerPret/";
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        String username;
+
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails)principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+
+        UserWebDtoWeb userWebDtoWeb = userWebService.getFromServiceCrud(username);
+
+        if (infosWebRecherchePretWeb.getIdUser() != userWebDtoWeb.getIdUser())
+            prjExceptionHandler.throwUserUnAuthorized();
 
         String requestBody = objectMapper
                 .writerWithDefaultPrettyPrinter()

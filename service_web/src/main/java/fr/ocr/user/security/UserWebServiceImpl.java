@@ -63,7 +63,7 @@ public class UserWebServiceImpl implements UserWebService {
 		return userWebDtoWeb;
 	}
 
-	private UserWebDtoWeb getFromServiceCrud(String nomUser) throws IOException, InterruptedException{
+	public UserWebDtoWeb getFromServiceCrud(String nomUser) throws IOException, InterruptedException{
 		String uriUserByName = "http://localhost:9090/UserByName/"+ nomUser;
 
 		HttpRequest request = restClient.requestBuilder(URI.create(uriUserByName), null).GET().build();
