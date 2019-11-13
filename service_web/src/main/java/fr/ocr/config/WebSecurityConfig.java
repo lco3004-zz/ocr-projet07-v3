@@ -1,7 +1,7 @@
 package fr.ocr.config;
 
 import fr.ocr.security.CustomAuthenticationProvider;
-import fr.ocr.user.UserService;
+import fr.ocr.user.UserWebService;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,11 +27,11 @@ import java.io.IOException;
 @Order(SecurityProperties.BASIC_AUTH_ORDER)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private  final  UserService userDetailsService;
+    private  final UserWebService userDetailsService;
 
       private final CustomAuthenticationProvider authProvider;
 
-    public WebSecurityConfig(UserService userDetailsService, CustomAuthenticationProvider authProvider) {
+    public WebSecurityConfig(UserWebService userDetailsService, CustomAuthenticationProvider authProvider) {
         this.authProvider = authProvider;
         this.userDetailsService = userDetailsService;
     }
@@ -66,8 +66,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/account/userInfos").authenticated()
                 .antMatchers("/account/tokenInfos").authenticated()
                 .antMatchers("/listeOuvrages").authenticated()
-                .antMatchers("/prolongerPret").authenticated()
-                .anyRequest().permitAll();
+                .antMatchers("/prolongerPret").authenticated();
+                //.anyRequest().permitAll();
 
     }
 

@@ -53,7 +53,7 @@ public class UserWebController {
         try {
             authentication = this.authenticationProvider.authenticate(token);
             SecurityContextHolder.getContext().setAuthentication(authentication);
-            userDetails = (UserWebDtoWeb) authentication.getPrincipal();
+            userDetails = (UserDetails) authentication.getPrincipal();
 
         } catch (Exception e) {
             prjExceptionHandler.throwUserUnAuthorized();
@@ -62,7 +62,7 @@ public class UserWebController {
         if (userDetails == null)
             prjExceptionHandler.throwUserUnAuthorized();
 
-        return user.formeReponseEntity(HttpStatus.valueOf(response.getStatus()) , user);
+        return user.formeReponseEntity(HttpStatus.valueOf(response.getStatus()) ,  userDetails);
     }
 
     @GetMapping(value = "/logoutUser")

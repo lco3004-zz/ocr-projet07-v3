@@ -1,23 +1,346 @@
-[2019-11-13T10:08:27.027Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [55] [INFO ] Starting ServiceWebApplication on DESKTOP-HE1TMKM with PID 9168 (D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3\service_web\target\classes started by cordier in D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3)
-[2019-11-13T10:08:27.027Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [56] [DEBUG] Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
-[2019-11-13T10:08:27.027Z] [org.springframework.boot.SpringApplication] [restartedMain] [651] [INFO ] No active profile set, falling back to default profiles: default
-[2019-11-13T10:08:27.027Z] [org.springframework.boot.logging.DeferredLog] [restartedMain] [225] [INFO ] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-[2019-11-13T10:08:27.027Z] [org.springframework.boot.logging.DeferredLog] [restartedMain] [225] [INFO ] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-[2019-11-13T10:08:28.028Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [92] [INFO ] Tomcat initialized with port(s): 9091 (http)
-[2019-11-13T10:08:28.028Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing ProtocolHandler ["http-nio-9091"]
-[2019-11-13T10:08:28.028Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting service [Tomcat]
-[2019-11-13T10:08:28.028Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting Servlet engine: [Apache Tomcat/9.0.27]
-[2019-11-13T10:08:28.028Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing Spring embedded WebApplicationContext
-[2019-11-13T10:08:28.028Z] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [restartedMain] [284] [INFO ] Root WebApplicationContext: initialization completed in 1738 ms
-[2019-11-13T10:08:29.029Z] [org.springframework.context.support.AbstractApplicationContext] [restartedMain] [558] [WARN ] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'springSecurityFilterChain' defined in class path resource [org/springframework/security/config/annotation/web/configuration/WebSecurityConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.servlet.Filter]: Factory method 'springSecurityFilterChain' threw exception; nested exception is java.lang.IllegalArgumentException: role should not start with 'ROLE_' since it is automatically inserted. Got 'ROLE_USER'
-[2019-11-13T10:08:29.029Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Stopping service [Tomcat]
-[2019-11-13T10:08:29.029Z] [org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener] [restartedMain] [136] [INFO ] 
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-[2019-11-13T10:08:29.029Z] [org.springframework.boot.SpringApplication] [restartedMain] [826] [ERROR] Application run failed
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'springSecurityFilterChain' defined in class path resource [org/springframework/security/config/annotation/web/configuration/WebSecurityConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.servlet.Filter]: Factory method 'springSecurityFilterChain' threw exception; nested exception is java.lang.IllegalArgumentException: role should not start with 'ROLE_' since it is automatically inserted. Got 'ROLE_USER'
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:645)
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:475)
+[2019-11-13T12:07:34.034Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [55] [INFO ] Starting ServiceWebApplication on DESKTOP-HE1TMKM with PID 8060 (D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3\service_web\target\classes started by cordier in D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3)
+[2019-11-13T12:07:34.034Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [56] [DEBUG] Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[2019-11-13T12:07:34.034Z] [org.springframework.boot.SpringApplication] [restartedMain] [651] [INFO ] No active profile set, falling back to default profiles: default
+[2019-11-13T12:07:34.034Z] [org.springframework.boot.logging.DeferredLog] [restartedMain] [225] [INFO ] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[2019-11-13T12:07:34.034Z] [org.springframework.boot.logging.DeferredLog] [restartedMain] [225] [INFO ] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[2019-11-13T12:07:36.036Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [92] [INFO ] Tomcat initialized with port(s): 9091 (http)
+[2019-11-13T12:07:36.036Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:07:36.036Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting service [Tomcat]
+[2019-11-13T12:07:36.036Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting Servlet engine: [Apache Tomcat/9.0.27]
+[2019-11-13T12:07:36.036Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing Spring embedded WebApplicationContext
+[2019-11-13T12:07:36.036Z] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [restartedMain] [284] [INFO ] Root WebApplicationContext: initialization completed in 1679 ms
+[2019-11-13T12:07:37.037Z] [org.springframework.security.web.DefaultSecurityFilterChain] [restartedMain] [43] [INFO ] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5c227fca, org.springframework.security.web.context.SecurityContextPersistenceFilter@3d0e7204, org.springframework.security.web.header.HeaderWriterFilter@3989db45, org.springframework.security.web.authentication.logout.LogoutFilter@6797578d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@676a1fb6, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3c48b318, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@189bd61e, org.springframework.security.web.session.SessionManagementFilter@57b83643, org.springframework.security.web.access.ExceptionTranslationFilter@4eebfa77, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3667dce6]
+[2019-11-13T12:07:37.037Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [restartedMain] [171] [INFO ] Initializing ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:07:37.037Z] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer] [restartedMain] [60] [WARN ] Unable to start LiveReload server
+[2019-11-13T12:07:37.037Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:07:37.037Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [204] [INFO ] Tomcat started on port(s): 9091 (http) with context path ''
+[2019-11-13T12:07:37.037Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [61] [INFO ] Started ServiceWebApplication in 3.931 seconds (JVM running for 5.392)
+[2019-11-13T12:07:44.044Z] [org.apache.juli.logging.DirectJDKLog] [http-nio-9091-exec-1] [173] [INFO ] Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2019-11-13T12:07:44.044Z] [org.springframework.web.servlet.FrameworkServlet] [http-nio-9091-exec-1] [525] [INFO ] Initializing Servlet 'dispatcherServlet'
+[2019-11-13T12:07:44.044Z] [org.springframework.web.servlet.FrameworkServlet] [http-nio-9091-exec-1] [547] [INFO ] Completed initialization in 13 ms
+[2019-11-13T12:08:57.057Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [Thread-1] [208] [INFO ] Shutting down ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:09:09.009Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [55] [INFO ] Starting ServiceWebApplication on DESKTOP-HE1TMKM with PID 8060 (D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3\service_web\target\classes started by cordier in D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3)
+[2019-11-13T12:09:09.009Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [56] [DEBUG] Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[2019-11-13T12:09:09.009Z] [org.springframework.boot.SpringApplication] [restartedMain] [651] [INFO ] No active profile set, falling back to default profiles: default
+[2019-11-13T12:09:09.009Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [WARN ] The MBean registry cannot be disabled because it has already been initialised
+[2019-11-13T12:09:09.009Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [92] [INFO ] Tomcat initialized with port(s): 9091 (http)
+[2019-11-13T12:09:09.009Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:09:09.009Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting service [Tomcat]
+[2019-11-13T12:09:09.009Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting Servlet engine: [Apache Tomcat/9.0.27]
+[2019-11-13T12:09:09.009Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing Spring embedded WebApplicationContext
+[2019-11-13T12:09:09.009Z] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [restartedMain] [284] [INFO ] Root WebApplicationContext: initialization completed in 665 ms
+[2019-11-13T12:09:09.009Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [WARN ] Cannot deserialize session attribute [SPRING_SECURITY_CONTEXT] for session [A00F89847F3D86090F984106CDF4DB7F]
+[2019-11-13T12:09:10.010Z] [org.springframework.security.web.DefaultSecurityFilterChain] [restartedMain] [43] [INFO ] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3035c7a8, org.springframework.security.web.context.SecurityContextPersistenceFilter@3e166654, org.springframework.security.web.header.HeaderWriterFilter@4c8150aa, org.springframework.security.web.authentication.logout.LogoutFilter@2515cef9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3358eb81, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@751ae940, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1dc01f15, org.springframework.security.web.session.SessionManagementFilter@6ed665aa, org.springframework.security.web.access.ExceptionTranslationFilter@648d39de, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6508c065]
+[2019-11-13T12:09:10.010Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [restartedMain] [171] [INFO ] Initializing ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:09:10.010Z] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer] [restartedMain] [60] [WARN ] Unable to start LiveReload server
+[2019-11-13T12:09:10.010Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:09:10.010Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [204] [INFO ] Tomcat started on port(s): 9091 (http) with context path ''
+[2019-11-13T12:09:10.010Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [61] [INFO ] Started ServiceWebApplication in 1.244 seconds (JVM running for 98.063)
+[2019-11-13T12:09:10.010Z] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener] [restartedMain] [63] [INFO ] Condition evaluation unchanged
+[2019-11-13T12:09:18.018Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [Thread-6] [208] [INFO ] Shutting down ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:09:19.019Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [55] [INFO ] Starting ServiceWebApplication on DESKTOP-HE1TMKM with PID 8060 (D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3\service_web\target\classes started by cordier in D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3)
+[2019-11-13T12:09:19.019Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [56] [DEBUG] Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[2019-11-13T12:09:19.019Z] [org.springframework.boot.SpringApplication] [restartedMain] [651] [INFO ] No active profile set, falling back to default profiles: default
+[2019-11-13T12:09:21.021Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [WARN ] The MBean registry cannot be disabled because it has already been initialised
+[2019-11-13T12:09:21.021Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [92] [INFO ] Tomcat initialized with port(s): 9091 (http)
+[2019-11-13T12:09:21.021Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:09:21.021Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting service [Tomcat]
+[2019-11-13T12:09:21.021Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting Servlet engine: [Apache Tomcat/9.0.27]
+[2019-11-13T12:09:21.021Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing Spring embedded WebApplicationContext
+[2019-11-13T12:09:21.021Z] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [restartedMain] [284] [INFO ] Root WebApplicationContext: initialization completed in 2074 ms
+[2019-11-13T12:09:21.021Z] [org.springframework.security.web.DefaultSecurityFilterChain] [restartedMain] [43] [INFO ] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@34615e42, org.springframework.security.web.context.SecurityContextPersistenceFilter@527de82e, org.springframework.security.web.header.HeaderWriterFilter@446969c7, org.springframework.security.web.authentication.logout.LogoutFilter@28a920de, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7213cf4c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7dbbb798, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4d0a74a4, org.springframework.security.web.session.SessionManagementFilter@5f96fdb7, org.springframework.security.web.access.ExceptionTranslationFilter@20d003de, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2bdac099]
+[2019-11-13T12:09:22.022Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [restartedMain] [171] [INFO ] Initializing ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:09:22.022Z] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer] [restartedMain] [60] [WARN ] Unable to start LiveReload server
+[2019-11-13T12:09:22.022Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:09:22.022Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [204] [INFO ] Tomcat started on port(s): 9091 (http) with context path ''
+[2019-11-13T12:09:22.022Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [61] [INFO ] Started ServiceWebApplication in 3.848 seconds (JVM running for 110.558)
+[2019-11-13T12:09:22.022Z] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener] [restartedMain] [63] [INFO ] Condition evaluation unchanged
+[2019-11-13T12:09:34.034Z] [org.apache.juli.logging.DirectJDKLog] [http-nio-9091-exec-2] [173] [INFO ] Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2019-11-13T12:09:34.034Z] [org.springframework.web.servlet.FrameworkServlet] [http-nio-9091-exec-2] [525] [INFO ] Initializing Servlet 'dispatcherServlet'
+[2019-11-13T12:09:34.034Z] [org.springframework.web.servlet.FrameworkServlet] [http-nio-9091-exec-2] [547] [INFO ] Completed initialization in 6 ms
+[2019-11-13T12:10:05.005Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [Thread-11] [208] [INFO ] Shutting down ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:10:08.008Z] [org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver] [http-nio-9091-exec-2] [199] [WARN ] Resolved [fr.ocr.exception.PrjExceptionHandlerImpl$6lolo: Usager inconnu]
+[2019-11-13T12:10:08.008Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [55] [INFO ] Starting ServiceWebApplication on DESKTOP-HE1TMKM with PID 8060 (D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3\service_web\target\classes started by cordier in D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3)
+[2019-11-13T12:10:08.008Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [56] [DEBUG] Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[2019-11-13T12:10:08.008Z] [org.springframework.boot.SpringApplication] [restartedMain] [651] [INFO ] No active profile set, falling back to default profiles: default
+[2019-11-13T12:10:08.008Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [WARN ] The MBean registry cannot be disabled because it has already been initialised
+[2019-11-13T12:10:08.008Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [92] [INFO ] Tomcat initialized with port(s): 9091 (http)
+[2019-11-13T12:10:08.008Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:10:08.008Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting service [Tomcat]
+[2019-11-13T12:10:08.008Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting Servlet engine: [Apache Tomcat/9.0.27]
+[2019-11-13T12:10:08.008Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing Spring embedded WebApplicationContext
+[2019-11-13T12:10:08.008Z] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [restartedMain] [284] [INFO ] Root WebApplicationContext: initialization completed in 481 ms
+[2019-11-13T12:10:09.009Z] [org.springframework.security.web.DefaultSecurityFilterChain] [restartedMain] [43] [INFO ] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@30f35b40, org.springframework.security.web.context.SecurityContextPersistenceFilter@595e629b, org.springframework.security.web.header.HeaderWriterFilter@35317a3a, org.springframework.security.web.authentication.logout.LogoutFilter@575a30e3, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@58ebaa0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3b50e081, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2ab2b924, org.springframework.security.web.session.SessionManagementFilter@488548a, org.springframework.security.web.access.ExceptionTranslationFilter@6936b75f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6c2735c4]
+[2019-11-13T12:10:09.009Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [restartedMain] [171] [INFO ] Initializing ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:10:09.009Z] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer] [restartedMain] [60] [WARN ] Unable to start LiveReload server
+[2019-11-13T12:10:09.009Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:10:09.009Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [204] [INFO ] Tomcat started on port(s): 9091 (http) with context path ''
+[2019-11-13T12:10:09.009Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [61] [INFO ] Started ServiceWebApplication in 0.912 seconds (JVM running for 156.853)
+[2019-11-13T12:10:09.009Z] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener] [restartedMain] [63] [INFO ] Condition evaluation unchanged
+[2019-11-13T12:10:14.014Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [Thread-16] [208] [INFO ] Shutting down ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:10:14.014Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [55] [INFO ] Starting ServiceWebApplication on DESKTOP-HE1TMKM with PID 8060 (D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3\service_web\target\classes started by cordier in D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3)
+[2019-11-13T12:10:14.014Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [56] [DEBUG] Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[2019-11-13T12:10:14.014Z] [org.springframework.boot.SpringApplication] [restartedMain] [651] [INFO ] No active profile set, falling back to default profiles: default
+[2019-11-13T12:10:15.015Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [WARN ] The MBean registry cannot be disabled because it has already been initialised
+[2019-11-13T12:10:15.015Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [92] [INFO ] Tomcat initialized with port(s): 9091 (http)
+[2019-11-13T12:10:15.015Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:10:15.015Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting service [Tomcat]
+[2019-11-13T12:10:15.015Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting Servlet engine: [Apache Tomcat/9.0.27]
+[2019-11-13T12:10:15.015Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing Spring embedded WebApplicationContext
+[2019-11-13T12:10:15.015Z] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [restartedMain] [284] [INFO ] Root WebApplicationContext: initialization completed in 1103 ms
+[2019-11-13T12:10:16.016Z] [org.springframework.security.web.DefaultSecurityFilterChain] [restartedMain] [43] [INFO ] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@39f02e4e, org.springframework.security.web.context.SecurityContextPersistenceFilter@34afa925, org.springframework.security.web.header.HeaderWriterFilter@5b7b1602, org.springframework.security.web.authentication.logout.LogoutFilter@4c57cb1e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@44c19b46, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@47894eda, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7ea30835, org.springframework.security.web.session.SessionManagementFilter@21bc71f7, org.springframework.security.web.access.ExceptionTranslationFilter@32c85acc, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@175e3e6c]
+[2019-11-13T12:10:16.016Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [restartedMain] [171] [INFO ] Initializing ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:10:16.016Z] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer] [restartedMain] [60] [WARN ] Unable to start LiveReload server
+[2019-11-13T12:10:16.016Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:10:16.016Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [204] [INFO ] Tomcat started on port(s): 9091 (http) with context path ''
+[2019-11-13T12:10:16.016Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [61] [INFO ] Started ServiceWebApplication in 2.192 seconds (JVM running for 164.606)
+[2019-11-13T12:10:16.016Z] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener] [restartedMain] [63] [INFO ] Condition evaluation unchanged
+[2019-11-13T12:10:19.019Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [Thread-21] [208] [INFO ] Shutting down ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:10:19.019Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [55] [INFO ] Starting ServiceWebApplication on DESKTOP-HE1TMKM with PID 8060 (D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3\service_web\target\classes started by cordier in D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3)
+[2019-11-13T12:10:19.019Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [56] [DEBUG] Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[2019-11-13T12:10:19.019Z] [org.springframework.boot.SpringApplication] [restartedMain] [651] [INFO ] No active profile set, falling back to default profiles: default
+[2019-11-13T12:10:19.019Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [WARN ] The MBean registry cannot be disabled because it has already been initialised
+[2019-11-13T12:10:19.019Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [92] [INFO ] Tomcat initialized with port(s): 9091 (http)
+[2019-11-13T12:10:19.019Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:10:19.019Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting service [Tomcat]
+[2019-11-13T12:10:19.019Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting Servlet engine: [Apache Tomcat/9.0.27]
+[2019-11-13T12:10:19.019Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing Spring embedded WebApplicationContext
+[2019-11-13T12:10:19.019Z] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [restartedMain] [284] [INFO ] Root WebApplicationContext: initialization completed in 388 ms
+[2019-11-13T12:10:19.019Z] [org.springframework.security.web.DefaultSecurityFilterChain] [restartedMain] [43] [INFO ] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4df700c6, org.springframework.security.web.context.SecurityContextPersistenceFilter@6510aa94, org.springframework.security.web.header.HeaderWriterFilter@69ed5313, org.springframework.security.web.authentication.logout.LogoutFilter@29e08a07, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@518eafc2, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@52f81b2b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@73488865, org.springframework.security.web.session.SessionManagementFilter@4ffa8bbe, org.springframework.security.web.access.ExceptionTranslationFilter@34701b57, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@78a0150a]
+[2019-11-13T12:10:19.019Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [restartedMain] [171] [INFO ] Initializing ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:10:19.019Z] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer] [restartedMain] [60] [WARN ] Unable to start LiveReload server
+[2019-11-13T12:10:20.020Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:10:20.020Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [204] [INFO ] Tomcat started on port(s): 9091 (http) with context path ''
+[2019-11-13T12:10:20.020Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [61] [INFO ] Started ServiceWebApplication in 0.722 seconds (JVM running for 167.727)
+[2019-11-13T12:10:20.020Z] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener] [restartedMain] [63] [INFO ] Condition evaluation unchanged
+[2019-11-13T12:10:26.026Z] [org.apache.juli.logging.DirectJDKLog] [http-nio-9091-exec-2] [173] [INFO ] Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2019-11-13T12:10:26.026Z] [org.springframework.web.servlet.FrameworkServlet] [http-nio-9091-exec-2] [525] [INFO ] Initializing Servlet 'dispatcherServlet'
+[2019-11-13T12:10:26.026Z] [org.springframework.web.servlet.FrameworkServlet] [http-nio-9091-exec-2] [547] [INFO ] Completed initialization in 2 ms
+[2019-11-13T12:10:42.042Z] [org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver] [http-nio-9091-exec-2] [199] [WARN ] Resolved [fr.ocr.exception.PrjExceptionHandlerImpl$6lolo: Usager inconnu]
+[2019-11-13T12:10:44.044Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [Thread-26] [208] [INFO ] Shutting down ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:10:44.044Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [55] [INFO ] Starting ServiceWebApplication on DESKTOP-HE1TMKM with PID 8060 (D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3\service_web\target\classes started by cordier in D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3)
+[2019-11-13T12:10:44.044Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [56] [DEBUG] Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[2019-11-13T12:10:44.044Z] [org.springframework.boot.SpringApplication] [restartedMain] [651] [INFO ] No active profile set, falling back to default profiles: default
+[2019-11-13T12:10:45.045Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [WARN ] The MBean registry cannot be disabled because it has already been initialised
+[2019-11-13T12:10:45.045Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [92] [INFO ] Tomcat initialized with port(s): 9091 (http)
+[2019-11-13T12:10:45.045Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:10:45.045Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting service [Tomcat]
+[2019-11-13T12:10:45.045Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting Servlet engine: [Apache Tomcat/9.0.27]
+[2019-11-13T12:10:45.045Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing Spring embedded WebApplicationContext
+[2019-11-13T12:10:45.045Z] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [restartedMain] [284] [INFO ] Root WebApplicationContext: initialization completed in 823 ms
+[2019-11-13T12:10:45.045Z] [org.springframework.security.web.DefaultSecurityFilterChain] [restartedMain] [43] [INFO ] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@26313ef4, org.springframework.security.web.context.SecurityContextPersistenceFilter@494a1f1e, org.springframework.security.web.header.HeaderWriterFilter@31e9b29a, org.springframework.security.web.authentication.logout.LogoutFilter@7fc91207, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5056859, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@79047701, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1c7f951b, org.springframework.security.web.session.SessionManagementFilter@432b8a59, org.springframework.security.web.access.ExceptionTranslationFilter@132be513, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6ee5bdcf]
+[2019-11-13T12:10:46.046Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [restartedMain] [171] [INFO ] Initializing ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:10:46.046Z] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer] [restartedMain] [60] [WARN ] Unable to start LiveReload server
+[2019-11-13T12:10:46.046Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:10:46.046Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [204] [INFO ] Tomcat started on port(s): 9091 (http) with context path ''
+[2019-11-13T12:10:46.046Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [61] [INFO ] Started ServiceWebApplication in 1.885 seconds (JVM running for 194.088)
+[2019-11-13T12:10:46.046Z] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener] [restartedMain] [63] [INFO ] Condition evaluation unchanged
+[2019-11-13T12:10:48.048Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [Thread-31] [208] [INFO ] Shutting down ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:10:49.049Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [55] [INFO ] Starting ServiceWebApplication on DESKTOP-HE1TMKM with PID 8060 (D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3\service_web\target\classes started by cordier in D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3)
+[2019-11-13T12:10:49.049Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [56] [DEBUG] Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[2019-11-13T12:10:49.049Z] [org.springframework.boot.SpringApplication] [restartedMain] [651] [INFO ] No active profile set, falling back to default profiles: default
+[2019-11-13T12:10:50.050Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [WARN ] The MBean registry cannot be disabled because it has already been initialised
+[2019-11-13T12:10:50.050Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [92] [INFO ] Tomcat initialized with port(s): 9091 (http)
+[2019-11-13T12:10:50.050Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:10:50.050Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting service [Tomcat]
+[2019-11-13T12:10:50.050Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting Servlet engine: [Apache Tomcat/9.0.27]
+[2019-11-13T12:10:50.050Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing Spring embedded WebApplicationContext
+[2019-11-13T12:10:50.050Z] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [restartedMain] [284] [INFO ] Root WebApplicationContext: initialization completed in 1066 ms
+[2019-11-13T12:10:50.050Z] [org.springframework.security.web.DefaultSecurityFilterChain] [restartedMain] [43] [INFO ] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2fb76be2, org.springframework.security.web.context.SecurityContextPersistenceFilter@52be3048, org.springframework.security.web.header.HeaderWriterFilter@260758c8, org.springframework.security.web.authentication.logout.LogoutFilter@52f88753, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4f606fba, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@53bdaf86, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@66f0fa5, org.springframework.security.web.session.SessionManagementFilter@4dbdf8be, org.springframework.security.web.access.ExceptionTranslationFilter@29368eb3, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@612d175]
+[2019-11-13T12:10:50.050Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [restartedMain] [171] [INFO ] Initializing ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:10:50.050Z] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer] [restartedMain] [60] [WARN ] Unable to start LiveReload server
+[2019-11-13T12:10:51.051Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:10:51.051Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [204] [INFO ] Tomcat started on port(s): 9091 (http) with context path ''
+[2019-11-13T12:10:51.051Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [61] [INFO ] Started ServiceWebApplication in 1.88 seconds (JVM running for 198.702)
+[2019-11-13T12:10:51.051Z] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener] [restartedMain] [63] [INFO ] Condition evaluation unchanged
+[2019-11-13T12:10:53.053Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [Thread-36] [208] [INFO ] Shutting down ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:10:53.053Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [55] [INFO ] Starting ServiceWebApplication on DESKTOP-HE1TMKM with PID 8060 (D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3\service_web\target\classes started by cordier in D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3)
+[2019-11-13T12:10:53.053Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [56] [DEBUG] Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[2019-11-13T12:10:53.053Z] [org.springframework.boot.SpringApplication] [restartedMain] [651] [INFO ] No active profile set, falling back to default profiles: default
+[2019-11-13T12:10:54.054Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [WARN ] The MBean registry cannot be disabled because it has already been initialised
+[2019-11-13T12:10:54.054Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [92] [INFO ] Tomcat initialized with port(s): 9091 (http)
+[2019-11-13T12:10:54.054Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:10:54.054Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting service [Tomcat]
+[2019-11-13T12:10:54.054Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting Servlet engine: [Apache Tomcat/9.0.27]
+[2019-11-13T12:10:54.054Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing Spring embedded WebApplicationContext
+[2019-11-13T12:10:54.054Z] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [restartedMain] [284] [INFO ] Root WebApplicationContext: initialization completed in 790 ms
+[2019-11-13T12:10:54.054Z] [org.springframework.security.web.DefaultSecurityFilterChain] [restartedMain] [43] [INFO ] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5267ae7d, org.springframework.security.web.context.SecurityContextPersistenceFilter@4752a95c, org.springframework.security.web.header.HeaderWriterFilter@6d3021a6, org.springframework.security.web.authentication.logout.LogoutFilter@254a3864, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4657d334, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2a06f749, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@39758a54, org.springframework.security.web.session.SessionManagementFilter@16296e56, org.springframework.security.web.access.ExceptionTranslationFilter@1fb3d6f4, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@194024af]
+[2019-11-13T12:10:54.054Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [restartedMain] [171] [INFO ] Initializing ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:10:54.054Z] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer] [restartedMain] [60] [WARN ] Unable to start LiveReload server
+[2019-11-13T12:10:55.055Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:10:55.055Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [204] [INFO ] Tomcat started on port(s): 9091 (http) with context path ''
+[2019-11-13T12:10:55.055Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [61] [INFO ] Started ServiceWebApplication in 1.416 seconds (JVM running for 202.763)
+[2019-11-13T12:10:55.055Z] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener] [restartedMain] [63] [INFO ] Condition evaluation unchanged
+[2019-11-13T12:10:56.056Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [Thread-41] [208] [INFO ] Shutting down ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:10:56.056Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [55] [INFO ] Starting ServiceWebApplication on DESKTOP-HE1TMKM with PID 8060 (D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3\service_web\target\classes started by cordier in D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3)
+[2019-11-13T12:10:56.056Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [56] [DEBUG] Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[2019-11-13T12:10:56.056Z] [org.springframework.boot.SpringApplication] [restartedMain] [651] [INFO ] No active profile set, falling back to default profiles: default
+[2019-11-13T12:10:57.057Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [WARN ] The MBean registry cannot be disabled because it has already been initialised
+[2019-11-13T12:10:57.057Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [92] [INFO ] Tomcat initialized with port(s): 9091 (http)
+[2019-11-13T12:10:57.057Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:10:57.057Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting service [Tomcat]
+[2019-11-13T12:10:57.057Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting Servlet engine: [Apache Tomcat/9.0.27]
+[2019-11-13T12:10:57.057Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing Spring embedded WebApplicationContext
+[2019-11-13T12:10:57.057Z] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [restartedMain] [284] [INFO ] Root WebApplicationContext: initialization completed in 468 ms
+[2019-11-13T12:10:57.057Z] [org.springframework.security.web.DefaultSecurityFilterChain] [restartedMain] [43] [INFO ] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@62646054, org.springframework.security.web.context.SecurityContextPersistenceFilter@53ac6681, org.springframework.security.web.header.HeaderWriterFilter@3d62cdda, org.springframework.security.web.authentication.logout.LogoutFilter@b3265c7, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1f4852cf, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@346f50e1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@34b82662, org.springframework.security.web.session.SessionManagementFilter@7dfe509f, org.springframework.security.web.access.ExceptionTranslationFilter@7d97e2d, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@36e32d36]
+[2019-11-13T12:10:57.057Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [restartedMain] [171] [INFO ] Initializing ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:10:57.057Z] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer] [restartedMain] [60] [WARN ] Unable to start LiveReload server
+[2019-11-13T12:10:57.057Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:10:57.057Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [204] [INFO ] Tomcat started on port(s): 9091 (http) with context path ''
+[2019-11-13T12:10:57.057Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [61] [INFO ] Started ServiceWebApplication in 0.891 seconds (JVM running for 205.309)
+[2019-11-13T12:10:57.057Z] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener] [restartedMain] [63] [INFO ] Condition evaluation unchanged
+[2019-11-13T12:10:58.058Z] [org.apache.juli.logging.DirectJDKLog] [http-nio-9091-exec-2] [173] [INFO ] Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2019-11-13T12:10:58.058Z] [org.springframework.web.servlet.FrameworkServlet] [http-nio-9091-exec-2] [525] [INFO ] Initializing Servlet 'dispatcherServlet'
+[2019-11-13T12:10:58.058Z] [org.springframework.web.servlet.FrameworkServlet] [http-nio-9091-exec-2] [547] [INFO ] Completed initialization in 3 ms
+[2019-11-13T12:11:09.009Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [Thread-46] [208] [INFO ] Shutting down ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:11:09.009Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [55] [INFO ] Starting ServiceWebApplication on DESKTOP-HE1TMKM with PID 8060 (D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3\service_web\target\classes started by cordier in D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3)
+[2019-11-13T12:11:09.009Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [56] [DEBUG] Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[2019-11-13T12:11:09.009Z] [org.springframework.boot.SpringApplication] [restartedMain] [651] [INFO ] No active profile set, falling back to default profiles: default
+[2019-11-13T12:11:10.010Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [WARN ] The MBean registry cannot be disabled because it has already been initialised
+[2019-11-13T12:11:10.010Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [92] [INFO ] Tomcat initialized with port(s): 9091 (http)
+[2019-11-13T12:11:10.010Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:11:10.010Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting service [Tomcat]
+[2019-11-13T12:11:10.010Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting Servlet engine: [Apache Tomcat/9.0.27]
+[2019-11-13T12:11:10.010Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing Spring embedded WebApplicationContext
+[2019-11-13T12:11:10.010Z] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [restartedMain] [284] [INFO ] Root WebApplicationContext: initialization completed in 978 ms
+[2019-11-13T12:11:10.010Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [WARN ] Cannot deserialize session attribute [SPRING_SECURITY_CONTEXT] for session [A00F89847F3D86090F984106CDF4DB7F]
+[2019-11-13T12:11:10.010Z] [org.springframework.security.web.DefaultSecurityFilterChain] [restartedMain] [43] [INFO ] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@63dd962d, org.springframework.security.web.context.SecurityContextPersistenceFilter@8093e60, org.springframework.security.web.header.HeaderWriterFilter@5a420754, org.springframework.security.web.authentication.logout.LogoutFilter@35a2bdee, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@75815366, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3fb39225, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6038942b, org.springframework.security.web.session.SessionManagementFilter@3b3e1be3, org.springframework.security.web.access.ExceptionTranslationFilter@123de91e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@447c9bf0]
+[2019-11-13T12:11:10.010Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [restartedMain] [171] [INFO ] Initializing ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:11:10.010Z] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer] [restartedMain] [60] [WARN ] Unable to start LiveReload server
+[2019-11-13T12:11:10.010Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:11:10.010Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [204] [INFO ] Tomcat started on port(s): 9091 (http) with context path ''
+[2019-11-13T12:11:11.011Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [61] [INFO ] Started ServiceWebApplication in 1.511 seconds (JVM running for 218.649)
+[2019-11-13T12:11:11.011Z] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener] [restartedMain] [63] [INFO ] Condition evaluation unchanged
+[2019-11-13T12:11:12.012Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [Thread-51] [208] [INFO ] Shutting down ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:11:12.012Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [55] [INFO ] Starting ServiceWebApplication on DESKTOP-HE1TMKM with PID 8060 (D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3\service_web\target\classes started by cordier in D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3)
+[2019-11-13T12:11:12.012Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [56] [DEBUG] Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[2019-11-13T12:11:12.012Z] [org.springframework.boot.SpringApplication] [restartedMain] [651] [INFO ] No active profile set, falling back to default profiles: default
+[2019-11-13T12:11:13.013Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [WARN ] The MBean registry cannot be disabled because it has already been initialised
+[2019-11-13T12:11:13.013Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [92] [INFO ] Tomcat initialized with port(s): 9091 (http)
+[2019-11-13T12:11:13.013Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:11:13.013Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting service [Tomcat]
+[2019-11-13T12:11:13.013Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting Servlet engine: [Apache Tomcat/9.0.27]
+[2019-11-13T12:11:13.013Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing Spring embedded WebApplicationContext
+[2019-11-13T12:11:13.013Z] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [restartedMain] [284] [INFO ] Root WebApplicationContext: initialization completed in 317 ms
+[2019-11-13T12:11:13.013Z] [org.springframework.security.web.DefaultSecurityFilterChain] [restartedMain] [43] [INFO ] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@61e8a385, org.springframework.security.web.context.SecurityContextPersistenceFilter@49f2584, org.springframework.security.web.header.HeaderWriterFilter@6613bf9f, org.springframework.security.web.authentication.logout.LogoutFilter@31c32a0, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1aa901c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7a3e38f1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@38734f74, org.springframework.security.web.session.SessionManagementFilter@40888c19, org.springframework.security.web.access.ExceptionTranslationFilter@629cf58e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@447e9345]
+[2019-11-13T12:11:13.013Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [restartedMain] [171] [INFO ] Initializing ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:11:13.013Z] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer] [restartedMain] [60] [WARN ] Unable to start LiveReload server
+[2019-11-13T12:11:13.013Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:11:13.013Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [204] [INFO ] Tomcat started on port(s): 9091 (http) with context path ''
+[2019-11-13T12:11:13.013Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [61] [INFO ] Started ServiceWebApplication in 0.581 seconds (JVM running for 220.974)
+[2019-11-13T12:11:13.013Z] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener] [restartedMain] [63] [INFO ] Condition evaluation unchanged
+[2019-11-13T12:11:18.018Z] [org.apache.juli.logging.DirectJDKLog] [http-nio-9091-exec-2] [173] [INFO ] Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2019-11-13T12:11:18.018Z] [org.springframework.web.servlet.FrameworkServlet] [http-nio-9091-exec-2] [525] [INFO ] Initializing Servlet 'dispatcherServlet'
+[2019-11-13T12:11:18.018Z] [org.springframework.web.servlet.FrameworkServlet] [http-nio-9091-exec-2] [547] [INFO ] Completed initialization in 2 ms
+[2019-11-13T12:11:33.033Z] [org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver] [http-nio-9091-exec-2] [199] [WARN ] Resolved [fr.ocr.exception.PrjExceptionHandlerImpl$6lolo: Usager inconnu]
+[2019-11-13T12:11:40.040Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [Thread-56] [208] [INFO ] Shutting down ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:11:40.040Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [55] [INFO ] Starting ServiceWebApplication on DESKTOP-HE1TMKM with PID 8060 (D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3\service_web\target\classes started by cordier in D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3)
+[2019-11-13T12:11:41.041Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [56] [DEBUG] Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[2019-11-13T12:11:41.041Z] [org.springframework.boot.SpringApplication] [restartedMain] [651] [INFO ] No active profile set, falling back to default profiles: default
+[2019-11-13T12:11:41.041Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [WARN ] The MBean registry cannot be disabled because it has already been initialised
+[2019-11-13T12:11:41.041Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [92] [INFO ] Tomcat initialized with port(s): 9091 (http)
+[2019-11-13T12:11:41.041Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:11:41.041Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting service [Tomcat]
+[2019-11-13T12:11:41.041Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting Servlet engine: [Apache Tomcat/9.0.27]
+[2019-11-13T12:11:41.041Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing Spring embedded WebApplicationContext
+[2019-11-13T12:11:41.041Z] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [restartedMain] [284] [INFO ] Root WebApplicationContext: initialization completed in 559 ms
+[2019-11-13T12:11:41.041Z] [org.springframework.security.web.DefaultSecurityFilterChain] [restartedMain] [43] [INFO ] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4ad26838, org.springframework.security.web.context.SecurityContextPersistenceFilter@29acc5e3, org.springframework.security.web.header.HeaderWriterFilter@46b3d903, org.springframework.security.web.authentication.logout.LogoutFilter@6cc133e2, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@53840581, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@ba7a533, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3f6efb6b, org.springframework.security.web.session.SessionManagementFilter@573ff7b5, org.springframework.security.web.access.ExceptionTranslationFilter@1a6c07d0, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@61b98b0c]
+[2019-11-13T12:11:41.041Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [restartedMain] [171] [INFO ] Initializing ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:11:41.041Z] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer] [restartedMain] [60] [WARN ] Unable to start LiveReload server
+[2019-11-13T12:11:41.041Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:11:41.041Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [204] [INFO ] Tomcat started on port(s): 9091 (http) with context path ''
+[2019-11-13T12:11:41.041Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [61] [INFO ] Started ServiceWebApplication in 1.03 seconds (JVM running for 249.619)
+[2019-11-13T12:11:41.041Z] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener] [restartedMain] [63] [INFO ] Condition evaluation unchanged
+[2019-11-13T12:11:44.044Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [Thread-61] [208] [INFO ] Shutting down ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:11:44.044Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [55] [INFO ] Starting ServiceWebApplication on DESKTOP-HE1TMKM with PID 8060 (D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3\service_web\target\classes started by cordier in D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3)
+[2019-11-13T12:11:44.044Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [56] [DEBUG] Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[2019-11-13T12:11:44.044Z] [org.springframework.boot.SpringApplication] [restartedMain] [651] [INFO ] No active profile set, falling back to default profiles: default
+[2019-11-13T12:11:45.045Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [WARN ] The MBean registry cannot be disabled because it has already been initialised
+[2019-11-13T12:11:45.045Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [92] [INFO ] Tomcat initialized with port(s): 9091 (http)
+[2019-11-13T12:11:45.045Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:11:45.045Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting service [Tomcat]
+[2019-11-13T12:11:45.045Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting Servlet engine: [Apache Tomcat/9.0.27]
+[2019-11-13T12:11:45.045Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing Spring embedded WebApplicationContext
+[2019-11-13T12:11:45.045Z] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [restartedMain] [284] [INFO ] Root WebApplicationContext: initialization completed in 359 ms
+[2019-11-13T12:11:45.045Z] [org.springframework.security.web.DefaultSecurityFilterChain] [restartedMain] [43] [INFO ] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@68dc21c, org.springframework.security.web.context.SecurityContextPersistenceFilter@eca0a1d, org.springframework.security.web.header.HeaderWriterFilter@61f413d4, org.springframework.security.web.authentication.logout.LogoutFilter@56abc70b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@61b3d2b7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@209807e6, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1c5890ab, org.springframework.security.web.session.SessionManagementFilter@68c812fe, org.springframework.security.web.access.ExceptionTranslationFilter@166f3f2c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@46502ddc]
+[2019-11-13T12:11:45.045Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [restartedMain] [171] [INFO ] Initializing ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:11:45.045Z] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer] [restartedMain] [60] [WARN ] Unable to start LiveReload server
+[2019-11-13T12:11:45.045Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:11:45.045Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [204] [INFO ] Tomcat started on port(s): 9091 (http) with context path ''
+[2019-11-13T12:11:45.045Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [61] [INFO ] Started ServiceWebApplication in 0.691 seconds (JVM running for 253.119)
+[2019-11-13T12:11:45.045Z] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener] [restartedMain] [63] [INFO ] Condition evaluation unchanged
+[2019-11-13T12:11:51.051Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [SpringContextShutdownHook] [208] [INFO ] Shutting down ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:23:26.026Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [55] [INFO ] Starting ServiceWebApplication on DESKTOP-HE1TMKM with PID 1236 (D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3\service_web\target\classes started by cordier in D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3)
+[2019-11-13T12:23:26.026Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [56] [DEBUG] Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[2019-11-13T12:23:26.026Z] [org.springframework.boot.SpringApplication] [restartedMain] [651] [INFO ] No active profile set, falling back to default profiles: default
+[2019-11-13T12:23:27.027Z] [org.springframework.boot.logging.DeferredLog] [restartedMain] [225] [INFO ] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[2019-11-13T12:23:27.027Z] [org.springframework.boot.logging.DeferredLog] [restartedMain] [225] [INFO ] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[2019-11-13T12:23:28.028Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [92] [INFO ] Tomcat initialized with port(s): 9091 (http)
+[2019-11-13T12:23:28.028Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:23:28.028Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting service [Tomcat]
+[2019-11-13T12:23:28.028Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting Servlet engine: [Apache Tomcat/9.0.27]
+[2019-11-13T12:23:29.029Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing Spring embedded WebApplicationContext
+[2019-11-13T12:23:29.029Z] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [restartedMain] [284] [INFO ] Root WebApplicationContext: initialization completed in 1985 ms
+[2019-11-13T12:23:29.029Z] [org.springframework.security.web.DefaultSecurityFilterChain] [restartedMain] [43] [INFO ] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7f70b377, org.springframework.security.web.context.SecurityContextPersistenceFilter@11154973, org.springframework.security.web.header.HeaderWriterFilter@8e0fd0d, org.springframework.security.web.authentication.logout.LogoutFilter@33315d20, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7087afc3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@125470f1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5e94e405, org.springframework.security.web.session.SessionManagementFilter@33486adf, org.springframework.security.web.access.ExceptionTranslationFilter@3c8bbf05, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@248a41b8]
+[2019-11-13T12:23:29.029Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [restartedMain] [171] [INFO ] Initializing ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:23:29.029Z] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer] [restartedMain] [60] [WARN ] Unable to start LiveReload server
+[2019-11-13T12:23:30.030Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:23:30.030Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [204] [INFO ] Tomcat started on port(s): 9091 (http) with context path ''
+[2019-11-13T12:23:30.030Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [61] [INFO ] Started ServiceWebApplication in 4.159 seconds (JVM running for 5.162)
+[2019-11-13T12:24:19.019Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [Thread-1] [208] [INFO ] Shutting down ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:24:19.019Z] [org.springframework.web.servlet.FrameworkServlet] [http-nio-9091-exec-2] [525] [INFO ] Initializing Servlet 'dispatcherServlet'
+[2019-11-13T12:24:19.019Z] [org.springframework.web.servlet.FrameworkServlet] [http-nio-9091-exec-2] [534] [ERROR] Context initialization failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'swagger2ControllerMapping' defined in springfox.documentation.swagger2.configuration.Swagger2DocumentationConfiguration: Unexpected exception during bean creation; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'org.springframework.core.env.Environment' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:530)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeansOfType(DefaultListableBeanFactory.java:617)
+	at org.springframework.context.support.AbstractApplicationContext.getBeansOfType(AbstractApplicationContext.java:1250)
+	at org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncludingAncestors(BeanFactoryUtils.java:378)
+	at org.springframework.web.servlet.DispatcherServlet.initHandlerMappings(DispatcherServlet.java:599)
+	at org.springframework.web.servlet.DispatcherServlet.initStrategies(DispatcherServlet.java:506)
+	at org.springframework.web.servlet.DispatcherServlet.onRefresh(DispatcherServlet.java:495)
+	at org.springframework.web.servlet.FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:599)
+	at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:530)
+	at org.springframework.web.servlet.HttpServletBean.init(HttpServletBean.java:170)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:158)
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1134)
+	at org.apache.catalina.core.StandardWrapper.allocate(StandardWrapper.java:777)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:135)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:526)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:861)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1579)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'org.springframework.core.env.Environment' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoMatchingBeanFound(DefaultListableBeanFactory.java:1695)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1253)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1207)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:874)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolvePreparedArguments(ConstructorResolver.java:821)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:438)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1338)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1177)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:557)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
+	... 32 common frames omitted
+[2019-11-13T12:24:19.019Z] [org.springframework.web.servlet.FrameworkServlet] [http-nio-9091-exec-2] [525] [INFO ] Initializing Servlet 'dispatcherServlet'
+[2019-11-13T12:24:19.019Z] [org.springframework.web.servlet.FrameworkServlet] [http-nio-9091-exec-2] [534] [ERROR] Context initialization failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'swagger2ControllerMapping' defined in springfox.documentation.swagger2.configuration.Swagger2DocumentationConfiguration: Unsatisfied dependency expressed through method 'swagger2ControllerMapping' parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'org.springframework.core.env.Environment' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:787)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:528)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1338)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1177)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:557)
@@ -26,240 +349,291 @@ org.springframework.beans.factory.BeanCreationException: Error creating bean wit
 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:310)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:879)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:878)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:550)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:141)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:747)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215)
-	at fr.ocr.ServiceWebApplication.main(ServiceWebApplication.java:19)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
-Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.servlet.Filter]: Factory method 'springSecurityFilterChain' threw exception; nested exception is java.lang.IllegalArgumentException: role should not start with 'ROLE_' since it is automatically inserted. Got 'ROLE_USER'
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:185)
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:640)
-	... 26 common frames omitted
-Caused by: java.lang.IllegalArgumentException: role should not start with 'ROLE_' since it is automatically inserted. Got 'ROLE_USER'
-	at org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer.hasRole(ExpressionUrlAuthorizationConfigurer.java:248)
-	at org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer.access$400(ExpressionUrlAuthorizationConfigurer.java:81)
-	at org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer$AuthorizedUrl.hasRole(ExpressionUrlAuthorizationConfigurer.java:330)
-	at fr.ocr.config.WebSecurityConfig.configure(WebSecurityConfig.java:73)
-	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter.getHttp(WebSecurityConfigurerAdapter.java:231)
-	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter.init(WebSecurityConfigurerAdapter.java:322)
-	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter.init(WebSecurityConfigurerAdapter.java:92)
-	at fr.ocr.config.WebSecurityConfig$$EnhancerBySpringCGLIB$$b31e2a62.init(<generated>)
-	at org.springframework.security.config.annotation.AbstractConfiguredSecurityBuilder.init(AbstractConfiguredSecurityBuilder.java:370)
-	at org.springframework.security.config.annotation.AbstractConfiguredSecurityBuilder.doBuild(AbstractConfiguredSecurityBuilder.java:324)
-	at org.springframework.security.config.annotation.AbstractSecurityBuilder.build(AbstractSecurityBuilder.java:41)
-	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration.springSecurityFilterChain(WebSecurityConfiguration.java:104)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
-	... 27 common frames omitted
-[2019-11-13T10:13:40.040Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [55] [INFO ] Starting ServiceWebApplication on DESKTOP-HE1TMKM with PID 7748 (D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3\service_web\target\classes started by cordier in D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3)
-[2019-11-13T10:13:40.040Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [56] [DEBUG] Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
-[2019-11-13T10:13:40.040Z] [org.springframework.boot.SpringApplication] [restartedMain] [651] [INFO ] No active profile set, falling back to default profiles: default
-[2019-11-13T10:13:40.040Z] [org.springframework.boot.logging.DeferredLog] [restartedMain] [225] [INFO ] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-[2019-11-13T10:13:40.040Z] [org.springframework.boot.logging.DeferredLog] [restartedMain] [225] [INFO ] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-[2019-11-13T10:13:42.042Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [92] [INFO ] Tomcat initialized with port(s): 9091 (http)
-[2019-11-13T10:13:42.042Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing ProtocolHandler ["http-nio-9091"]
-[2019-11-13T10:13:42.042Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting service [Tomcat]
-[2019-11-13T10:13:42.042Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting Servlet engine: [Apache Tomcat/9.0.27]
-[2019-11-13T10:13:42.042Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing Spring embedded WebApplicationContext
-[2019-11-13T10:13:42.042Z] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [restartedMain] [284] [INFO ] Root WebApplicationContext: initialization completed in 1781 ms
-[2019-11-13T10:13:43.043Z] [org.springframework.context.support.AbstractApplicationContext] [restartedMain] [558] [WARN ] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'springSecurityFilterChain' defined in class path resource [org/springframework/security/config/annotation/web/configuration/WebSecurityConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.servlet.Filter]: Factory method 'springSecurityFilterChain' threw exception; nested exception is java.lang.IllegalArgumentException: role should not start with 'ROLE_' since it is automatically inserted. Got 'ROLE_USER'
-[2019-11-13T10:13:43.043Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Stopping service [Tomcat]
-[2019-11-13T10:13:43.043Z] [org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener] [restartedMain] [136] [INFO ] 
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeansOfType(DefaultListableBeanFactory.java:617)
+	at org.springframework.context.support.AbstractApplicationContext.getBeansOfType(AbstractApplicationContext.java:1250)
+	at org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncludingAncestors(BeanFactoryUtils.java:378)
+	at org.springframework.web.servlet.DispatcherServlet.initHandlerMappings(DispatcherServlet.java:599)
+	at org.springframework.web.servlet.DispatcherServlet.initStrategies(DispatcherServlet.java:506)
+	at org.springframework.web.servlet.DispatcherServlet.onRefresh(DispatcherServlet.java:495)
+	at org.springframework.web.servlet.FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:599)
+	at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:530)
+	at org.springframework.web.servlet.HttpServletBean.init(HttpServletBean.java:170)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:158)
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1134)
+	at org.apache.catalina.core.StandardWrapper.allocate(StandardWrapper.java:777)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:688)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:461)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:384)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:312)
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:394)
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:253)
+	at org.apache.catalina.core.StandardHostValve.throwable(StandardHostValve.java:348)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:173)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:861)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1579)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'org.springframework.core.env.Environment' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoMatchingBeanFound(DefaultListableBeanFactory.java:1695)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1253)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1207)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:874)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:778)
+	... 41 common frames omitted
+[2019-11-13T12:24:19.019Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [55] [INFO ] Starting ServiceWebApplication on DESKTOP-HE1TMKM with PID 1236 (D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3\service_web\target\classes started by cordier in D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3)
+[2019-11-13T12:24:19.019Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [56] [DEBUG] Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[2019-11-13T12:24:19.019Z] [org.springframework.boot.SpringApplication] [restartedMain] [651] [INFO ] No active profile set, falling back to default profiles: default
+[2019-11-13T12:24:21.021Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [WARN ] The MBean registry cannot be disabled because it has already been initialised
+[2019-11-13T12:24:21.021Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [92] [INFO ] Tomcat initialized with port(s): 9091 (http)
+[2019-11-13T12:24:21.021Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:24:21.021Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting service [Tomcat]
+[2019-11-13T12:24:21.021Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting Servlet engine: [Apache Tomcat/9.0.27]
+[2019-11-13T12:24:21.021Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing Spring embedded WebApplicationContext
+[2019-11-13T12:24:21.021Z] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [restartedMain] [284] [INFO ] Root WebApplicationContext: initialization completed in 1794 ms
+[2019-11-13T12:24:21.021Z] [org.springframework.security.web.DefaultSecurityFilterChain] [restartedMain] [43] [INFO ] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1badfd71, org.springframework.security.web.context.SecurityContextPersistenceFilter@30c3a6c7, org.springframework.security.web.header.HeaderWriterFilter@2f371a83, org.springframework.security.web.authentication.logout.LogoutFilter@7841bb13, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3a2cd644, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2d582080, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7d03aca2, org.springframework.security.web.session.SessionManagementFilter@3789f604, org.springframework.security.web.access.ExceptionTranslationFilter@40f95388, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@742f0948]
+[2019-11-13T12:24:22.022Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [restartedMain] [171] [INFO ] Initializing ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:24:22.022Z] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer] [restartedMain] [60] [WARN ] Unable to start LiveReload server
+[2019-11-13T12:24:22.022Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:24:22.022Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [204] [INFO ] Tomcat started on port(s): 9091 (http) with context path ''
+[2019-11-13T12:24:22.022Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [61] [INFO ] Started ServiceWebApplication in 2.824 seconds (JVM running for 57.129)
+[2019-11-13T12:24:22.022Z] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener] [restartedMain] [63] [INFO ] Condition evaluation unchanged
+[2019-11-13T12:24:24.024Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [Thread-6] [208] [INFO ] Shutting down ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:24:25.025Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [55] [INFO ] Starting ServiceWebApplication on DESKTOP-HE1TMKM with PID 1236 (D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3\service_web\target\classes started by cordier in D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3)
+[2019-11-13T12:24:25.025Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [56] [DEBUG] Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[2019-11-13T12:24:25.025Z] [org.springframework.boot.SpringApplication] [restartedMain] [651] [INFO ] No active profile set, falling back to default profiles: default
+[2019-11-13T12:24:26.026Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [WARN ] The MBean registry cannot be disabled because it has already been initialised
+[2019-11-13T12:24:26.026Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [92] [INFO ] Tomcat initialized with port(s): 9091 (http)
+[2019-11-13T12:24:26.026Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:24:26.026Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting service [Tomcat]
+[2019-11-13T12:24:26.026Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting Servlet engine: [Apache Tomcat/9.0.27]
+[2019-11-13T12:24:26.026Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing Spring embedded WebApplicationContext
+[2019-11-13T12:24:26.026Z] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [restartedMain] [284] [INFO ] Root WebApplicationContext: initialization completed in 1625 ms
+[2019-11-13T12:24:27.027Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [restartedMain] [171] [INFO ] Initializing ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:24:27.027Z] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer] [restartedMain] [60] [WARN ] Unable to start LiveReload server
+[2019-11-13T12:24:27.027Z] [org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration] [restartedMain] [86] [INFO ] 
 
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-[2019-11-13T10:13:43.043Z] [org.springframework.boot.SpringApplication] [restartedMain] [826] [ERROR] Application run failed
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'springSecurityFilterChain' defined in class path resource [org/springframework/security/config/annotation/web/configuration/WebSecurityConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.servlet.Filter]: Factory method 'springSecurityFilterChain' threw exception; nested exception is java.lang.IllegalArgumentException: role should not start with 'ROLE_' since it is automatically inserted. Got 'ROLE_USER'
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:645)
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:475)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1338)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1177)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:557)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:310)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:879)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:878)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:550)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:141)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:747)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215)
-	at fr.ocr.ServiceWebApplication.main(ServiceWebApplication.java:19)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
-Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.servlet.Filter]: Factory method 'springSecurityFilterChain' threw exception; nested exception is java.lang.IllegalArgumentException: role should not start with 'ROLE_' since it is automatically inserted. Got 'ROLE_USER'
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:185)
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:640)
-	... 26 common frames omitted
-Caused by: java.lang.IllegalArgumentException: role should not start with 'ROLE_' since it is automatically inserted. Got 'ROLE_USER'
-	at org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer.hasRole(ExpressionUrlAuthorizationConfigurer.java:248)
-	at org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer.access$400(ExpressionUrlAuthorizationConfigurer.java:81)
-	at org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer$AuthorizedUrl.hasRole(ExpressionUrlAuthorizationConfigurer.java:330)
-	at fr.ocr.config.WebSecurityConfig.configure(WebSecurityConfig.java:80)
-	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter.getHttp(WebSecurityConfigurerAdapter.java:231)
-	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter.init(WebSecurityConfigurerAdapter.java:322)
-	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter.init(WebSecurityConfigurerAdapter.java:92)
-	at fr.ocr.config.WebSecurityConfig$$EnhancerBySpringCGLIB$$168c18f8.init(<generated>)
-	at org.springframework.security.config.annotation.AbstractConfiguredSecurityBuilder.init(AbstractConfiguredSecurityBuilder.java:370)
-	at org.springframework.security.config.annotation.AbstractConfiguredSecurityBuilder.doBuild(AbstractConfiguredSecurityBuilder.java:324)
-	at org.springframework.security.config.annotation.AbstractSecurityBuilder.build(AbstractSecurityBuilder.java:41)
-	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration.springSecurityFilterChain(WebSecurityConfiguration.java:104)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
-	... 27 common frames omitted
-[2019-11-13T10:15:36.036Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [55] [INFO ] Starting ServiceWebApplication on DESKTOP-HE1TMKM with PID 7464 (D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3\service_web\target\classes started by cordier in D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3)
-[2019-11-13T10:15:36.036Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [56] [DEBUG] Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
-[2019-11-13T10:15:36.036Z] [org.springframework.boot.SpringApplication] [restartedMain] [651] [INFO ] No active profile set, falling back to default profiles: default
-[2019-11-13T10:15:36.036Z] [org.springframework.boot.logging.DeferredLog] [restartedMain] [225] [INFO ] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-[2019-11-13T10:15:36.036Z] [org.springframework.boot.logging.DeferredLog] [restartedMain] [225] [INFO ] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-[2019-11-13T10:15:38.038Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [92] [INFO ] Tomcat initialized with port(s): 9091 (http)
-[2019-11-13T10:15:38.038Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing ProtocolHandler ["http-nio-9091"]
-[2019-11-13T10:15:38.038Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting service [Tomcat]
-[2019-11-13T10:15:38.038Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting Servlet engine: [Apache Tomcat/9.0.27]
-[2019-11-13T10:15:38.038Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing Spring embedded WebApplicationContext
-[2019-11-13T10:15:38.038Z] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [restartedMain] [284] [INFO ] Root WebApplicationContext: initialization completed in 1641 ms
-[2019-11-13T10:15:39.039Z] [org.springframework.context.support.AbstractApplicationContext] [restartedMain] [558] [WARN ] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'springSecurityFilterChain' defined in class path resource [org/springframework/security/config/annotation/web/configuration/WebSecurityConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.servlet.Filter]: Factory method 'springSecurityFilterChain' threw exception; nested exception is java.lang.IllegalArgumentException: role should not start with 'ROLE_' since it is automatically inserted. Got 'ROLE_USER'
-[2019-11-13T10:15:39.039Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Stopping service [Tomcat]
-[2019-11-13T10:15:39.039Z] [org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener] [restartedMain] [136] [INFO ] 
+Using generated security password: a88d7fbf-9e74-4c40-a0ed-26e7e97486a5
 
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-[2019-11-13T10:15:39.039Z] [org.springframework.boot.SpringApplication] [restartedMain] [826] [ERROR] Application run failed
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'springSecurityFilterChain' defined in class path resource [org/springframework/security/config/annotation/web/configuration/WebSecurityConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.servlet.Filter]: Factory method 'springSecurityFilterChain' threw exception; nested exception is java.lang.IllegalArgumentException: role should not start with 'ROLE_' since it is automatically inserted. Got 'ROLE_USER'
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:645)
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:475)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1338)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1177)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:557)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:310)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:879)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:878)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:550)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:141)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:747)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215)
-	at fr.ocr.ServiceWebApplication.main(ServiceWebApplication.java:19)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
-Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.servlet.Filter]: Factory method 'springSecurityFilterChain' threw exception; nested exception is java.lang.IllegalArgumentException: role should not start with 'ROLE_' since it is automatically inserted. Got 'ROLE_USER'
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:185)
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:640)
-	... 26 common frames omitted
-Caused by: java.lang.IllegalArgumentException: role should not start with 'ROLE_' since it is automatically inserted. Got 'ROLE_USER'
-	at org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer.hasRole(ExpressionUrlAuthorizationConfigurer.java:248)
-	at org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer.access$400(ExpressionUrlAuthorizationConfigurer.java:81)
-	at org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer$AuthorizedUrl.hasRole(ExpressionUrlAuthorizationConfigurer.java:330)
-	at fr.ocr.config.WebSecurityConfig.configure(WebSecurityConfig.java:82)
-	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter.getHttp(WebSecurityConfigurerAdapter.java:231)
-	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter.init(WebSecurityConfigurerAdapter.java:322)
-	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter.init(WebSecurityConfigurerAdapter.java:92)
-	at fr.ocr.config.WebSecurityConfig$$EnhancerBySpringCGLIB$$3e2dee24.init(<generated>)
-	at org.springframework.security.config.annotation.AbstractConfiguredSecurityBuilder.init(AbstractConfiguredSecurityBuilder.java:370)
-	at org.springframework.security.config.annotation.AbstractConfiguredSecurityBuilder.doBuild(AbstractConfiguredSecurityBuilder.java:324)
-	at org.springframework.security.config.annotation.AbstractSecurityBuilder.build(AbstractSecurityBuilder.java:41)
-	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration.springSecurityFilterChain(WebSecurityConfiguration.java:104)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
-	... 27 common frames omitted
-[2019-11-13T10:17:03.003Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [55] [INFO ] Starting ServiceWebApplication on DESKTOP-HE1TMKM with PID 7356 (D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3\service_web\target\classes started by cordier in D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3)
-[2019-11-13T10:17:03.003Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [56] [DEBUG] Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
-[2019-11-13T10:17:03.003Z] [org.springframework.boot.SpringApplication] [restartedMain] [651] [INFO ] No active profile set, falling back to default profiles: default
-[2019-11-13T10:17:03.003Z] [org.springframework.boot.logging.DeferredLog] [restartedMain] [225] [INFO ] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-[2019-11-13T10:17:03.003Z] [org.springframework.boot.logging.DeferredLog] [restartedMain] [225] [INFO ] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-[2019-11-13T10:17:05.005Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [92] [INFO ] Tomcat initialized with port(s): 9091 (http)
-[2019-11-13T10:17:05.005Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing ProtocolHandler ["http-nio-9091"]
-[2019-11-13T10:17:05.005Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting service [Tomcat]
-[2019-11-13T10:17:05.005Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting Servlet engine: [Apache Tomcat/9.0.27]
-[2019-11-13T10:17:05.005Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing Spring embedded WebApplicationContext
-[2019-11-13T10:17:05.005Z] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [restartedMain] [284] [INFO ] Root WebApplicationContext: initialization completed in 1681 ms
-[2019-11-13T10:17:05.005Z] [org.springframework.security.web.DefaultSecurityFilterChain] [restartedMain] [43] [INFO ] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@64b2f95b, org.springframework.security.web.context.SecurityContextPersistenceFilter@78cc4393, org.springframework.security.web.header.HeaderWriterFilter@1038ceb, org.springframework.security.web.authentication.logout.LogoutFilter@6d86caba, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@674b604f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@60cfaddf, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1f690690, org.springframework.security.web.session.SessionManagementFilter@62ddde22, org.springframework.security.web.access.ExceptionTranslationFilter@6caa5008, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3c2d8188]
-[2019-11-13T10:17:06.006Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [restartedMain] [171] [INFO ] Initializing ExecutorService 'applicationTaskExecutor'
-[2019-11-13T10:17:06.006Z] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer] [restartedMain] [60] [WARN ] Unable to start LiveReload server
-[2019-11-13T10:17:06.006Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting ProtocolHandler ["http-nio-9091"]
-[2019-11-13T10:17:06.006Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [204] [INFO ] Tomcat started on port(s): 9091 (http) with context path ''
-[2019-11-13T10:17:06.006Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [61] [INFO ] Started ServiceWebApplication in 3.824 seconds (JVM running for 5.256)
-[2019-11-13T10:17:18.018Z] [org.apache.juli.logging.DirectJDKLog] [http-nio-9091-exec-2] [173] [INFO ] Initializing Spring DispatcherServlet 'dispatcherServlet'
-[2019-11-13T10:17:18.018Z] [org.springframework.web.servlet.FrameworkServlet] [http-nio-9091-exec-2] [525] [INFO ] Initializing Servlet 'dispatcherServlet'
-[2019-11-13T10:17:18.018Z] [org.springframework.web.servlet.FrameworkServlet] [http-nio-9091-exec-2] [547] [INFO ] Completed initialization in 14 ms
-[2019-11-13T10:17:20.020Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [Thread-1] [208] [INFO ] Shutting down ExecutorService 'applicationTaskExecutor'
-[2019-11-13T10:17:21.021Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [55] [INFO ] Starting ServiceWebApplication on DESKTOP-HE1TMKM with PID 7356 (D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3\service_web\target\classes started by cordier in D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3)
-[2019-11-13T10:17:21.021Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [56] [DEBUG] Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
-[2019-11-13T10:17:21.021Z] [org.springframework.boot.SpringApplication] [restartedMain] [651] [INFO ] No active profile set, falling back to default profiles: default
-[2019-11-13T10:17:23.023Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [WARN ] The MBean registry cannot be disabled because it has already been initialised
-[2019-11-13T10:17:23.023Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [92] [INFO ] Tomcat initialized with port(s): 9091 (http)
-[2019-11-13T10:17:23.023Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing ProtocolHandler ["http-nio-9091"]
-[2019-11-13T10:17:23.023Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting service [Tomcat]
-[2019-11-13T10:17:23.023Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting Servlet engine: [Apache Tomcat/9.0.27]
-[2019-11-13T10:17:23.023Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing Spring embedded WebApplicationContext
-[2019-11-13T10:17:23.023Z] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [restartedMain] [284] [INFO ] Root WebApplicationContext: initialization completed in 1933 ms
-[2019-11-13T10:17:23.023Z] [org.springframework.security.web.DefaultSecurityFilterChain] [restartedMain] [43] [INFO ] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@402abbaa, org.springframework.security.web.context.SecurityContextPersistenceFilter@b10cfc7, org.springframework.security.web.header.HeaderWriterFilter@41d3b8b4, org.springframework.security.web.authentication.logout.LogoutFilter@68e447b4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2d3c04d6, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@71760fdd, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7ce6b312, org.springframework.security.web.session.SessionManagementFilter@192aef1, org.springframework.security.web.access.ExceptionTranslationFilter@5ccf58b3, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@39277821]
-[2019-11-13T10:17:23.023Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [restartedMain] [171] [INFO ] Initializing ExecutorService 'applicationTaskExecutor'
-[2019-11-13T10:17:23.023Z] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer] [restartedMain] [60] [WARN ] Unable to start LiveReload server
-[2019-11-13T10:17:23.023Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting ProtocolHandler ["http-nio-9091"]
-[2019-11-13T10:17:23.023Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [204] [INFO ] Tomcat started on port(s): 9091 (http) with context path ''
-[2019-11-13T10:17:23.023Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [61] [INFO ] Started ServiceWebApplication in 2.657 seconds (JVM running for 22.497)
-[2019-11-13T10:17:23.023Z] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener] [restartedMain] [63] [INFO ] Condition evaluation unchanged
-[2019-11-13T10:17:31.031Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [Thread-6] [208] [INFO ] Shutting down ExecutorService 'applicationTaskExecutor'
-[2019-11-13T10:17:31.031Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [55] [INFO ] Starting ServiceWebApplication on DESKTOP-HE1TMKM with PID 7356 (D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3\service_web\target\classes started by cordier in D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3)
-[2019-11-13T10:17:31.031Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [56] [DEBUG] Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
-[2019-11-13T10:17:31.031Z] [org.springframework.boot.SpringApplication] [restartedMain] [651] [INFO ] No active profile set, falling back to default profiles: default
-[2019-11-13T10:17:33.033Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [WARN ] The MBean registry cannot be disabled because it has already been initialised
-[2019-11-13T10:17:33.033Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [92] [INFO ] Tomcat initialized with port(s): 9091 (http)
-[2019-11-13T10:17:33.033Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing ProtocolHandler ["http-nio-9091"]
-[2019-11-13T10:17:33.033Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting service [Tomcat]
-[2019-11-13T10:17:33.033Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting Servlet engine: [Apache Tomcat/9.0.27]
-[2019-11-13T10:17:33.033Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing Spring embedded WebApplicationContext
-[2019-11-13T10:17:33.033Z] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [restartedMain] [284] [INFO ] Root WebApplicationContext: initialization completed in 2045 ms
-[2019-11-13T10:17:33.033Z] [org.springframework.security.web.DefaultSecurityFilterChain] [restartedMain] [43] [INFO ] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3d3a5d4b, org.springframework.security.web.context.SecurityContextPersistenceFilter@258383df, org.springframework.security.web.header.HeaderWriterFilter@27669f68, org.springframework.security.web.authentication.logout.LogoutFilter@4218a029, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@556759e5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@466901fe, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4fa507bf, org.springframework.security.web.session.SessionManagementFilter@40efb0f1, org.springframework.security.web.access.ExceptionTranslationFilter@4646ca40, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@171792b4]
-[2019-11-13T10:17:33.033Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [restartedMain] [171] [INFO ] Initializing ExecutorService 'applicationTaskExecutor'
-[2019-11-13T10:17:33.033Z] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer] [restartedMain] [60] [WARN ] Unable to start LiveReload server
-[2019-11-13T10:17:34.034Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting ProtocolHandler ["http-nio-9091"]
-[2019-11-13T10:17:34.034Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [204] [INFO ] Tomcat started on port(s): 9091 (http) with context path ''
-[2019-11-13T10:17:34.034Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [61] [INFO ] Started ServiceWebApplication in 2.791 seconds (JVM running for 32.874)
-[2019-11-13T10:17:34.034Z] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener] [restartedMain] [63] [INFO ] Condition evaluation unchanged
-[2019-11-13T10:17:38.038Z] [org.apache.juli.logging.DirectJDKLog] [http-nio-9091-exec-2] [173] [INFO ] Initializing Spring DispatcherServlet 'dispatcherServlet'
-[2019-11-13T10:17:38.038Z] [org.springframework.web.servlet.FrameworkServlet] [http-nio-9091-exec-2] [525] [INFO ] Initializing Servlet 'dispatcherServlet'
-[2019-11-13T10:17:38.038Z] [org.springframework.web.servlet.FrameworkServlet] [http-nio-9091-exec-2] [547] [INFO ] Completed initialization in 4 ms
-[2019-11-13T10:18:51.051Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [SpringContextShutdownHook] [208] [INFO ] Shutting down ExecutorService 'applicationTaskExecutor'
-[2019-11-13T10:18:51.051Z] [org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver] [http-nio-9091-exec-2] [199] [WARN ] Resolved [fr.ocr.exception.PrjExceptionHandlerImpl$6lolo: Usager inconnu]
+[2019-11-13T12:24:27.027Z] [org.springframework.security.web.DefaultSecurityFilterChain] [restartedMain] [43] [INFO ] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@39e98189, org.springframework.security.web.context.SecurityContextPersistenceFilter@42096ef8, org.springframework.security.web.header.HeaderWriterFilter@9fd76fd, org.springframework.security.web.csrf.CsrfFilter@f4781cf, org.springframework.security.web.authentication.logout.LogoutFilter@471c6306, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@20679c32, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@5d0b54a7, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@cd1682c, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@8421e48, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5038b831, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@32907655, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2cd6f403, org.springframework.security.web.session.SessionManagementFilter@71f3d0f0, org.springframework.security.web.access.ExceptionTranslationFilter@5408c565, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@690f398d]
+[2019-11-13T12:24:27.027Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:24:27.027Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [204] [INFO ] Tomcat started on port(s): 9091 (http) with context path ''
+[2019-11-13T12:24:27.027Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [61] [INFO ] Started ServiceWebApplication in 2.694 seconds (JVM running for 62.46)
+[2019-11-13T12:24:27.027Z] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener] [restartedMain] [58] [INFO ] Condition evaluation delta:
+
+
+==========================
+CONDITION EVALUATION DELTA
+==========================
+
+
+Positive matches:
+-----------------
+
+   SpringBootWebSecurityConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter' (OnClassCondition)
+      - found 'session' scope (OnWebApplicationCondition)
+      - @ConditionalOnBean (types: org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   UserDetailsServiceAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.security.authentication.AuthenticationManager' (OnClassCondition)
+      - @ConditionalOnBean (types: org.springframework.security.config.annotation.ObjectPostProcessor; SearchStrategy: all) found bean 'objectPostProcessor'; @ConditionalOnBean (types: org.springframework.security.authentication.AuthenticationManager,org.springframework.security.authentication.AuthenticationProvider,org.springframework.security.core.userdetails.UserDetailsService,org.springframework.security.oauth2.jwt.JwtDecoder,org.springframework.security.oauth2.server.resource.introspection.OpaqueTokenIntrospector; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   UserDetailsServiceAutoConfiguration#inMemoryUserDetailsManager matched:
+      - @ConditionalOnBean (types: org.springframework.security.oauth2.client.registration.ClientRegistrationRepository; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   WebSecurityEnablerConfiguration matched:
+      - found 'session' scope (OnWebApplicationCondition)
+      - @ConditionalOnBean (types: org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter; SearchStrategy: all) found bean 'org.springframework.boot.autoconfigure.security.servlet.SpringBootWebSecurityConfiguration$DefaultConfigurerAdapter'; @ConditionalOnBean (names: springSecurityFilterChain; ; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+
+Negative matches:
+-----------------
+
+    None
+
+
+Exclusions:
+-----------
+
+    None
+
+
+Unconditional classes:
+----------------------
+
+    None
+
+
+
+[2019-11-13T12:24:39.039Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [Thread-11] [208] [INFO ] Shutting down ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:24:39.039Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [55] [INFO ] Starting ServiceWebApplication on DESKTOP-HE1TMKM with PID 1236 (D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3\service_web\target\classes started by cordier in D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3)
+[2019-11-13T12:24:39.039Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [56] [DEBUG] Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[2019-11-13T12:24:39.039Z] [org.springframework.boot.SpringApplication] [restartedMain] [651] [INFO ] No active profile set, falling back to default profiles: default
+[2019-11-13T12:24:41.041Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [WARN ] The MBean registry cannot be disabled because it has already been initialised
+[2019-11-13T12:24:41.041Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [92] [INFO ] Tomcat initialized with port(s): 9091 (http)
+[2019-11-13T12:24:41.041Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:24:41.041Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting service [Tomcat]
+[2019-11-13T12:24:41.041Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting Servlet engine: [Apache Tomcat/9.0.27]
+[2019-11-13T12:24:41.041Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing Spring embedded WebApplicationContext
+[2019-11-13T12:24:41.041Z] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [restartedMain] [284] [INFO ] Root WebApplicationContext: initialization completed in 1482 ms
+[2019-11-13T12:24:41.041Z] [org.springframework.security.web.DefaultSecurityFilterChain] [restartedMain] [43] [INFO ] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@70c48173, org.springframework.security.web.context.SecurityContextPersistenceFilter@6238673a, org.springframework.security.web.header.HeaderWriterFilter@5f7483a1, org.springframework.security.web.authentication.logout.LogoutFilter@1a4198ea, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@425ae180, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@39480be1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@9ec1fe4, org.springframework.security.web.session.SessionManagementFilter@691d66cd, org.springframework.security.web.access.ExceptionTranslationFilter@1b4770a5, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6cbc918f]
+[2019-11-13T12:24:42.042Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [restartedMain] [171] [INFO ] Initializing ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:24:42.042Z] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer] [restartedMain] [60] [WARN ] Unable to start LiveReload server
+[2019-11-13T12:24:42.042Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:24:42.042Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [204] [INFO ] Tomcat started on port(s): 9091 (http) with context path ''
+[2019-11-13T12:24:42.042Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [61] [INFO ] Started ServiceWebApplication in 2.891 seconds (JVM running for 77.359)
+[2019-11-13T12:24:42.042Z] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener] [restartedMain] [58] [INFO ] Condition evaluation delta:
+
+
+==========================
+CONDITION EVALUATION DELTA
+==========================
+
+
+Positive matches:
+-----------------
+
+    None
+
+
+Negative matches:
+-----------------
+
+   SpringBootWebSecurityConfiguration:
+      Did not match:
+         - @ConditionalOnBean (types: org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter; SearchStrategy: all) found beans of type 'org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter' webSecurityConfig (OnBeanCondition)
+      Matched:
+         - @ConditionalOnClass found required class 'org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter' (OnClassCondition)
+         - found 'session' scope (OnWebApplicationCondition)
+
+   UserDetailsServiceAutoConfiguration:
+      Did not match:
+         - @ConditionalOnBean (types: org.springframework.security.authentication.AuthenticationManager,org.springframework.security.authentication.AuthenticationProvider,org.springframework.security.core.userdetails.UserDetailsService,org.springframework.security.oauth2.jwt.JwtDecoder,org.springframework.security.oauth2.server.resource.introspection.OpaqueTokenIntrospector; SearchStrategy: all) found beans of type 'org.springframework.security.authentication.AuthenticationManager' authenticationManagerBean and found beans of type 'org.springframework.security.core.userdetails.UserDetailsService' userWebServiceImpl and found beans of type 'org.springframework.security.authentication.AuthenticationProvider' customAuthenticationProvider (OnBeanCondition)
+      Matched:
+         - @ConditionalOnClass found required class 'org.springframework.security.authentication.AuthenticationManager' (OnClassCondition)
+
+   WebSecurityEnablerConfiguration:
+      Did not match:
+         - @ConditionalOnBean (names: springSecurityFilterChain; ; SearchStrategy: all) found beans named springSecurityFilterChain (OnBeanCondition)
+      Matched:
+         - found 'session' scope (OnWebApplicationCondition)
+
+
+Exclusions:
+-----------
+
+    None
+
+
+Unconditional classes:
+----------------------
+
+    None
+
+
+
+[2019-11-13T12:24:44.044Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [Thread-16] [208] [INFO ] Shutting down ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:24:44.044Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [55] [INFO ] Starting ServiceWebApplication on DESKTOP-HE1TMKM with PID 1236 (D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3\service_web\target\classes started by cordier in D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3)
+[2019-11-13T12:24:44.044Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [56] [DEBUG] Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[2019-11-13T12:24:44.044Z] [org.springframework.boot.SpringApplication] [restartedMain] [651] [INFO ] No active profile set, falling back to default profiles: default
+[2019-11-13T12:24:45.045Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [WARN ] The MBean registry cannot be disabled because it has already been initialised
+[2019-11-13T12:24:45.045Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [92] [INFO ] Tomcat initialized with port(s): 9091 (http)
+[2019-11-13T12:24:45.045Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:24:45.045Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting service [Tomcat]
+[2019-11-13T12:24:45.045Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting Servlet engine: [Apache Tomcat/9.0.27]
+[2019-11-13T12:24:45.045Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing Spring embedded WebApplicationContext
+[2019-11-13T12:24:45.045Z] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [restartedMain] [284] [INFO ] Root WebApplicationContext: initialization completed in 713 ms
+[2019-11-13T12:24:45.045Z] [org.springframework.security.web.DefaultSecurityFilterChain] [restartedMain] [43] [INFO ] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@676c755f, org.springframework.security.web.context.SecurityContextPersistenceFilter@32a55aa2, org.springframework.security.web.header.HeaderWriterFilter@4d618916, org.springframework.security.web.authentication.logout.LogoutFilter@447664c8, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1d06eb6f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5c6ef8e0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@58e06079, org.springframework.security.web.session.SessionManagementFilter@400618, org.springframework.security.web.access.ExceptionTranslationFilter@6d53b32, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@62a5f8cf]
+[2019-11-13T12:24:45.045Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [restartedMain] [171] [INFO ] Initializing ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:24:45.045Z] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer] [restartedMain] [60] [WARN ] Unable to start LiveReload server
+[2019-11-13T12:24:45.045Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:24:45.045Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [204] [INFO ] Tomcat started on port(s): 9091 (http) with context path ''
+[2019-11-13T12:24:45.045Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [61] [INFO ] Started ServiceWebApplication in 1.209 seconds (JVM running for 80.177)
+[2019-11-13T12:24:45.045Z] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener] [restartedMain] [63] [INFO ] Condition evaluation unchanged
+[2019-11-13T12:24:50.050Z] [org.apache.juli.logging.DirectJDKLog] [http-nio-9091-exec-3] [173] [INFO ] Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2019-11-13T12:24:50.050Z] [org.springframework.web.servlet.FrameworkServlet] [http-nio-9091-exec-3] [525] [INFO ] Initializing Servlet 'dispatcherServlet'
+[2019-11-13T12:24:50.050Z] [org.springframework.web.servlet.FrameworkServlet] [http-nio-9091-exec-3] [547] [INFO ] Completed initialization in 4 ms
+[2019-11-13T12:25:53.053Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [Thread-21] [208] [INFO ] Shutting down ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:25:54.054Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [55] [INFO ] Starting ServiceWebApplication on DESKTOP-HE1TMKM with PID 1236 (D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3\service_web\target\classes started by cordier in D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3)
+[2019-11-13T12:25:54.054Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [56] [DEBUG] Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[2019-11-13T12:25:54.054Z] [org.springframework.boot.SpringApplication] [restartedMain] [651] [INFO ] No active profile set, falling back to default profiles: default
+[2019-11-13T12:25:55.055Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [WARN ] The MBean registry cannot be disabled because it has already been initialised
+[2019-11-13T12:25:55.055Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [92] [INFO ] Tomcat initialized with port(s): 9091 (http)
+[2019-11-13T12:25:55.055Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:25:55.055Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting service [Tomcat]
+[2019-11-13T12:25:55.055Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting Servlet engine: [Apache Tomcat/9.0.27]
+[2019-11-13T12:25:55.055Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing Spring embedded WebApplicationContext
+[2019-11-13T12:25:55.055Z] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [restartedMain] [284] [INFO ] Root WebApplicationContext: initialization completed in 981 ms
+[2019-11-13T12:25:55.055Z] [org.springframework.security.web.DefaultSecurityFilterChain] [restartedMain] [43] [INFO ] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1ad04bf5, org.springframework.security.web.context.SecurityContextPersistenceFilter@5fc60a75, org.springframework.security.web.header.HeaderWriterFilter@45aea7ce, org.springframework.security.web.authentication.logout.LogoutFilter@1a394474, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@10335ee7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@20130bf8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7bbce056, org.springframework.security.web.session.SessionManagementFilter@3fbd4716, org.springframework.security.web.access.ExceptionTranslationFilter@5fd21d0f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@793c5b05]
+[2019-11-13T12:25:56.056Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [restartedMain] [171] [INFO ] Initializing ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:25:56.056Z] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer] [restartedMain] [60] [WARN ] Unable to start LiveReload server
+[2019-11-13T12:25:56.056Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:25:56.056Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [204] [INFO ] Tomcat started on port(s): 9091 (http) with context path ''
+[2019-11-13T12:25:56.056Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [61] [INFO ] Started ServiceWebApplication in 2.314 seconds (JVM running for 151.315)
+[2019-11-13T12:25:56.056Z] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener] [restartedMain] [63] [INFO ] Condition evaluation unchanged
+[2019-11-13T12:25:58.058Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [Thread-26] [208] [INFO ] Shutting down ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:25:58.058Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [55] [INFO ] Starting ServiceWebApplication on DESKTOP-HE1TMKM with PID 1236 (D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3\service_web\target\classes started by cordier in D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3)
+[2019-11-13T12:25:58.058Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [56] [DEBUG] Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[2019-11-13T12:25:58.058Z] [org.springframework.boot.SpringApplication] [restartedMain] [651] [INFO ] No active profile set, falling back to default profiles: default
+[2019-11-13T12:25:59.059Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [WARN ] The MBean registry cannot be disabled because it has already been initialised
+[2019-11-13T12:25:59.059Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [92] [INFO ] Tomcat initialized with port(s): 9091 (http)
+[2019-11-13T12:25:59.059Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:25:59.059Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting service [Tomcat]
+[2019-11-13T12:25:59.059Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting Servlet engine: [Apache Tomcat/9.0.27]
+[2019-11-13T12:25:59.059Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing Spring embedded WebApplicationContext
+[2019-11-13T12:25:59.059Z] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [restartedMain] [284] [INFO ] Root WebApplicationContext: initialization completed in 452 ms
+[2019-11-13T12:25:59.059Z] [org.springframework.security.web.DefaultSecurityFilterChain] [restartedMain] [43] [INFO ] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@77793fc6, org.springframework.security.web.context.SecurityContextPersistenceFilter@e0ea8a5, org.springframework.security.web.header.HeaderWriterFilter@437fd0, org.springframework.security.web.authentication.logout.LogoutFilter@1037d100, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2804abac, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3322ec83, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@26be9b17, org.springframework.security.web.session.SessionManagementFilter@3c7c8022, org.springframework.security.web.access.ExceptionTranslationFilter@5edf0e76, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1e2e092b]
+[2019-11-13T12:25:59.059Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [restartedMain] [171] [INFO ] Initializing ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:25:59.059Z] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer] [restartedMain] [60] [WARN ] Unable to start LiveReload server
+[2019-11-13T12:25:59.059Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:25:59.059Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [204] [INFO ] Tomcat started on port(s): 9091 (http) with context path ''
+[2019-11-13T12:25:59.059Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [61] [INFO ] Started ServiceWebApplication in 0.932 seconds (JVM running for 154.176)
+[2019-11-13T12:25:59.059Z] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener] [restartedMain] [63] [INFO ] Condition evaluation unchanged
+[2019-11-13T12:26:04.004Z] [org.apache.juli.logging.DirectJDKLog] [http-nio-9091-exec-2] [173] [INFO ] Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2019-11-13T12:26:04.004Z] [org.springframework.web.servlet.FrameworkServlet] [http-nio-9091-exec-2] [525] [INFO ] Initializing Servlet 'dispatcherServlet'
+[2019-11-13T12:26:04.004Z] [org.springframework.web.servlet.FrameworkServlet] [http-nio-9091-exec-2] [547] [INFO ] Completed initialization in 1 ms
+[2019-11-13T12:26:54.054Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [Thread-31] [208] [INFO ] Shutting down ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:26:55.055Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [55] [INFO ] Starting ServiceWebApplication on DESKTOP-HE1TMKM with PID 1236 (D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3\service_web\target\classes started by cordier in D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3)
+[2019-11-13T12:26:55.055Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [56] [DEBUG] Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[2019-11-13T12:26:55.055Z] [org.springframework.boot.SpringApplication] [restartedMain] [651] [INFO ] No active profile set, falling back to default profiles: default
+[2019-11-13T12:26:55.055Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [WARN ] The MBean registry cannot be disabled because it has already been initialised
+[2019-11-13T12:26:55.055Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [92] [INFO ] Tomcat initialized with port(s): 9091 (http)
+[2019-11-13T12:26:55.055Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:26:55.055Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting service [Tomcat]
+[2019-11-13T12:26:55.055Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting Servlet engine: [Apache Tomcat/9.0.27]
+[2019-11-13T12:26:56.056Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing Spring embedded WebApplicationContext
+[2019-11-13T12:26:56.056Z] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [restartedMain] [284] [INFO ] Root WebApplicationContext: initialization completed in 690 ms
+[2019-11-13T12:26:56.056Z] [org.springframework.security.web.DefaultSecurityFilterChain] [restartedMain] [43] [INFO ] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4f49fda2, org.springframework.security.web.context.SecurityContextPersistenceFilter@21293e35, org.springframework.security.web.header.HeaderWriterFilter@6d2a694b, org.springframework.security.web.authentication.logout.LogoutFilter@181ed73a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5d9015f8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@634e5f30, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7e4bdfd3, org.springframework.security.web.session.SessionManagementFilter@52c83772, org.springframework.security.web.access.ExceptionTranslationFilter@77917a82, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4d11cd56]
+[2019-11-13T12:26:56.056Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [restartedMain] [171] [INFO ] Initializing ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:26:56.056Z] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer] [restartedMain] [60] [WARN ] Unable to start LiveReload server
+[2019-11-13T12:26:56.056Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:26:56.056Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [204] [INFO ] Tomcat started on port(s): 9091 (http) with context path ''
+[2019-11-13T12:26:56.056Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [61] [INFO ] Started ServiceWebApplication in 1.615 seconds (JVM running for 211.527)
+[2019-11-13T12:26:56.056Z] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener] [restartedMain] [63] [INFO ] Condition evaluation unchanged
+[2019-11-13T12:27:00.000Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [Thread-36] [208] [INFO ] Shutting down ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:27:00.000Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [55] [INFO ] Starting ServiceWebApplication on DESKTOP-HE1TMKM with PID 1236 (D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3\service_web\target\classes started by cordier in D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v3)
+[2019-11-13T12:27:00.000Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [56] [DEBUG] Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[2019-11-13T12:27:00.000Z] [org.springframework.boot.SpringApplication] [restartedMain] [651] [INFO ] No active profile set, falling back to default profiles: default
+[2019-11-13T12:27:00.000Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [WARN ] The MBean registry cannot be disabled because it has already been initialised
+[2019-11-13T12:27:00.000Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [92] [INFO ] Tomcat initialized with port(s): 9091 (http)
+[2019-11-13T12:27:00.000Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:27:00.000Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting service [Tomcat]
+[2019-11-13T12:27:00.000Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting Servlet engine: [Apache Tomcat/9.0.27]
+[2019-11-13T12:27:00.000Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing Spring embedded WebApplicationContext
+[2019-11-13T12:27:00.000Z] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [restartedMain] [284] [INFO ] Root WebApplicationContext: initialization completed in 311 ms
+[2019-11-13T12:27:00.000Z] [org.springframework.security.web.DefaultSecurityFilterChain] [restartedMain] [43] [INFO ] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@64366c1, org.springframework.security.web.context.SecurityContextPersistenceFilter@4b1ae4fa, org.springframework.security.web.header.HeaderWriterFilter@50562fe4, org.springframework.security.web.authentication.logout.LogoutFilter@51856efd, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2ce4ba7f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4d2c8908, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@42147505, org.springframework.security.web.session.SessionManagementFilter@50ba064c, org.springframework.security.web.access.ExceptionTranslationFilter@27681e38, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5ecc67c8]
+[2019-11-13T12:27:00.000Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [restartedMain] [171] [INFO ] Initializing ExecutorService 'applicationTaskExecutor'
+[2019-11-13T12:27:00.000Z] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer] [restartedMain] [60] [WARN ] Unable to start LiveReload server
+[2019-11-13T12:27:00.000Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting ProtocolHandler ["http-nio-9091"]
+[2019-11-13T12:27:00.000Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [204] [INFO ] Tomcat started on port(s): 9091 (http) with context path ''
+[2019-11-13T12:27:00.000Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [61] [INFO ] Started ServiceWebApplication in 0.574 seconds (JVM running for 215.533)
+[2019-11-13T12:27:00.000Z] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener] [restartedMain] [63] [INFO ] Condition evaluation unchanged
+[2019-11-13T12:27:09.009Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [SpringContextShutdownHook] [208] [INFO ] Shutting down ExecutorService 'applicationTaskExecutor'

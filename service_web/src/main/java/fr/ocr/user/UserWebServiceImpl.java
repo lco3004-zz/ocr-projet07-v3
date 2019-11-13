@@ -19,7 +19,7 @@ import java.util.Collection;
 
 
 @Service
-public class UserServiceImpl  implements UserService {
+public class UserWebServiceImpl implements UserWebService {
 
 	private final RestClient restClient;
 	private final ObjectMapper objectMapper;
@@ -27,7 +27,7 @@ public class UserServiceImpl  implements UserService {
 
 	private UserWebDtoWeb userWebDtoWeb;
 
-	public UserServiceImpl(RestClient restClient, ObjectMapper objectMapper, PrjExceptionHandler prjExceptionHandler) {
+	public UserWebServiceImpl(RestClient restClient, ObjectMapper objectMapper, PrjExceptionHandler prjExceptionHandler) {
 		this.restClient = restClient;
 		this.objectMapper = objectMapper;
 		this.prjExceptionHandler = prjExceptionHandler;
@@ -42,12 +42,11 @@ public class UserServiceImpl  implements UserService {
 		this.userWebDtoWeb = userWebDtoWeb;
 	}
 
-    @Override
+	@Override
 	public UserWebDtoWeb doesUserExist(Authentication authentication) throws IOException, InterruptedException {
 			userWebDtoWeb =getFromServiceCrud(authentication.getName());
 		return userWebDtoWeb;
 	}
-
 
 	@Override
 	public UserWebDtoWeb loadUserByUsername(String username) throws UsernameNotFoundException {

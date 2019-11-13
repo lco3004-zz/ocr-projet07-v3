@@ -47,11 +47,6 @@ public class UserWebDtoWeb implements Serializable , UserDetails {
     }
 
 
-    @Override
-    public String getUsername() {
-        return username;
-    }
-
     public void setUsername(String username) {
         this.username = username;
     }
@@ -74,6 +69,11 @@ public class UserWebDtoWeb implements Serializable , UserDetails {
 
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
     }
 
     public void setPassword(String password) {
@@ -126,9 +126,9 @@ public class UserWebDtoWeb implements Serializable , UserDetails {
 
     }
 
-    public ResponseEntity<Map<String, Object>> formeReponseEntity(HttpStatus httpStatus, UserWebDtoWeb userWebDtoWeb) {
+    public ResponseEntity<Map<String, Object>> formeReponseEntity(HttpStatus httpStatus, UserDetails userDetails) {
 
-        Map<String,Object> stringObjectMap = getStringStringMap(userWebDtoWeb);
+        Map<String,Object> stringObjectMap = getStringStringMap(userDetails);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().build().toUri();
 
@@ -139,13 +139,15 @@ public class UserWebDtoWeb implements Serializable , UserDetails {
 
     }
 
-    public Map<String, Object> getStringStringMap(UserWebDtoWeb userWebDtoWeb) {
+    public Map<String, Object> getStringStringMap(UserDetails userDetails) {
         Map<String,Object> stringObjectMap = new HashMap<>();
 
-        stringObjectMap.put("idUser", userWebDtoWeb.getIdUser());
-        stringObjectMap.put("userName", userWebDtoWeb.getUsername());
-        stringObjectMap.put("email", userWebDtoWeb.getEmail());
+        stringObjectMap.put("userName", userDetails.getUsername());
 
         return stringObjectMap;
+    }
+
+    public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
+        this.authorities = authorities;
     }
 }

@@ -1,7 +1,7 @@
 package fr.ocr.security;
 
-import fr.ocr.user.UserService;
 import fr.ocr.user.UserWebDtoWeb;
+import fr.ocr.user.UserWebService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -22,7 +22,7 @@ import java.util.List;
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 	@Autowired
-	private UserService userService;
+	private UserWebService userService;
 
 	public CustomAuthenticationProvider() {
         super();
