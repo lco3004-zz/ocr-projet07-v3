@@ -51,20 +51,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.csrf()
+        http
+                .csrf()
+                .disable()
+                .authenticationProvider(authProvider)
+                .formLogin()
                 .disable()
                 .exceptionHandling()
                 .authenticationEntryPoint(new Http403ForbiddenEntryPoint() {})
                 .and()
-                .authenticationProvider(authProvider)
-                .formLogin()
-                .disable()
                 .authorizeRequests()
-                .antMatchers("/account/login").permitAll()
-                .antMatchers("/account/logout").permitAll()
-                .antMatchers("/account/user").permitAll()
+                .antMatchers("/account/loginUser").permitAll()
+                .antMatchers("/account/logoutUser").authenticated()
+                .antMatchers("/account/userInfos").authenticated()
+                .antMatchers("/account/tokenInfos").authenticated()
                 .antMatchers("/listeOuvrages").authenticated()
+                .antMatchers("/prolongerPret").authenticated()
                 .anyRequest().permitAll();
+
     }
 
     private class AuthentificationLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler {

@@ -34,36 +34,39 @@ public class UserWebController {
         this.authenticationProvider = authenticationProvider;
         this.prjExceptionHandler = prjExceptionHandler;
     }
-    @GetMapping(value="/token")
-    public Map<String, String> getToken(HttpSession session) {
+    @GetMapping(value="/tokenInfos")
+    public Map<String, String> tokenInfos(HttpSession session) {
         return Collections.singletonMap("token", session.getId());
     }
 
-    @RequestMapping("/user")
-    public Principal user(Principal user) {
+    @RequestMapping("/userInfos")
+    public Principal userInfos(Principal user) {
         return user;
     }
 
 
-    @PostMapping(value = "/login")
-    public ResponseEntity<Map<String, Object>> ConnexionUser(@RequestBody UserWebDtoWeb user, HttpServletResponse response) {
+    @PostMapping(value = "/loginUser")
+    public ResponseEntity<Map<String, Object>> loginUser(@RequestBody UserWebDtoWeb user, HttpServletResponse response) {
         Authentication authentication = null;
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(user.getUsername(),user.getPassword());
-        UserDetails userDetails ;
+        UserDetails userDetails =null;
         try {
             authentication = this.authenticationProvider.authenticate(token);
             SecurityContextHolder.getContext().setAuthentication(authentication);
-             userDetails = (UserDetails) authentication.getPrincipal();
+            userDetails = (UserWebDtoWeb) authentication.getPrincipal();
 
         } catch (Exception e) {
             prjExceptionHandler.throwUserUnAuthorized();
         }
-        //user.setEmail(userDetails.);
+
+        if (userDetails == null)
+            prjExceptionHandler.throwUserUnAuthorized();
+
         return user.formeReponseEntity(HttpStatus.valueOf(response.getStatus()) , user);
     }
 
-    @GetMapping(value = "/logout")
-    public ResponseEntity<String> DeconnexionUser(HttpServletRequest request, HttpServletResponse response) {
+    @GetMapping(value = "/logoutUser")
+    public ResponseEntity<String> logoutUser(HttpServletRequest request, HttpServletResponse response) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 

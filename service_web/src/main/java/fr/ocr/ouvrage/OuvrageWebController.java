@@ -37,7 +37,7 @@ public class OuvrageWebController {
 
     @ApiOperation(value = "Recherche d'ouvrage par titre ou par auteur")
     @GetMapping(value="/listeOuvrages")
-    public List<OuvrageWebDtoWeb> getOuvrageByQuery(
+    public List<OuvrageWebDtoWeb> listeOuvrages(
             @RequestParam(value = "auteur",required = false) String auteur,
             @RequestParam(value = "titre",required = false) String titre) throws IOException, InterruptedException {
 

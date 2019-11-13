@@ -20,6 +20,32 @@ public class UserWebDtoWeb implements Serializable , UserDetails {
     static final long serialVersionUID = 5453481303625368221L;
 
     private Integer idUser;
+    private String username;
+    private String password;
+    private String email;
+    private Collection<? extends GrantedAuthority> authorities;
+    private HttpResponse<String> response;
+
+
+    public UserWebDtoWeb(String userName, String password, String email, Integer idUser, Collection<? extends GrantedAuthority> authorities) {
+        this.idUser = idUser;
+        this.username = userName;
+        this.password = password;
+        this.email = email;
+        this.authorities = authorities;
+    }
+
+    public UserWebDtoWeb(Integer idUser, String userName, String password, String email) {
+        this.idUser = idUser;
+        this.username = userName;
+        this.password = password;
+        this.email = email;
+    }
+
+    public UserWebDtoWeb() {
+
+    }
+
 
     @Override
     public String getUsername() {
@@ -30,12 +56,6 @@ public class UserWebDtoWeb implements Serializable , UserDetails {
         this.username = username;
     }
 
-    private String username;
-    private String password;
-    private String email;
-
-    private HttpResponse<String> response;
-
     public HttpResponse<String> getResponse() {
         return response;
     }
@@ -43,15 +63,6 @@ public class UserWebDtoWeb implements Serializable , UserDetails {
     public void setResponse(HttpResponse<String> response) {
         this.response = response;
     }
-
-    public UserWebDtoWeb(Integer idUser, String userName, String password, String email) {
-        this.idUser = idUser;
-        this.username = userName;
-        this.password = password;
-        this.email = email;
-    }
-
-    public UserWebDtoWeb() { }
 
     public Integer getIdUser() {
         return idUser;
@@ -106,7 +117,6 @@ public class UserWebDtoWeb implements Serializable , UserDetails {
 
         Map<String,Object> stringObjectMap = getStringStringMap(userWebDtoWeb);
 
-
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().build().toUri();
 
         ResponseEntity.BodyBuilder bodyBuilder = ResponseEntity.status(HttpStatus.valueOf(httpResponse.statusCode()));
@@ -120,7 +130,6 @@ public class UserWebDtoWeb implements Serializable , UserDetails {
 
         Map<String,Object> stringObjectMap = getStringStringMap(userWebDtoWeb);
 
-
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().build().toUri();
 
         ResponseEntity.BodyBuilder bodyBuilder = ResponseEntity.status(httpStatus);
@@ -129,8 +138,6 @@ public class UserWebDtoWeb implements Serializable , UserDetails {
         return bodyBuilder.body(stringObjectMap);
 
     }
-
-
 
     public Map<String, Object> getStringStringMap(UserWebDtoWeb userWebDtoWeb) {
         Map<String,Object> stringObjectMap = new HashMap<>();
@@ -141,5 +148,4 @@ public class UserWebDtoWeb implements Serializable , UserDetails {
 
         return stringObjectMap;
     }
-
 }

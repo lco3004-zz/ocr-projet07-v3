@@ -4,9 +4,10 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.ocr.RestClient;
 import fr.ocr.exception.PrjExceptionHandler;
+import fr.ocr.security.UserWebDtoWebAuthorityUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Collection;
 
 
 @Service
@@ -48,15 +50,20 @@ public class UserServiceImpl  implements UserService {
 
 
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+	public UserWebDtoWeb loadUserByUsername(String username) throws UsernameNotFoundException {
 
 			try {
 				userWebDtoWeb = getFromServiceCrud(username);
 			} catch (IOException | InterruptedException e) {
 				throw new UsernameNotFoundException("Nom inconnu");
 			}
+		Collection<? extends GrantedAuthority> authorities = UserWebDtoWebAuthorityUtils.createAuthorities(userWebDtoWeb);
 
-		return userWebDtoWeb;
+		return new UserWebDtoWeb(userWebDtoWeb.getUsername(),
+				userWebDtoWeb.getPassword(),
+				userWebDtoWeb.getEmail(),
+				userWebDtoWeb.getIdUser(),
+				authorities);
 	}
 
 	private UserWebDtoWeb getFromServiceCrud(String nomUser) throws IOException, InterruptedException{

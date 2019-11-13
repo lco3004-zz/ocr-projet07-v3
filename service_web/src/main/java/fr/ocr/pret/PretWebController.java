@@ -11,8 +11,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -46,11 +46,19 @@ public class PretWebController {
 
         List<PretWebDtoWeb> pretWebDtoWebList =null;
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+               String uriPretByNomUsager = "http://localhost:9090/CriteriaListePrets/";
 
-        String uriPretByNomUsager = "http://localhost:9090/CriteriaListePrets/";
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        HttpRequest request = restClient.requestBuilder(URI.create(uriPretByNomUsager + authentication.getName()), null).GET().build();
+        String username;
+
+        if (principal instanceof UserDetails) {
+             username = ((UserDetails)principal).getUsername();
+        } else {
+             username = principal.toString();
+        }
+
+        HttpRequest request = restClient.requestBuilder(URI.create(uriPretByNomUsager + username), null).GET().build();
 
         HttpResponse<String> response = restClient.send(request);
 
@@ -72,7 +80,7 @@ public class PretWebController {
     }
 
     @ApiOperation(value = "Prolonge le Pret d'un user")
-    @PutMapping(value = "/ProlongerPret")
+    @PutMapping(value = "/prolongerPret")
     public ResponseEntity<Map<String, Integer>> prolongerPret(@RequestBody InfosWebRecherchePretWeb infosWebRecherchePretWeb) throws IOException, InterruptedException {
 
         String uriOuvrageDtoById = "http://localhost:9090/ProlongerPret/";
