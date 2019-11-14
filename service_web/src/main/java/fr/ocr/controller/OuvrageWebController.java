@@ -1,10 +1,11 @@
-package fr.ocr.ouvrage;
+package fr.ocr.controller;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.ocr.RestClient;
 import fr.ocr.exception.PrjExceptionHandler;
+import fr.ocr.model.OuvrageWeb;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
@@ -37,11 +38,11 @@ public class OuvrageWebController {
 
     @ApiOperation(value = "Recherche d'ouvrage par titre ou par auteur")
     @GetMapping(value="/listeOuvrages")
-    public List<OuvrageWebDtoWeb> listeOuvrages(
+    public List<OuvrageWeb> listeOuvrages(
             @RequestParam(value = "auteur",required = false) String auteur,
             @RequestParam(value = "titre",required = false) String titre) throws IOException, InterruptedException {
 
-        List<OuvrageWebDtoWeb> ouvrageWebDtoWebList =null;
+        List<OuvrageWeb> ouvrageWebList =null;
 
         String uriOuvrageDtoById = "http://localhost:9090/LookForOuvrage/";
 
@@ -65,11 +66,11 @@ public class OuvrageWebController {
 
         if (response.statusCode() == HttpStatus.OK.value()) {
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            ouvrageWebDtoWebList = objectMapper.readValue(response.body(), new TypeReference<>(){});
+            ouvrageWebList = objectMapper.readValue(response.body(), new TypeReference<>(){});
         }else {
             prjExceptionHandler.throwOuvrageNotFound();
         }
-        return ouvrageWebDtoWebList;
+        return ouvrageWebList;
 
     }
 

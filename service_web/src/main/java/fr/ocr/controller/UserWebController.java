@@ -1,11 +1,13 @@
-package fr.ocr.user;
+package fr.ocr.controller;
 
 import fr.ocr.exception.PrjExceptionHandler;
+import fr.ocr.model.UserWeb;
+import fr.ocr.service.UserWebService;
+import fr.ocr.utility.InfosConnexionUser;
 import io.swagger.annotations.Api;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,15 +27,18 @@ import java.util.Map;
 @RequestMapping("/account/*")
 public class UserWebController {
 
-    private final AuthenticationProvider authenticationProvider;
+
 
     private final PrjExceptionHandler prjExceptionHandler;
 
+    private  final UserWebService userWebService;
 
-    public UserWebController(AuthenticationProvider authenticationProvider, PrjExceptionHandler prjExceptionHandler) {
-        this.authenticationProvider = authenticationProvider;
+    @Autowired
+    public UserWebController(PrjExceptionHandler prjExceptionHandler, UserWebService userWebService ){
         this.prjExceptionHandler = prjExceptionHandler;
+        this.userWebService = userWebService;
     }
+
     @GetMapping(value="/tokenInfos")
     public Map<String, String> tokenInfos(HttpSession session) {
         return Collections.singletonMap("token", session.getId());
@@ -46,24 +51,14 @@ public class UserWebController {
 
 
     @PostMapping(value = "/loginUser")
-    public ResponseEntity<Map<String, Object>> loginUser(@RequestBody UserWebDtoWeb user, HttpServletResponse response) {
-        Authentication authentication = null;
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(user.getUsername(),user.getPassword());
-        UserDetails userDetails =null;
+    public ResponseEntity<Map<String, Object>> loginUser(@RequestBody UserWeb user, HttpServletResponse response) {
 
-        try {
-            authentication = this.authenticationProvider.authenticate(token);
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-            userDetails = (UserDetails) authentication.getPrincipal();
+        UserDetails userDetails;
 
-        } catch (Exception e) {
-            prjExceptionHandler.throwUserUnAuthorized();
-        }
-
-        if (userDetails == null)
+        if ((userDetails= userWebService.attemptAuthentication(user)) == null)
             prjExceptionHandler.throwUserUnAuthorized();
 
-        return user.formeReponseEntity(HttpStatus.valueOf(response.getStatus()) ,  userDetails);
+        return InfosConnexionUser.formeReponseEntity(response,  userDetails);
     }
 
     @GetMapping(value = "/logoutUser")

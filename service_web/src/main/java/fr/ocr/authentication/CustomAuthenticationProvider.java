@@ -1,5 +1,6 @@
-package fr.ocr.user.security;
+package fr.ocr.authentication;
 
+import fr.ocr.userdetails.UserWebUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -19,7 +20,7 @@ import java.util.List;
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 	@Autowired
-	private UserWebService userService;
+	private UserWebUserDetailsService userWebUserDetailsService;
 
 	public CustomAuthenticationProvider() {
         super();
@@ -29,7 +30,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		final String username = authentication.getName();
 		final String password = authentication.getCredentials().toString();
 
-		UserDetails userDetails = userService.doesUserExist(authentication);
+		UserDetails userDetails = userWebUserDetailsService.doesUserExist(authentication);
 
 		if (userDetails == null || ! userDetails.getUsername().equalsIgnoreCase(username)) {
 			throw new BadCredentialsException("Username not found.");
@@ -50,8 +51,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 	
 	@Override
     public boolean supports(Class<?> authentication) {
-        return authentication.equals(
-          UsernamePasswordAuthenticationToken.class);
+        return authentication.equals(UsernamePasswordAuthenticationToken.class);
     }
 
 }

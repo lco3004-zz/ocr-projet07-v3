@@ -1,7 +1,6 @@
-package fr.ocr.config;
+package fr.ocr.configuration;
 
-import fr.ocr.user.security.CustomAuthenticationProvider;
-import fr.ocr.user.security.UserWebService;
+import fr.ocr.authentication.CustomAuthenticationProvider;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,15 +10,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
-import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 
 @Configuration
@@ -27,19 +18,15 @@ import java.io.IOException;
 @Order(SecurityProperties.BASIC_AUTH_ORDER)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private  final UserWebService userDetailsService;
+    private final CustomAuthenticationProvider authProvider;
 
-      private final CustomAuthenticationProvider authProvider;
-
-    public WebSecurityConfig(UserWebService userDetailsService, CustomAuthenticationProvider authProvider) {
+    public WebSecurityConfig(CustomAuthenticationProvider authProvider) {
         this.authProvider = authProvider;
-        this.userDetailsService = userDetailsService;
     }
 
     @Override
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
-
         return super.authenticationManagerBean();
     }
 
@@ -69,24 +56,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/prolongerPret").authenticated();
                 //.anyRequest().permitAll();
 
-    }
-
-    private class AuthentificationLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler {
-
-        @Override
-        public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response,
-                                    Authentication authentication) throws IOException, ServletException {
-            response.setStatus(HttpServletResponse.SC_OK);
-        }
-    }
-
-    private class AuthentificationLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
-
-        @Override
-        public void onAuthenticationSuccess(HttpServletRequest request,
-                                            HttpServletResponse response, Authentication authentication)
-                throws IOException, ServletException {
-            response.setStatus(HttpServletResponse.SC_OK);
-        }
     }
 }

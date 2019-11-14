@@ -1,4 +1,4 @@
-package fr.ocr.pret;
+package fr.ocr.controller;
 
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -6,8 +6,10 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.ocr.RestClient;
 import fr.ocr.exception.PrjExceptionHandler;
-import fr.ocr.user.UserWebDtoWeb;
-import fr.ocr.user.security.UserWebService;
+import fr.ocr.model.PretWeb;
+import fr.ocr.model.UserWeb;
+import fr.ocr.userdetails.UserWebUserDetailsService;
+import fr.ocr.utility.InfosWebRecherchePretWeb;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
@@ -24,6 +26,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,20 +38,24 @@ public class PretWebController {
     private final RestClient restClient;
     private final ObjectMapper objectMapper;
     private final PrjExceptionHandler prjExceptionHandler;
-    private final UserWebService userWebService;
+    private final UserWebUserDetailsService userWebUserDetailsService;
 
-    public PretWebController(RestClient restClient, ObjectMapper objectMapper, PrjExceptionHandler prjExceptionHandler, UserWebService userWebService) {
+    public PretWebController(RestClient restClient,
+                             ObjectMapper objectMapper,
+                             PrjExceptionHandler prjExceptionHandler,
+                             UserWebUserDetailsService userWebService) {
         this.restClient = restClient;
         this.objectMapper = objectMapper;
         this.prjExceptionHandler = prjExceptionHandler;
-        this.userWebService = userWebService;
+
+        this.userWebUserDetailsService = userWebService;
     }
 
     @ApiOperation(value = "Api Criteria : Récupère les prêts d'un user grâce à son nom")
     @GetMapping(value="/listePrets",  produces= MediaType.APPLICATION_JSON_VALUE)
-    public  List<PretWebDtoWeb> getPretByNomUsagerCriteria() throws IOException, InterruptedException {
+    public  List<PretWeb> getPretByNomUsagerCriteria() throws IOException, InterruptedException {
 
-        List<PretWebDtoWeb> pretWebDtoWebList =null;
+        List<PretWeb> pretWebList =null;
 
         String uriPretByNomUsager = "http://localhost:9090/CriteriaListePrets/";
 
@@ -68,7 +75,7 @@ public class PretWebController {
 
         if (response.statusCode() == HttpStatus.OK.value()) {
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            pretWebDtoWebList = objectMapper.readValue(response.body(), new TypeReference<>() {});
+            pretWebList = objectMapper.readValue(response.body(), new TypeReference<>() {});
         }
         else if (response.statusCode() == HttpStatus.NOT_ACCEPTABLE.value()){
             prjExceptionHandler.throwPretNotAcceptable("Cause : Usager n'a aucun pret en cours ");
@@ -80,12 +87,12 @@ public class PretWebController {
             prjExceptionHandler.throwInternalServeurError("Cause: "+ HttpStatus.valueOf(response.statusCode()));
         }
 
-        return pretWebDtoWebList;
+        return pretWebList;
     }
 
     @ApiOperation(value = "Prolonge le Pret d'un user")
     @PutMapping(value = "/prolongerPret")
-    public ResponseEntity<Map<String, Integer>> prolongerPret(@RequestBody InfosWebRecherchePretWeb infosWebRecherchePretWeb) throws IOException, InterruptedException {
+    public ResponseEntity<Integer> prolongerPret(@RequestBody PretWeb pretWeb) throws IOException, InterruptedException {
 
         String uriOuvrageDtoById = "http://localhost:9090/ProlongerPret/";
 
@@ -99,20 +106,25 @@ public class PretWebController {
             username = principal.toString();
         }
 
-        UserWebDtoWeb userWebDtoWeb = userWebService.getFromServiceCrud(username);
+        UserWeb userWeb = userWebUserDetailsService.getFromServiceCrud(username);
 
-        if (infosWebRecherchePretWeb.getIdUser() != userWebDtoWeb.getIdUser())
+        if (pretWeb.getUserIduser() != userWeb.getIdUser())
             prjExceptionHandler.throwUserUnAuthorized();
+
+        Map<String,Integer> stringIntegerMap = new HashMap<>();
+        stringIntegerMap.put("idUser", pretWeb.getUserIduser());
+        stringIntegerMap.put("idOuvrage",pretWeb.getOuvrageIdouvrage());
 
         String requestBody = objectMapper
                 .writerWithDefaultPrettyPrinter()
-                .writeValueAsString(infosWebRecherchePretWeb.getStringIntegerMap());
+                .writeValueAsString(stringIntegerMap);
 
         HttpRequest request = restClient
                 .requestBuilder(URI.create(uriOuvrageDtoById), null)
                 .PUT(HttpRequest.BodyPublishers.ofString(requestBody))
                 .build();
 
-        return infosWebRecherchePretWeb.formeReponseEntity( restClient.send(request));
+
+        return  InfosWebRecherchePretWeb.formeReponseEntity(restClient.send(request));
     }
 }
