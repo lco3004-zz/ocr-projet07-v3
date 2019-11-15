@@ -2,17 +2,22 @@ package fr.ocr.userdetails;
 
 import fr.ocr.model.UserWeb;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.net.http.HttpResponse;
 import java.util.Collection;
+import java.util.List;
 
 //@Component
 public class UserWebUserDetails  extends UserWeb implements UserDetails {
 
     private HttpResponse<String> response;
 
+    public void setAuthorities(List<GrantedAuthority> authorities) {
+        this.authorities = authorities;
+    }
+
+    private List<GrantedAuthority> authorities;
 
     public  UserWebUserDetails(UserWeb userWeb) {
         setIdUser(userWeb.getIdUser());
@@ -32,7 +37,7 @@ public class UserWebUserDetails  extends UserWeb implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return AuthorityUtils.createAuthorityList("ROLE_USER");
+        return authorities; //AuthorityUtils.createAuthorityList("ROLE_USER");
     }
 
     @Override

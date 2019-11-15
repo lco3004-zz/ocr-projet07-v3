@@ -1,5 +1,6 @@
 package fr.ocr.authentication;
 
+import fr.ocr.userdetails.UserWebUserDetails;
 import fr.ocr.userdetails.UserWebUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -9,8 +10,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -30,13 +29,13 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		final String username = authentication.getName();
 		final String password = authentication.getCredentials().toString();
 
-		UserDetails userDetails = userWebUserDetailsService.doesUserExist(authentication);
+		UserWebUserDetails userWebUserDetails = userWebUserDetailsService.doesUserExist(authentication);
 
-		if (userDetails == null || ! userDetails.getUsername().equalsIgnoreCase(username)) {
+		if (userWebUserDetails == null || ! userWebUserDetails.getUsername().equalsIgnoreCase(username)) {
 			throw new BadCredentialsException("Username not found.");
 		}
 
-		if (!password.equals(userDetails.getPassword())) {
+		if (!password.equals(userWebUserDetails.getPassword())) {
 			throw new BadCredentialsException("Wrong password.");
 		}
 
@@ -44,9 +43,10 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 		authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 
-        final UserDetails principal = new User(username, password, authorities);
+        //final UserDetails principal = new User(username, password, authorities);
+		userWebUserDetails.setAuthorities(authorities);
 
-		return new UsernamePasswordAuthenticationToken(principal, password, authorities);
+		return new UsernamePasswordAuthenticationToken(userWebUserDetails, password, authorities);
 	}
 	
 	@Override

@@ -8,7 +8,6 @@ import fr.ocr.model.UserWeb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
@@ -34,7 +33,7 @@ public class UserWebUserDetailsService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserWebUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserWebUserDetails userWebUserDetails=null;
         try {
             userWebUserDetails = getFromServiceCrud(username);
@@ -44,7 +43,7 @@ public class UserWebUserDetailsService implements UserDetailsService {
         return userWebUserDetails;
     }
 
-    public UserDetails doesUserExist(Authentication authentication) throws UsernameNotFoundException{
+    public UserWebUserDetails doesUserExist(Authentication authentication) throws UsernameNotFoundException{
         UserWebUserDetails userWebUserDetails=null;
         try {
             userWebUserDetails = getFromServiceCrud(authentication.getName());
