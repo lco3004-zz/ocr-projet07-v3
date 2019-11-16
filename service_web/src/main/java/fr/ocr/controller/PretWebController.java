@@ -8,6 +8,7 @@ import fr.ocr.RestClient;
 import fr.ocr.exception.PrjExceptionHandler;
 import fr.ocr.model.PretWeb;
 import fr.ocr.model.UserWeb;
+import fr.ocr.userdetails.UserWebUserDetails;
 import fr.ocr.userdetails.UserWebUserDetailsService;
 import fr.ocr.utility.InfosWebRecherchePretWeb;
 import io.swagger.annotations.Api;
@@ -61,13 +62,9 @@ public class PretWebController {
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        String username;
-
-        if (principal instanceof UserDetails) {
-             username = ((UserDetails)principal).getUsername();
-        } else {
-             username = principal.toString();
-        }
+        assert principal instanceof UserDetails;
+        UserDetails userDetails = (UserDetails)principal;
+        String username= userDetails.getUsername();
 
         HttpRequest request = restClient.requestBuilder(URI.create(uriPretByNomUsager + username), null).GET().build();
 
@@ -98,17 +95,17 @@ public class PretWebController {
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        String username;
 
-        if (principal instanceof UserDetails) {
-            username = ((UserDetails)principal).getUsername();
-        } else {
-            username = principal.toString();
-        }
+        assert principal instanceof UserDetails;
+
+        boolean isCredentialsNonExpired = ((UserWebUserDetails)principal).isCredentialsNonExpired();
+        boolean isAccountNonExpired = ((UserWebUserDetails)principal).isAccountNonExpired();
+
+        String username = ((UserDetails)principal).getUsername();
 
         UserWeb userWeb = userWebUserDetailsService.getFromServiceCrud(username);
 
-        if (pretWeb.getUserIduser() != userWeb.getIdUser())
+        if (pretWeb.getUserIduser() != userWeb.getIdUser() || !isAccountNonExpired || !isCredentialsNonExpired)
             prjExceptionHandler.throwUserUnAuthorized();
 
         Map<String,Integer> stringIntegerMap = new HashMap<>();
