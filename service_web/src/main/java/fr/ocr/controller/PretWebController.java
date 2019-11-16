@@ -7,7 +7,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.ocr.RestClient;
 import fr.ocr.exception.PrjExceptionHandler;
 import fr.ocr.model.PretWeb;
-import fr.ocr.model.UserWeb;
 import fr.ocr.userdetails.UserWebUserDetails;
 import fr.ocr.userdetails.UserWebUserDetailsService;
 import fr.ocr.utility.InfosWebRecherchePretWeb;
@@ -17,7 +16,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -62,9 +60,9 @@ public class PretWebController {
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        assert principal instanceof UserDetails;
-        UserDetails userDetails = (UserDetails)principal;
-        String username= userDetails.getUsername();
+        assert principal instanceof UserWebUserDetails;
+        UserWebUserDetails userWebUserDetails = (UserWebUserDetails)principal;
+        String username = ((UserWebUserDetails)principal).getUserWeb().getUsername();
 
         HttpRequest request = restClient.requestBuilder(URI.create(uriPretByNomUsager + username), null).GET().build();
 
@@ -91,25 +89,15 @@ public class PretWebController {
     @PutMapping(value = "/prolongerPret")
     public ResponseEntity<Integer> prolongerPret(@RequestBody PretWeb pretWeb) throws IOException, InterruptedException {
 
+        Map<String,Integer> stringIntegerMap = new HashMap<>();
         String uriOuvrageDtoById = "http://localhost:9090/ProlongerPret/";
 
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
+        UserWebUserDetails userWebUserDetails = (UserWebUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        assert principal instanceof UserDetails;
+        Integer userId = userWebUserDetails.getUserWeb().getIdUser();
 
-        boolean isCredentialsNonExpired = ((UserWebUserDetails)principal).isCredentialsNonExpired();
-        boolean isAccountNonExpired = ((UserWebUserDetails)principal).isAccountNonExpired();
-
-        String username = ((UserDetails)principal).getUsername();
-
-        UserWeb userWeb = userWebUserDetailsService.getFromServiceCrud(username);
-
-        if (pretWeb.getUserIduser() != userWeb.getIdUser() || !isAccountNonExpired || !isCredentialsNonExpired)
-            prjExceptionHandler.throwUserUnAuthorized();
-
-        Map<String,Integer> stringIntegerMap = new HashMap<>();
-        stringIntegerMap.put("idUser", pretWeb.getUserIduser());
+        stringIntegerMap.put("idUser", userId);
         stringIntegerMap.put("idOuvrage",pretWeb.getOuvrageIdouvrage());
 
         String requestBody = objectMapper

@@ -8,6 +8,8 @@ import fr.ocr.model.UserWeb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
@@ -16,6 +18,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Collection;
 
 @Component
 public class UserWebUserDetailsService implements UserDetailsService {
@@ -67,7 +70,8 @@ public class UserWebUserDetailsService implements UserDetailsService {
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             userWeb = objectMapper.readValue(response.body(), UserWeb.class);
         }
-        UserWebUserDetails userWebUserDetails = new UserWebUserDetails(userWeb);
+        Collection<GrantedAuthority> authorities= AuthorityUtils.createAuthorityList("ROLE_USER");
+        UserWebUserDetails userWebUserDetails = new UserWebUserDetails(userWeb, authorities);
         userWebUserDetails.setResponse(response);
         return userWebUserDetails;
     }

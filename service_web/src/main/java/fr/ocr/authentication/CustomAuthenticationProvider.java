@@ -9,13 +9,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
@@ -41,14 +37,15 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 			throw new BadCredentialsException("Wrong password.");
 		}
 
-		List<GrantedAuthority> authorities = new ArrayList<>();
+		Collection<GrantedAuthority> authorities = userWebUserDetails.getAuthorities();
 
-		authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+		//authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 
-        final UserDetails principal = new User(username, password, authorities);
+        //final UserWebUserDetails principal = new User(username, password, authorities);
+
 		//userWebUserDetails.setAuthorities(authorities);
 
-		return new UsernamePasswordAuthenticationToken(principal, password, authorities);
+		return new UsernamePasswordAuthenticationToken(userWebUserDetails, password, authorities);
 	}
 	
 	@Override

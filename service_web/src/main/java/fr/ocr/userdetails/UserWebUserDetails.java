@@ -2,28 +2,41 @@ package fr.ocr.userdetails;
 
 import fr.ocr.model.UserWeb;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.net.http.HttpResponse;
 import java.util.Collection;
-import java.util.List;
 
 //@Component
-public class UserWebUserDetails  extends UserWeb implements UserDetails {
+public class UserWebUserDetails  extends User implements UserDetails {
+
+    public UserWeb getUserWeb() {
+        return userWeb;
+    }
+
+    public void setUserWeb(UserWeb userWeb) {
+        this.userWeb = userWeb;
+    }
+
+    private  UserWeb userWeb ;
 
     private HttpResponse<String> response;
 
-    public void setAuthorities(List<GrantedAuthority> authorities) {
+    public void setAuthorities(Collection<GrantedAuthority> authorities) {
         this.authorities = authorities;
     }
 
-    private List<GrantedAuthority> authorities;
+    private Collection<GrantedAuthority> authorities;
 
-    public  UserWebUserDetails(UserWeb userWeb) {
-        setIdUser(userWeb.getIdUser());
-        setEmail(userWeb.getEmail());
-        setUsername(userWeb.getUsername());
-        setPassword(userWeb.getPassword());
+    public  UserWebUserDetails(UserWeb userWeb,  Collection<GrantedAuthority> authorities) {
+        super(userWeb.getUsername(),userWeb.getPassword(),authorities);
+        this.userWeb = userWeb;
+        this.authorities = authorities;
+        userWeb.setIdUser(userWeb.getIdUser());
+        userWeb.setEmail(userWeb.getEmail());
+        userWeb.setUsername(userWeb.getUsername());
+        userWeb.setPassword(userWeb.getPassword());
     }
 
     public HttpResponse<String> getResponse() {
@@ -36,7 +49,7 @@ public class UserWebUserDetails  extends UserWeb implements UserDetails {
 
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
+    public Collection<GrantedAuthority> getAuthorities() {
         return authorities; //AuthorityUtils.createAuthorityList("ROLE_USER");
     }
 
