@@ -70,11 +70,10 @@ public class UserWebController {
 
         UserDetails user = null;
         if (authentication != null ) {
-             user = (UserDetails) authentication.getPrincipal();
              new SecurityContextLogoutHandler().logout(request,response,authentication);
         }
         else
             prjExceptionHandler.throwUserUnAuthorized();
-        return  new ResponseEntity<String>(HttpStatus.OK);
+        return  new ResponseEntity<>(HttpStatus.OK);
     }
 }

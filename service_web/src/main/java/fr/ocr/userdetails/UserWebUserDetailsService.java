@@ -37,7 +37,7 @@ public class UserWebUserDetailsService implements UserDetailsService {
 
     @Override
     public UserWebUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserWebUserDetails userWebUserDetails=null;
+        UserWebUserDetails userWebUserDetails;
         try {
             userWebUserDetails = getFromServiceCrud(username);
         } catch (IOException | InterruptedException e) {
@@ -47,7 +47,7 @@ public class UserWebUserDetailsService implements UserDetailsService {
     }
 
     public UserWebUserDetails doesUserExist(Authentication authentication) throws UsernameNotFoundException{
-        UserWebUserDetails userWebUserDetails=null;
+        UserWebUserDetails userWebUserDetails;
         try {
             userWebUserDetails = getFromServiceCrud(authentication.getName());
         } catch (IOException | InterruptedException e) {
