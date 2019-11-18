@@ -48,13 +48,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint(new Http403ForbiddenEntryPoint() {})
                 .and()
                 .authorizeRequests()
+                .antMatchers("/account/home").permitAll()
                 .antMatchers("/account/loginUser").permitAll()
                 .antMatchers("/account/logoutUser").authenticated()
                 .antMatchers("/account/userInfos").authenticated()
                 .antMatchers("/account/tokenInfos").authenticated()
                 .antMatchers("/listeOuvrages").authenticated()
-                .antMatchers("/prolongerPret").authenticated();
-                //.anyRequest().permitAll();
+                .antMatchers("/prolongerPret").authenticated()
+                .anyRequest().permitAll();
 
     }
 }

@@ -21,7 +21,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 
 @Api(value = "APIs de gestion de users.")
@@ -44,6 +46,31 @@ public class UserWebController {
     @GetMapping(value="/tokenInfos")
     public Map<String, String> tokenInfos(HttpSession session) {
         return Collections.singletonMap("token", session.getId());
+    }
+
+    @GetMapping(value="/home")
+    public Map<String,Object> home() {
+        Map<String,Object> model = new HashMap<String,Object>();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        Object principal =  authentication.getPrincipal();
+        UserWeb userWeb ;
+        if (principal instanceof UserWebUserDetails) {
+            userWeb = ((UserWebUserDetails)principal).getUserWeb();
+        }
+        else {
+            userWeb = new UserWeb();
+            userWeb.setEmail("cest pas moi");
+            userWeb.setIdUser(-1);
+            userWeb.setUsername("pas connecté pas top");
+            userWeb.setPassword("oups pas de password ");
+        }
+
+
+        model.put("id", UUID.randomUUID().toString());
+        model.put("content", "Hello - Api home ");
+        model.put("userWeb",userWeb);
+        return model;
     }
 
     @RequestMapping("/userInfos")
