@@ -1,0 +1,14 @@
+[2020-01-09T08:14:59.059Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [55] [INFO ] Starting ServiceBatchmailApplication on DESKTOP-HE1TMKM with PID 5068 (D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v4\service_batchmail\target\classes started by cordier in D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v4)
+[2020-01-09T08:14:59.059Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [56] [DEBUG] Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[2020-01-09T08:14:59.059Z] [org.springframework.boot.SpringApplication] [restartedMain] [651] [INFO ] No active profile set, falling back to default profiles: default
+[2020-01-09T08:14:59.059Z] [org.springframework.boot.logging.DeferredLog] [restartedMain] [225] [INFO ] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[2020-01-09T08:14:59.059Z] [org.springframework.boot.logging.DeferredLog] [restartedMain] [225] [INFO ] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[2020-01-09T08:15:00.000Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [92] [INFO ] Tomcat initialized with port(s): 9092 (http)
+[2020-01-09T08:15:00.000Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting service [Tomcat]
+[2020-01-09T08:15:00.000Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting Servlet engine: [Apache Tomcat/9.0.27]
+[2020-01-09T08:15:00.000Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing Spring embedded WebApplicationContext
+[2020-01-09T08:15:00.000Z] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [restartedMain] [284] [INFO ] Root WebApplicationContext: initialization completed in 743 ms
+[2020-01-09T08:15:00.000Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [restartedMain] [171] [INFO ] Initializing ExecutorService 'applicationTaskExecutor'
+[2020-01-09T08:15:00.000Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [restartedMain] [171] [INFO ] Initializing ExecutorService 'taskScheduler'
+[2020-01-09T08:15:00.000Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [204] [INFO ] Tomcat started on port(s): 9092 (http) with context path ''
+[2020-01-09T08:15:00.000Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [61] [INFO ] Started ServiceBatchmailApplication in 1.614 seconds (JVM running for 2.341)

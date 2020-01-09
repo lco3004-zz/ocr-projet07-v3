@@ -1,0 +1,28 @@
+[2020-01-09T08:14:49.049Z] [org.springframework.boot.SpringApplicationBannerPrinter] [restartedMain] [61] [INFO ] 
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+[32m :: Spring Boot :: [39m      [2m (v2.2.0.RELEASE)[0;39m
+
+
+[2020-01-09T08:14:49.049Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [55] [INFO ] Starting ServiceFrontMvcApplication on DESKTOP-HE1TMKM with PID 2864 (D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v4\service_frontmvc\target\classes started by cordier in D:\OpenClassRooms\OCR-Projet07\ocr-projet07-v4)
+[2020-01-09T08:14:49.049Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [56] [DEBUG] Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[2020-01-09T08:14:49.049Z] [org.springframework.boot.SpringApplication] [restartedMain] [651] [INFO ] No active profile set, falling back to default profiles: default
+[2020-01-09T08:14:49.049Z] [org.springframework.boot.logging.DeferredLog] [restartedMain] [225] [INFO ] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[2020-01-09T08:14:49.049Z] [org.springframework.boot.logging.DeferredLog] [restartedMain] [225] [INFO ] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[2020-01-09T08:14:50.050Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [92] [INFO ] Tomcat initialized with port(s): 80 (http)
+[2020-01-09T08:14:50.050Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting service [Tomcat]
+[2020-01-09T08:14:50.050Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Starting Servlet engine: [Apache Tomcat/9.0.27]
+[2020-01-09T08:14:50.050Z] [org.apache.juli.logging.DirectJDKLog] [restartedMain] [173] [INFO ] Initializing Spring embedded WebApplicationContext
+[2020-01-09T08:14:50.050Z] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [restartedMain] [284] [INFO ] Root WebApplicationContext: initialization completed in 1010 ms
+[2020-01-09T08:14:51.051Z] [springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping] [restartedMain] [69] [INFO ] Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+[2020-01-09T08:14:51.051Z] [org.springframework.security.web.DefaultSecurityFilterChain] [restartedMain] [43] [INFO ] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@614dcbc8, org.springframework.security.web.context.SecurityContextPersistenceFilter@7979205, org.springframework.security.web.header.HeaderWriterFilter@4106b5a5, org.springframework.web.filter.CorsFilter@51864070, org.springframework.security.web.authentication.logout.LogoutFilter@70dc3f7c, org.springframework.security.web.session.ConcurrentSessionFilter@7809564a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@787552de, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@686ed5ed, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@527ced03, org.springframework.security.web.session.SessionManagementFilter@6cc3ec1f, org.springframework.security.web.access.ExceptionTranslationFilter@3d0049f0, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@32486a2c]
+[2020-01-09T08:14:51.051Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [restartedMain] [171] [INFO ] Initializing ExecutorService 'applicationTaskExecutor'
+[2020-01-09T08:14:51.051Z] [springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper] [restartedMain] [160] [INFO ] Context refreshed
+[2020-01-09T08:14:51.051Z] [springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper] [restartedMain] [163] [INFO ] Found 1 custom documentation plugin(s)
+[2020-01-09T08:14:51.051Z] [springfox.documentation.spring.web.scanners.ApiListingReferenceScanner] [restartedMain] [41] [INFO ] Scanning for api listing references
+[2020-01-09T08:14:51.051Z] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain] [204] [INFO ] Tomcat started on port(s): 80 (http) with context path ''
+[2020-01-09T08:14:51.051Z] [org.springframework.boot.StartupInfoLogger] [restartedMain] [61] [INFO ] Started ServiceFrontMvcApplication in 2.337 seconds (JVM running for 3.09)
