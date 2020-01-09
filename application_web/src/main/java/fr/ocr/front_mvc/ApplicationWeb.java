@@ -15,11 +15,11 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
         @PropertySource(value = "classpath:application.properties"),
         @PropertySource(value = "classpath:application.yml")})
 @EnableSwagger2
-public class ServiceFrontMvcApplication {
+public class ApplicationWeb {
 
     public static void main(String[] args) {
 
-        SpringApplication.run(ServiceFrontMvcApplication.class, args);
+        SpringApplication.run(ApplicationWeb.class, args);
     }
     @Bean
     public RestClient libHttpClient() {

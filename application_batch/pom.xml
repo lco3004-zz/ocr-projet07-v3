@@ -12,7 +12,7 @@
 
     <artifactId>service_batchmail</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>service_batchmail</name>
+    <name>application_batch</name>
     <description> projet 07 batch mail scheduleur</description>
     <packaging>jar</packaging>
 
@@ -83,7 +83,7 @@
     </dependencies>
 
     <build>
-        <finalName>service_batchmail</finalName>
+        <finalName>application_batch</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

@@ -12,8 +12,8 @@
 
     <artifactId>service_frontmvc</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>service_frontmvc</name>
-    <description>projet 07 - service  web</description>
+    <name>application_web</name>
+    <description>projet 07 - application_web</description>
     <packaging>jar</packaging>
 
     <dependencies>
@@ -74,7 +74,7 @@
     </dependencies>
 
     <build>
-        <finalName>service_frontmvc</finalName>
+        <finalName>application_web</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

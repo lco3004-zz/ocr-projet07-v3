@@ -18,10 +18,10 @@
   <description>Projet 07 - Librairie  - pom parent</description>
 
   <modules>
-    <module>service_crud</module>
-    <module>service_batchmail</module>
+    <module>service_rest</module>
+    <module>application_batch</module>
     <module>lib_httpclient</module>
-    <module>service_frontmvc</module>
+    <module>application_web</module>
   </modules>
 
   <properties>

@@ -10,6 +10,8 @@ import fr.ocr.front_mvc.model.UserWeb;
 import fr.ocr.front_mvc.service.UserWebService;
 import fr.ocr.front_mvc.userdetails.UserWebUserDetails;
 import io.swagger.annotations.Api;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -42,6 +44,8 @@ public class DispatchController {
     private  final UserWebService userWebService;
 
     private  final Map<String, Object> model;
+    private static final Logger log = LoggerFactory.getLogger(DispatchController.class);
+
 
     public DispatchController(RestClient restClient, ObjectMapper objectMapper, UserWebService userWebService, Map<String, Object> model){
         this.restClient = restClient;
@@ -194,8 +198,16 @@ public class DispatchController {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         assert principal instanceof UserWebUserDetails;
-        UserWebUserDetails userWebUserDetails = (UserWebUserDetails)principal;
-        String username = ((UserWebUserDetails)principal).getUserWeb().getUsername();
+        UserWebUserDetails userWebUserDetails =null;
+        String username = "";
+        try {
+             userWebUserDetails = (UserWebUserDetails)principal;
+             username = ((UserWebUserDetails)principal).getUserWeb().getUsername();
+
+        }catch (RuntimeException e) {
+            log.warn("Accès aux prêts impossible car pas connecté");
+            throw  new RuntimeException("Accès aux prêts impossible car pas connecté");
+        }
 
         HttpRequest request = restClient.requestBuilder(URI.create(uriPretByNomUsager + username), null).GET().build();
 

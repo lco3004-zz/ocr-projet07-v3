@@ -22,16 +22,16 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @PropertySources( {
         @PropertySource(value = "classpath:application.properties"),
         @PropertySource(value = "classpath:application.yml")})
-public class ServiceBatchmailApplication  implements  CommandLineRunner{
+public class ApplicationBatch implements  CommandLineRunner{
 
     @Autowired
     private ScheduledMailer scheduledMailer;
 
-    private static final Logger log = LoggerFactory.getLogger(ServiceBatchmailApplication.class);
+    private static final Logger log = LoggerFactory.getLogger(ApplicationBatch.class);
 
     public static void main(String[] args) {
 
-        SpringApplication.run(ServiceBatchmailApplication.class, args);
+        SpringApplication.run(ApplicationBatch.class, args);
 
     }
 
