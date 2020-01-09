@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>fr.ocr</groupId>
+    <artifactId>prj07</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>lib_httpclient</artifactId>
+  <version>1.0</version>
+  <packaging>jar</packaging>
+
+  <name>lib_httpclient</name>
+
+  <properties>
+    <package.directory>${project.build.directory}/${project.name}</package.directory>
+    <main.class>fr.ocr.RestClient</main.class>
+  </properties>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-core</artifactId>
+      <version>5.2.1.RELEASE</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>5.2.1.RELEASE</version>
+    </dependency>
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-web</artifactId>
+      </dependency>
+
+  </dependencies>
+
+  <build>
+    <plugins>
+
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-clean-plugin</artifactId>
+      <executions>
+        <execution>
+          <id>clean-deploy</id>
+          <phase>prepare-package</phase>
+          <goals>
+            <goal>clean</goal>
+          </goals>
+          <configuration>
+            <excludeDefaultDirectories>true</excludeDefaultDirectories>
+            <filesets>
+              <fileset>
+                <directory> ${project.basedir}/../projet07-repo </directory>
+                <includes>
+                  <include>*</include>
+                  <include>**</include>
+                </includes>
+              </fileset>
+              <fileset>
+                <directory>${package.directory}</directory>
+                <includes>
+                  <include>*</include>
+                  <include>**</include>
+                </includes>
+              </fileset>
+            </filesets>
+          </configuration>
+        </execution>
+      </executions>
+    </plugin>
+
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-resources-plugin</artifactId>
+      <executions>
+        <execution>
+          <id>copy-resources</id>
+          <phase>package</phase>
+          <goals>
+            <goal>copy-resources</goal>
+          </goals>
+          <configuration>
+            <outputDirectory>${package.directory}</outputDirectory>
+            <resources>
+              <resource>
+                <directory>src/main/resources/</directory>
+                <excludes>
+                  <exclude>*.xml</exclude>
+                </excludes>
+              </resource>
+            </resources>
+          </configuration>
+        </execution>
+      </executions>
+    </plugin>
+
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-dependency-plugin</artifactId>
+      <executions>
+        <execution>
+          <id>copy-dependencies</id>
+          <phase>package</phase>
+          <goals>
+            <goal>copy-dependencies</goal>
+          </goals>
+          <configuration>
+            <outputDirectory>${package.directory}/dependencies/</outputDirectory>
+          </configuration>
+        </execution>
+      </executions>
+    </plugin>
+
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-compiler-plugin</artifactId>
+      <executions>
+        <execution>
+          <id>compile-package</id>
+          <phase>compile</phase>
+          <goals>
+            <goal>compile</goal>
+          </goals>
+          <configuration>
+            <source>11</source>
+            <target>11</target>
+          </configuration>
+        </execution>
+      </executions>
+    </plugin>
+
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-jar-plugin</artifactId>
+      <executions>
+        <execution>
+          <id>default-jar</id>
+          <phase>package</phase>
+          <goals>
+            <goal>jar</goal>
+          </goals>
+          <configuration>
+            <finalName>${project.artifactId}-${project.version}</finalName>
+            <outputDirectory>${package.directory}/</outputDirectory>
+            <excludes>
+              <!-- les fichiers .properties ne seront pas dans le jar -->
+              <exclude>*.properties</exclude>
+            </excludes>
+            <archive>
+              <manifest>
+                <addClasspath>true</addClasspath>
+                <classpathPrefix>dependencies/</classpathPrefix>
+                <mainClass>${main.class}</mainClass>
+              </manifest>
+              <manifestEntries>
+                <Class-Path>.</Class-Path>
+              </manifestEntries>
+            </archive>
+          </configuration>
+        </execution>
+      </executions>
+    </plugin>
+
+
+    <plugin>
+      <artifactId>maven-install-plugin</artifactId>
+      <!--            <executions>
+                         <execution>
+                             <phase>deploy</phase>
+                             <goals>
+                                 <goal>install-file</goal>
+                             </goals>
+                             <configuration>
+                               <groupId>fr.moi</groupId>
+                               <artifactId>mylib</artifactId>
+                               <version>1.0</version>
+                               <packaging>jar</packaging>
+                                 <file>${basedir}/target/mylib/mylib-1.0.jar</file>
+                             </configuration>
+                         </execution>
+                     </executions>
+      -->
+    </plugin>
+
+    <plugin>
+      <artifactId>maven-deploy-plugin</artifactId>
+      <executions>
+        <execution>
+          <phase>deploy</phase>
+          <goals>
+            <goal>deploy-file</goal>
+          </goals>
+          <configuration>
+            <file>${project.basedir}/target/lib_httpclient/lib_httpclient-1.0.jar</file>
+
+            <groupId>fr.ocr</groupId>
+            <artifactId>lib_httpclient</artifactId>
+            <version>1.0</version>
+
+            <packaging>jar</packaging>
+            <url>file:///${project.basedir}/../projet07-repo</url>
+            <repositoryId>projet07repo</repositoryId>
+            <updateReleaseInfo>true</updateReleaseInfo>
+          </configuration>
+        </execution>
+      </executions>
+    </plugin>
+  </plugins>
+</build>
+
+  <repositories>
+  <repository>
+    <id>projet07repo</id>
+    <url>file:///${project.basedir}/../projet07-repo</url>
+  </repository>
+  </repositories>
+
+
+  <distributionManagement>
+  <repository>
+    <uniqueVersion>false</uniqueVersion>
+    <layout>default</layout>
+    <id>projet07repo</id>
+    <name>Internal repo</name>
+    <url>file:///${project.basedir}/../projet07-repo</url>
+  </repository>
+  </distributionManagement>
+</project>

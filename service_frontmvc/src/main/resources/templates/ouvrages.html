@@ -1,0 +1,42 @@
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" >
+
+<head>
+    <span th:insert="~{fragment/frag_header::header_fragment }"></span>
+</head>
+
+<body>
+<div class="container">
+
+    <nav class = "navbar navbar-expand-sm navbar-dark bg-secondary">
+        <span th:insert="~{fragment/frag_barenav::welcome_boutton_fragment }"></span>
+        <div class = "collapse navbar-collapse" id = "navbarSupportedContent">
+            <span th:insert="~{fragment/frag_barenav::ouvrages_menu_fragment}"></span>
+        </div>
+    </nav>
+
+    <h2  class = "mt-4">Les Ouvrages Disponibles</h2>
+    <table class="table" >
+        <thead class = "thead-light">
+        <tr>
+            <th class="text-left">Auteur</th>
+            <th class="text-center">Titre</th>
+            <th class="text-left">Quantite</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="ouvrageWeb : ${ouvragesWebListe}">
+            <td th:text="${ouvrageWeb.auteur}">Laurent</td>
+            <td th:text="${ouvrageWeb.titre}">SpringMvc</td>
+            <td th:text="${ouvrageWeb.quantite}">3</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+</body>
+</html>

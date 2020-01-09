@@ -1,0 +1,12 @@
+#Infos pour logging
+logging:
+  level:
+    org.springframework: WARN
+    com.netflix: WARN
+    org.apache.catalina: WARN
+    fr.ocr: DEBUG
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"
+    file: "%d %p %c{1.} [%t] %m%n"
+  file:
+    name: ./logs/lib_httpclient.log

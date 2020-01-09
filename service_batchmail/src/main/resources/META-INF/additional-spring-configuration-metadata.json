@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "dureePret",
+      "type": "java.lang.Integer",
+      "description": "durée d'un pret d'ouvrage."
+  }
+] }

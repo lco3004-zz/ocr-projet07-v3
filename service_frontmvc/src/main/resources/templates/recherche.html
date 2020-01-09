@@ -1,0 +1,49 @@
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" >
+
+<head>
+    <span th:insert="~{fragment/frag_header::header_fragment }"></span>
+</head>
+
+<body>
+<div class="container">
+    <nav class = "navbar navbar-expand-sm navbar-dark bg-secondary">
+        <span th:insert="~{fragment/frag_barenav::welcome_boutton_fragment }"></span>
+        <div class = "collapse navbar-collapse" id = "navbarSupportedContent">
+            <span th:insert="~{fragment/frag_barenav::recherche_menu_fragment }"></span>
+        </div>
+    </nav>
+    <br>
+
+    <form action="#" method="post"  th:action="@{/rechercherOuvrages}" th:object="${ouvrageWeb}">
+        <h2 class = "mt-4">Recherche Ouvrages</h2>
+        <hr/>
+
+        <div class = "form-group row ">
+            <label for = "auteur" class = "col-sm-2 col-form-label">Auteur</label>
+            <div id="auteur" class = "col-sm-4">
+                <input th:field="*{auteur}" type = "text" class = "form-control" placeholder = "Auteur">
+            </div>
+        </div>
+
+        <div class = "form-group row ">
+            <label for = "titre" class = "col-sm-2 col-form-label mr-0">Titre</label>
+            <div id="titre" class = "col-sm-4">
+                <input th:field="*{titre}" type = "text" class = "form-control" placeholder = "Titre">
+            </div>
+        </div>
+        <div class = "form-group row">
+            <input type="hidden" th:field="*{quantite}" />
+            <div class = "col-sm-10">
+                <button type = "submit" class = "btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+</body>
+</html>

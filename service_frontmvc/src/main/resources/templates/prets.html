@@ -1,0 +1,43 @@
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <span th:insert="~{fragment/frag_header::header_fragment }"></span>
+</head>
+
+<body>
+<div class="container">
+
+    <nav class = "navbar navbar-expand-sm navbar-dark bg-secondary">
+        <span th:insert="~{fragment/frag_barenav::welcome_boutton_fragment }"></span>
+        <div class = "collapse navbar-collapse" id = "navbarSupportedContent">
+            <span th:insert="~{fragment/frag_barenav::prets_menu_fragment}"></span>
+        </div>
+    </nav>
+
+    <h2  class = "mt-4">LesPrêts</h2>
+    <table class="table" >
+        <thead class = "thead-light">
+        <tr>
+            <th class="text-left">Auteur</th>
+            <th class="text-center">Titre</th>
+            <th class="text-left">Date</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="pretWeb : ${pretWebList}">
+            <td th:text="${pretWeb.auteur}">Avatar</td>
+            <td th:text="${pretWeb.titre}">7.8</td>
+            <td th:text="${#dates.format(pretWeb.dateEmprunt, 'dd-MMM-yyyy')}">02</td>
+            <td><a href="#" class="btn btn-info" role="button" th:hidden="${pretWeb.pretprolonge eq 1}"  th:href="@{/prolongerPret(ouvrageIdouvrage=${pretWeb.ouvrageIdouvrage})}">Update</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+</body>
+</html>

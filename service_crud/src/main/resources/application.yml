@@ -1,0 +1,22 @@
+server:
+  port: 9090
+spring:
+  main:
+    banner-mode: log
+    lazy-initialization: true
+  application:
+    name: service_crud
+  datasource:
+    platform: postgres
+    username: rl_projet07
+    password: projet07
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/db_projet07
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL95Dialect
+        ddl-auto: validate
+        format_sql: true
+        show_sql: true
