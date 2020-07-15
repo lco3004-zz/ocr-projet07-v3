@@ -1,0 +1,11 @@
+table {
+  width: 100%;
+}
+.lifttable {
+  height: 320px;
+  width: available;
+  overflow: auto;
+}
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
